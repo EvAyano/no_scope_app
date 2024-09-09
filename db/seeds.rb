@@ -11,7 +11,7 @@
 Word.destroy_all
 
 words = Word.create([
-  { term: "Ace", definition: "一人で敵全員を倒すこと", explanation: "", game_name: "VALORANT" },
+  { term: "Ace", definition: "一人で敵全員を倒すこと", explanation: "作成中", game_name: "VALORANT" },
   { term: "ADS", definition: "エイムダウンサイト、照準をのぞき込むこと", explanation: "対義語:腰撃ち(hip shooting)", game_name: "general" },
   { term: "Anchor", definition: "守りの際に特定の場所に留まり、敵のエリアへの侵入を防ぐプレイヤー", explanation: "元々は船のイカリを意味するが、のちに綱引きで一番後ろにいる屈強で体重が思い選手のことをそう呼ぶようになった。その後リレーの最終走者を指す意味になる。VALORANTでは別サイトに最後にローテーションするエージェント。センチネルがよくやっている", game_name: "general" },
   { term: "Anti-Eco", definition: "相手がエコラウンドであるラウンド", explanation: "相手の武器が弱いので距離を取って戦ったり数で攻めることが多い", game_name: "general" },
@@ -51,8 +51,8 @@ words = Word.create([
   { term: "Recon", definition: "敵の位置を探るための能力", explanation: "「reconnaissance」という単語の省略バージョン。偵察という意味。", game_name: "general" },
   { term: "Rotate", definition: "別のサイトに移動すること", explanation: "日本語でプレイするときの、いわゆるローテのこと", game_name: "general" },
   { term: "Save", definition: "次のラウンドのために武器を保持すること", explanation: "ほぼ負けが確定したラウンドでオペレーターを持っているプレイヤーなどがよくやる。サイトに近寄らず、できるだけ隠れる行動", game_name: "general" },
-  { term: "Smoke", definition: "視界を遮るための煙", explanation: "", game_name: "general" },
-  { term: "Spike", definition: "爆弾のこと", explanation: "", game_name: "VALORANT" },
+  { term: "Smoke", definition: "視界を遮るための煙", explanation: "作成中", game_name: "general" },
+  { term: "Spike", definition: "爆弾のこと", explanation: "作成中", game_name: "VALORANT" },
   { term: "Spray Control", definition: "連射時のリコイルを制御すること", explanation: "sprayが「連射する」という意味。", game_name: "general" },
   { term: "Stack", definition: "複数のプレイヤーが同じ場所に留まること", explanation: "「積む」という意味。プレイヤーを積む＝複数人で一定の箇所に居る というイメージで覚えやすいかも", game_name: "general" },
   { term: "Swing", definition: "遮蔽物から姿を出すこと。あるいは遮蔽物から大きく姿を出すこと。", explanation: "peekと同じ意味で使われたり、遮蔽物から大きく姿を出す（wide peek）の意味で使われたりする。", game_name: "general" },
