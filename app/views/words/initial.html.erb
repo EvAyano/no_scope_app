@@ -1,0 +1,12 @@
+<h1><%= @letter %>から始まる単語一覧</h1>
+
+<ul>
+  <% @words.each do |word| %>
+    <li>
+      <%= link_to word.term, word_path(word) %>: <%= word.definition %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "一覧に戻る", words_path, class: "button" %>
+<%= link_to "ホームに戻る", root_path, class: "button" %>

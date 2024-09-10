@@ -1,0 +1,13 @@
+<h1>Words#index</h1>
+<p>Find me in app/views/words/index.html.erb</p>
+
+
+<h1>単語一覧 (A-Z)</h1>
+
+<div>
+  <% @letters.each do |letter| %>
+    <%= link_to letter, initial_words_path(letter: letter), class: "initial-button" %>
+  <% end %>
+</div>
+
+<%= link_to "ホームに戻る", root_path, class: "button" %>

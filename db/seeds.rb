@@ -31,7 +31,7 @@ words = Word.create([
   { term: "Entry", definition: "サイト内に突入すること", explanation: "サイトに最初に入る人のことをEntry Fraggerと呼ぶ", game_name: "general" },
   { term: "Entry Fragger", definition: "最初に敵と交戦する役割のプレイヤー", explanation: "一般的にはデュエリストのことを指す", game_name: "general" },
   { term: "Flash", definition: "敵を一時的に目を見えなくする閃光", explanation: "間違えて味方に喰らわせてしまうと厄介なやつ", game_name: "general" },
-  { term: "Force Buy", definition: "持ち金全てを使えるだけ使って装備を整えること", explanation: "敵のマッチポイントなどで跡がない時などに行う", game_name: "general" },
+  { term: "Force Buy", definition: "持ち金全てを使えるだけ使って装備を整えること", explanation: "敵のマッチポイントなどで後がない時などに行う", game_name: "general" },
   { term: "Frag", definition: "敵を倒すこと", explanation: "ベトナム戦争中に、敵に殺されたと見せかけるためにfragmentation grenade（破砕性手りゅう弾）を使って嫌いな上官を殺害したことから転じて、ゲームでは敵を倒すことを意味するようになったらしい", game_name: "general" },
   { term: "Full Buy", definition: "フル装備で戦うラウンド", explanation: "良い武器とシールド、アビリティを揃える。対義語:エコラウンド(eco round)", game_name: "general" },
   { term: "Half Buy", definition: "少しは購入するが、次のラウンドのためにお金を残しておくこと", explanation: "日本語では調整バイと言ったりする", game_name: "general" },

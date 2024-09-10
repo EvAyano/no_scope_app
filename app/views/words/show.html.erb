@@ -1,0 +1,10 @@
+<h1>Words#show</h1>
+<p>Find me in app/views/words/show.html.erb</p>
+
+<h1><%= @word.term %></h1>
+<p><strong>意味:</strong> <%= @word.definition %></p>
+<p><strong>詳細:</strong> <%= @word.explanation %></p>
+
+<%= link_to '頭文字のページに戻る', words_path, class: 'button' %>
+
+<%= link_to "ホームに戻る", root_path, class: "button" %>

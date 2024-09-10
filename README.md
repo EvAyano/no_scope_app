@@ -1,4 +1,4 @@
-# no_scorp_app
+# no_scope_app
 
 ## Starting the app
 
