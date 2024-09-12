@@ -13,6 +13,12 @@ services:
     command: bundle exec rails server -b 0.0.0.0
     volumes:
       - .:/rails
+      - /rails/log
+      - /rails/tmp
+      - vendor_bundle:/rails/vendor/bundle
+      - node_modules:/rails/node_modules
+      - public_spree:/rails/public/spree
+      - storage:/rails/storage
     ports:
       - "3000:3000"
     depends_on:
@@ -24,3 +30,7 @@ services:
 
 volumes:
   db-data:
+  vendor_bundle:
+  node_modules:
+  public_spree:
+  storage:
