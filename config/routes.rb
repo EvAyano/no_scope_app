@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :words, only: [:index, :show] do
     collection do
       get 'initial/:letter', to: 'words#initial', as: 'initial'
+      get 'search', to: 'words#search', as: 'search'
     end
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

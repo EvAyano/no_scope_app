@@ -3,4 +3,13 @@
 
 <h1>Welcome to the Home Page</h1>
 
+<!--  検索欄、スペースの検索結果修正必要 -->
+<%= form_with url: search_words_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :query, "単語検索" %>
+    <%= text_field_tag :query, params[:query], placeholder: "ここに入力" %>
+    <%= submit_tag "検索" %>
+  </div>
+<% end %>
+
 <%= link_to '単語一覧を表示', words_path, class: 'button' %>
