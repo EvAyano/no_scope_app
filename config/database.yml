@@ -16,11 +16,14 @@ default: &default
   host: <%= ENV["DATABASE_HOST"] %>
   username: <%= ENV["DATABASE_USERNAME"] %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: no_scorp_app_development
+  host: 0.0.0.0
+  username: root
+  password: password
+  database: no_scope_app_development
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
