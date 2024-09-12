@@ -30,4 +30,13 @@ Start database
 ```
 docker-compose up
 ```
-#TBA
+
+Migrate
+```
+bundle exec rails db:migrate
+```
+
+Seed
+```
+bundle exec rails db:seed
+```
