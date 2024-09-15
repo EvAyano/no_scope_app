@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_list, only: [:show, :edit, :update, :destroy, :add_word, :remove_word]
+    before_action :set_list, only: [:show, :edit, :update, :destroy, :remove_word]
     before_action :check_list_limit, only: [:create]
   
     def index
@@ -39,16 +39,6 @@ class ListsController < ApplicationController
     def destroy
       @list.destroy
       redirect_to lists_path, notice: 'リストが削除されました。'
-    end
-  
-    def add_word
-      word = Word.find(params[:word_id])
-      if @list.words.include?(word)
-        redirect_to word_path(word), alert: 'この単語はすでにリストに追加されています。'
-      else
-        @list.words << word
-        redirect_to word_path(word), notice: '単語がリストに追加されました。'
-      end
     end
   
     def remove_word

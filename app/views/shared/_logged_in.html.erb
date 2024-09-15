@@ -1,0 +1,3 @@
+<p>ログイン中：<%= current_user.email %></p>
+<%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+<%= link_to 'あなたの単語リスト', lists_path, class: 'button' %>

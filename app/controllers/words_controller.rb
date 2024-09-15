@@ -22,6 +22,7 @@ class WordsController < ApplicationController
     list = current_user.lists.find(params[:list_id])
 
     if list.words << @word
+      print "保存できました"
       flash[:notice] = "単語がリストに保存されました。"
     else
       flash[:alert] = "単語の保存に失敗しました。"
