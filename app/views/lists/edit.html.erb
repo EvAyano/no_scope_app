@@ -1,0 +1,31 @@
+<h1>リスト名を編集</h1>
+
+<%= form_with model: @list, local: true do |form| %>
+  <div>
+    <%= form.label :name, "リスト名" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit "リスト名を更新する", class: "button" %>
+  </div>
+<% end %>
+
+<hr>
+
+<h2>リスト内の単語を編集する</h2>
+
+<% if @list.words.any? %>
+  <ul>
+    <% @list.words.each do |word| %>
+      <li>
+        <strong><%= link_to word.term, word_path(word) %></strong>
+        <%= link_to '削除', remove_word_list_path(@list, word_id: word.id), data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>このリストにはまだ単語が登録されていません。</p>
+<% end %>
+
+<%= link_to 'リスト一覧に戻る', lists_path, class: 'button' %>

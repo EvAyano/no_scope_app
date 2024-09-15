@@ -7,7 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "turbo", type: "module" %>
+
+    
   </head>
 
   <body>
@@ -15,5 +17,14 @@
       <p class="alert"><%= flash[:alert] %></p>
     <% end %>
     <%= yield %>
+    <nav>
+      <% if user_signed_in? %>
+        <p>ログイン中: <%= current_user.email %></p>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path %> |
+        <%= link_to '新規登録', new_user_registration_path %>
+      <% end %>
+    </nav>
   </body>
 </html>
