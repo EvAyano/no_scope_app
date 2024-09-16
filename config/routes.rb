@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/my_page'
   devise_for :users
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
       delete 'remove_word'
     end
   end
+
+  get 'my_page', to: 'users#my_page'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

@@ -1,0 +1,20 @@
+<h1>Users#my_page</h1>
+<p>Find me in app/views/users/my_page.html.erb</p>
+
+<h1>マイページ</h1>
+
+<div>
+  <h2>アカウント管理</h2>
+  <p>メールアドレス: <%= @user.email %></p>
+
+  <%= link_to 'メールアドレスを変更', edit_user_registration_path, class: 'button' %>
+
+  <%= link_to 'パスワードを変更', edit_user_registration_path, class: 'button' %>
+
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'button' %>
+</div>
+
+<div>
+  <h2>あなたの単語リスト</h2>
+  <%= link_to '単語リスト一覧', lists_path, class: 'button' %>
+</div>
