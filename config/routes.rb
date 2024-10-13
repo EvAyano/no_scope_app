@@ -18,10 +18,22 @@ Rails.application.routes.draw do
   resources :lists do
     member do
       delete 'remove_word'
+      patch 'change_name'
     end
   end
 
   get 'my_page', to: 'users#my_page'
+
+  resources :quizzes, only: [:new, :create, :show] do
+    member do
+      post 'answer'
+      get 'show_per_answer', to: 'quizzes#show_per_answer', as: 'show_per_answer'
+      get 'results'
+    end
+    collection do
+      get 'history'
+    end
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

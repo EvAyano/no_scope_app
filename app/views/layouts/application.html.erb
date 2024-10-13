@@ -14,10 +14,10 @@
 
   <body>
     <% if flash[:notice] %>
-  　　<p class="alert"><%= notice %></p>
-　　<% elsif flash[:alert] %>
-  　　<p class="alert"><%= alert %></p>
-　　<% end %>
+     <p class="alert"><%= notice %></p>
+    <% elsif flash[:alert] %>
+     <p class="alert"><%= alert %></p>
+    <% end %>
 
     <%= yield %>
     <nav>

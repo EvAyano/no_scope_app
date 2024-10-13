@@ -1,0 +1,8 @@
+<h1>過去のクイズ履歴</h1>
+<ul>
+  <% @quizzes_log.each do |quiz_log| %>
+    <li>
+      <%= link_to "クイズ ##{quiz_log[:id]} (日時: #{quiz_log[:formatted_start_time]})", quiz_log[:path] %>
+    </li>
+  <% end %>
+</ul>

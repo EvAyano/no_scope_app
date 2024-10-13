@@ -1,0 +1,6 @@
+<!-- listが存在する時用リスト一覧パーシャル -->
+<ul>
+  <% lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list) %> - <%= link_to '編集', edit_list_path(list) %> | <%= link_to '削除', list_path(list), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" } %></li>
+  <% end %>
+</ul>

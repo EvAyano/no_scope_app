@@ -1,17 +1,6 @@
 <h1><%= @list.name %></h1>
 
-<% if @words.any? %>
-  <ul>
-    <% @words.each do |word| %>
-      <li>
-        <strong><%= link_to word.term, word_path(word) %></strong>
-        <%= link_to '削除', remove_word_list_path(@list, word_id: word.id), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" } %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>このリストには単語が登録されていません。</p>
-<% end %>
+<%= render @list_content_partial %>
 
 <%= link_to 'リストを編集', edit_list_path(@list) %> |
 <%= link_to 'リスト一覧に戻る', lists_path %>
