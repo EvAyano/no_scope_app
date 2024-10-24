@@ -71,3 +71,5 @@ end
 gem "mysql2", "~> 0.5.6"
 
 gem "devise", "~> 4.9"
+
+gem "jquery-rails", "~> 4.6"

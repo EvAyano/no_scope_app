@@ -1,0 +1,14 @@
+<h2>メールアドレスの変更</h2>
+
+<%= form_for(current_user, url: update_user_email_path, method: :put) do |f| %>
+  <div class="field">
+    <%= f.label :email, "新しいメールアドレス" %><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "メールアドレスを変更" %>
+  </div>
+<% end %>
+
+<%= link_to 'マイページに戻る', my_page_path, class: "button" %>

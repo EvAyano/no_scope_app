@@ -40,3 +40,8 @@ Seed
 ```
 bundle exec rails db:seed
 ```
+
+Compile
+``
+bundle exec rake assets:precompile
+```
