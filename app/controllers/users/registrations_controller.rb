@@ -3,7 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  
+  before_action :register_nickname_params, only: [:create]
+  before_action :update_nickname_params, only: [:update]
+
   def edit_email
     @user = current_user
     render 'devise/registrations/edit_email'
@@ -34,7 +36,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_password
     @user = current_user
 
-    # current_password が正しいか確認し、新しいパスワードを更新
     if @user.update_with_password(password_params)
       bypass_sign_in(@user)
       redirect_to password_update_success_path, notice: 'パスワードが更新されました。'
@@ -43,13 +44,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit_nickname
+    @user = current_user
+  end
+
+  def update_nickname
+    @user = current_user
+    if @user.update(nickname_params)
+      redirect_to my_page_path, notice: 'ニックネームが更新されました。'
+    else
+      render :edit_nickname
+    end
+  end
+
   private
 
   def password_params
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
+  
+  def email_params
+    params.require(:user).permit(:email)
+  end
 
-
+  def nickname_params
+    params.require(:user).permit(:nickname)
+  end
 
   # GET /resource/sign_up
   # def new

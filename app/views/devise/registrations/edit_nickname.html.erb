@@ -1,0 +1,14 @@
+<h2>ニックネームを編集</h2>
+
+<%= form_for(@user, url: update_user_nickname_path, method: :put) do |f| %>
+  <div class="field">
+    <%= f.label :nickname, "ニックネーム" %><br>
+    <%= f.text_field :nickname, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+
+<%= link_to "マイページに戻る", my_page_path, class: "button" %>
