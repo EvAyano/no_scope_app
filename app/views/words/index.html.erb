@@ -9,3 +9,22 @@
     <%= link_to letter, initial_words_path(letter: letter), class: "initial-button" %>
   <% end %>
 </div>
+
+<section class="word-filter section-padding-100-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="alpha-filter d-flex flex-wrap align-items-center mb-3">
+          <!-- Allボタン -->
+          <%# <%= link_to 'All', initial_words_path, class: "alpha-filter", data: { filter: "*" } %> 
+
+          <% ('A'..'Z').each do |letter| %>
+            <%= link_to letter, initial_words_path(letter: letter), class: "alpha-buttons", data: { filter: ".alpha-#{letter.downcase}" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

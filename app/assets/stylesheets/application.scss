@@ -1,10 +1,8 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
-
-/* カスタムオフキャンバスの横幅調整 */
 .offcanvas.offcanvas-end {
-    width: 250px  /* 希望する横幅に調整 */
+    width: 250px 
   }
     @media (max-width: 767px) {
     .offcanvas.offcanvas-end {
@@ -12,33 +10,55 @@
     }
   }
   
-  
-
-/* ホバー */
 .col-12.col-md-6.p-0 {
     transition: background-color 0.3s, transform 0.3s;
   
     &:hover {
-      background-color: #98ceeb; // ホバー時の背景色（赤系の淡い色）
+      background-color: #98ceeb;
     }
-  
-    /* ホバー時タイトル文字の色変更 */
-    .card-body {
+      .card-body {
       transition: color 0.3s;
   
       &:hover {
         color: #0015b3;
       }
     }
-  
-    /* リンクのホバー時のスタイル変更 */
-    a {
+      a {
       color: inherit;
       transition: color 0.3s;
   
       &:hover {
         color: #cc0000;
-        text-decoration: underline; // リンクに下線を追加（任意）
+        text-decoration: underline;
+      }
+    }
+  }
+  
+
+  .word-filter {
+    .calpha-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+  
+      .alpha-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        color: #000;
+        background-color: #e0e0e0;
+        text-decoration: none;
+        border-radius: 0;
+        border: 2px solid transparent;
+        font-weight: bold;
+        transition: border-color 0.3s ease;
+  
+        &:hover,
+        &.active {
+          border-color: #000;
+        }
       }
     }
   }
