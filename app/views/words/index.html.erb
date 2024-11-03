@@ -2,29 +2,29 @@
 <p>Find me in app/views/words/index.html.erb</p>
 
 
-<h1>単語一覧 (A-Z)</h1>
 
-<div>
-  <% @letters.each do |letter| %>
-    <%= link_to letter, initial_words_path(letter: letter), class: "initial-button" %>
-  <% end %>
-</div>
+<h1>単語一覧 (A-Z)</h1>
 
 <section class="word-filter section-padding-100-0">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="alpha-filter d-flex flex-wrap align-items-center mb-3">
-          <!-- Allボタン -->
-          <%# <%= link_to 'All', initial_words_path, class: "alpha-filter", data: { filter: "*" } %> 
-
-          <% ('A'..'Z').each do |letter| %>
-            <%= link_to letter, initial_words_path(letter: letter), class: "alpha-buttons", data: { filter: ".alpha-#{letter.downcase}" } %>
+        <div class="browse-by-categories category-menu d-flex flex-wrap align-items-center mb-3">
+          <% @letters.each do |letter| %>
+            <%= link_to letter, filter_words_path(letter: letter.downcase), data: { turbo_frame: "word_list" }, class: "alpha-filter" %>
           <% end %>
         </div>
+        <%= turbo_frame_tag "word_list" do %>
+          <%= render partial: 'words/initial_before_filter', locals: { words: @words, letter: nil } %>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+
 
 

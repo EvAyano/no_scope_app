@@ -34,21 +34,20 @@
     }
   }
   
-
   .word-filter {
-    .calpha-filter {
+    .category-menu {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
   
-      .alpha-buttons {
+      .alpha-filter {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 40px;
         height: 40px;
         color: #000;
-        background-color: #e0e0e0;
+        background-color: #e0e5de;
         text-decoration: none;
         border-radius: 0;
         border: 2px solid transparent;
