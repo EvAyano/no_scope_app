@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "new_list" do %>
+
+  
+  <h2>新規リスト作成</h2>
+
+  <%= form_with model: list, url: lists_path, local: false do |form| %>
+    <div>
+      <%= form.label :name, "リスト名！！！！" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.submit "作成する", class: "button" %>
+    </div>
+  <% end %>
+<% end %>

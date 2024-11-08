@@ -17,6 +17,10 @@
         <%= turbo_frame_tag "word_list" do %>
           <%= render partial: 'words/initial_before_filter', locals: { words: @words, letter: nil } %>
         <% end %>
+
+        <%= turbo_frame_tag "word_detail" do %>
+          <p>ここに単語の詳細</p>
+        <% end %>
       </div>
     </div>
   </div>

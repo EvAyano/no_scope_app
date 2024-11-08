@@ -5,6 +5,11 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
+    print"単語の詳細"
+    respond_to do |format|
+      format.html { render partial: 'words/word_detail', locals: { word: @word } }
+      format.turbo_stream { render partial: 'words/word_detail', locals: { word: @word } }
+    end
   end
 
   def save

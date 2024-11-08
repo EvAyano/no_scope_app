@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/my_page'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do

@@ -5,7 +5,7 @@
     <h2><%= letter %>から始まる単語一覧</h2>
     <ul>
       <% words.each do |word| %>
-        <li><%= link_to word.term, word_path(word) %>: <%= word.definition %></li>
+        <li><%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %></li>
       <% end %>
     </ul>
   <% else %>
