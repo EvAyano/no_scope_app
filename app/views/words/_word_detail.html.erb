@@ -3,10 +3,16 @@
   <p><strong>意味:</strong> <%= word.definition %></p>
   <p><strong>詳細:</strong> <%= word.explanation %></p>
 
-  <div class="actions">
-    <%= link_to '新規リスト作成', new_list_path, data: { turbo_frame: "new_list" } %>
-  </div>
+
   <%= turbo_frame_tag "new_list" do %>
+    <%= render 'form', list: list, word: word %>
+  <% end %>
+  <%= turbo_frame_tag "flash_message" do %>
+    <p>ここにエラー</p>
+  <% end %>
+
+  <%= turbo_frame_tag "lists" do %>
+    <%= render 'lists/lists', lists: current_user.lists %> 
   <% end %>
 
 <% end %>

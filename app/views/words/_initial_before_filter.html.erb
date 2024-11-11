@@ -11,4 +11,8 @@
   <% else %>
     <h2><%= letter %>から始まる単語は見つかりませんでした。</h2>
   <% end %>
+
+  <%= turbo_frame_tag "word_detail" do %>
+    <p>ここに単語の詳細</p>
+  <% end %>
 <% end %>

@@ -10,7 +10,6 @@ class List < ApplicationRecord
   def list_count_limit
     if user.lists.count >= 5
       errors.add(:base, 'リストの上限は５つです。')
-      Rails.logger.debug("デバック: リストの上限は５つです。")
     end
   end
 end

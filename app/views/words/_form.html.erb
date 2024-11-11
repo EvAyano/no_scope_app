@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "new_list" do %>
+  <h2>新しいリストの作成と単語の保存</h2>
+  
+  <%= form_with model: list, url: create_list_and_save_word_words_path, method: :post, local: true do |form| %>
+    <%= hidden_field_tag :word_id, word.id %> 
+    <div>
+      <%= form.label :name, "リスト名" %>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.submit "リスト作成と保存", class: "button" %>
+    </div>
+  <% end %>
+<% end %>
+

@@ -1,5 +1,0 @@
-<%= turbo_stream.update "flash" %>
-  <%= render partial: "layouts/flash" %>
-<% end%>
-
-<%= turbo_stream.replace "new_list", partial: "lists/form", locals: { list: List.new } if @list.errors.empty? %>
