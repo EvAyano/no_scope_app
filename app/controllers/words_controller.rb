@@ -3,16 +3,6 @@ class WordsController < ApplicationController
     @letters = ('A'..'Z').to_a
   end
 
-  def initial
-    @letter = params[:letter].upcase
-    @words = Word.where('term LIKE ?', "#{params[:letter]}%")
-
-    if @words.empty?
-      flash[:alert] = "#{@letter}から始まる単語は存在しません。"
-      redirect_to words_path
-    end
-  end
-
   def show
     @word = Word.find(params[:id])
   end
@@ -41,4 +31,15 @@ class WordsController < ApplicationController
       render :search_results
     end
   end
+
+  def filter
+    @letter = params[:letter].upcase
+    @words = Word.where('term LIKE ?', "#{@letter}%")
+
+    respond_to do |format|
+      format.turbo_stream { render partial: 'words/initial_before_filter', locals: { words: @words, letter: @letter } }
+      format.html { render partial: 'words/initial_before_filter', locals: { words: @words, letter: @letter } }
+    end
+  end
+   
 end

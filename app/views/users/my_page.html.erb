@@ -5,11 +5,15 @@
 
 <div>
   <h2>アカウント管理</h2>
+  <p>ニックネーム: <%= @user.nickname.presence || "不明" %></p>
+
   <p>メールアドレス: <%= @user.email %></p>
 
-  <%= link_to 'メールアドレスを変更', edit_user_registration_path, class: 'button' %>
+  <%= link_to 'メールアドレスを変更', edit_user_email_path, class: 'button' %>
+  <%= link_to 'ニックネームを変更', edit_user_nickname_path, class: 'button' %>
 
-  <%= link_to 'パスワードを変更', edit_user_registration_path, class: 'button' %>
+  <%= link_to 'パスワードを変更', edit_custom_user_password_path, class: 'button' %>
+  <%= link_to 'アカウント削除', edit_user_registration_path, class: 'button', data: { confirm: '本当にアカウントを削除しますか？' } %>
 
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'button' %>
 </div>

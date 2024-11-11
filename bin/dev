@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+set -e
+
+# Start the Rails server and other processes in development mode
+
+# Start the Rails server
+bin/rails server
