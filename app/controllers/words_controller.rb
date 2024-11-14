@@ -17,10 +17,41 @@ class WordsController < ApplicationController
         format.html { redirect_to words_path }
       end
     else
+      print"リスト5個以上"
       flash.now[:alert] = 'リストは5つまでしか作成できません。'
       respond_to do |format|
         format.turbo_stream { render :create_list_and_save_word, status: :unprocessable_entity }
         format.html { render :index, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def add_word_to_existing_list
+    @list = current_user.lists.find(params[:existing_list_id])
+    @word = Word.find(params[:word_id])
+
+    if @list.words.include?(@word)
+      # 単語が既にリストに存在する場合
+      print"エラーになっているよ"
+      flash.now[:alert] = 'すでに追加されています。'
+      respond_to do |format|
+        format.turbo_stream { render :add_word_to_existing_list, status: :unprocessable_entity }
+        format.html { redirect_to words_path, alert: 'すでに追加されています。' }
+      end
+    else
+      # 単語がリストに存在しない場合、新規追加
+      if @list.words << @word
+        flash.now[:notice] = '単語が既存リストに保存されました。'
+        respond_to do |format|
+          format.turbo_stream
+          format.html { redirect_to words_path }
+        end
+      else
+        flash.now[:alert] = '単語の保存に失敗しました。'
+        respond_to do |format|
+          format.turbo_stream { render :add_word_to_existing_list, status: :unprocessable_entity }
+          format.html { render :index, status: :unprocessable_entity }
+        end
       end
     end
   end

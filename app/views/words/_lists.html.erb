@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "existing_list" do %>
+  <h2>既存リストに単語を追加</h2>
+
+  <%= form_with url: add_word_to_existing_list_words_path, method: :post, local: true do %>
+    <%= hidden_field_tag :word_id, word.id %> <!-- 保存する単語のID -->
+    <div>
+      <%= label_tag :existing_list_id, "既存リストを選択" %>
+      <%= select_tag :existing_list_id, options_from_collection_for_select(current_user.lists, :id, :name), prompt: "リストを選択" %>
+    </div>
+    <div>
+      <%= submit_tag "既存リストに追加", class: "button" %>
+    </div>
+  <% end %>
+<% end %>

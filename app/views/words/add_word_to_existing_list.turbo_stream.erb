@@ -14,18 +14,3 @@
   <% end %>
 <% end %>
 
-
-
-<% if @list.errors.any? %>
-  <%= turbo_stream.replace "new_list" do%>
-    <%= render 'form', list: List.new, word: @word %>
-  <% end %>
-<% else %>
-  <%= turbo_stream.replace "existing_list" do %>
-    <%= render 'words/lists', lists: current_user.lists, word: @word %>
-  <% end %>
-
-  <%= turbo_stream.replace "new_list" do %>
-    <%= render 'form', list: List.new, word: @word %>
-  <% end %>
-<% end %>

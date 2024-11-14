@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get 'search', to: 'words#search', as: 'search'
       get 'new_list_form', to: 'words#new_list_form'
       post 'create_list_and_save_word', to: 'words#create_list_and_save_word'
+      post 'add_word_to_existing_list', to: 'words#add_word_to_existing_list'
     end
     member do
       post 'save', to: 'words#save'

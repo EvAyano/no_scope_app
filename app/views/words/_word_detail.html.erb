@@ -11,8 +11,9 @@
     <p>ここにエラー</p>
   <% end %>
 
-  <%= turbo_frame_tag "lists" do %>
-    <%= render 'lists/lists', lists: current_user.lists %> 
+  <%= turbo_frame_tag "existing_list" do %>
+    <%= render 'words/lists', lists: current_user.lists, word: word %>
   <% end %>
+
 
 <% end %>
