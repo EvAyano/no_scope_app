@@ -26,7 +26,7 @@ class WordsController < ApplicationController
         format.html { redirect_to words_path }
       end
     else
-      flash.now[:alert] = 'リストは5つまでしか作成できません。'
+      flash.now[:alert] = @list.errors.full_messages.join('また、')
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
