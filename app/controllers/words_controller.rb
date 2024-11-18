@@ -1,6 +1,27 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:create_list_and_save_word, :new_list_form]
+  before_action :set_word, only: [:create_list_and_save_word, :add_word_to_existing_list]
   
+  def show
+    @word = Word.find(params[:id])
+    if user_signed_in?
+      @list = current_user.lists.build
+      @lists = current_user.lists
+    else
+      @list = List.new
+      @lists = []
+    end
+  
+    respond_to do |format|
+      format.html do
+        render partial: 'words/word_detail', locals: { word: @word, list: @list }
+      end
+      format.turbo_stream do
+        render partial: 'words/word_detail', locals: { word: @word, list: @list }
+      end
+    end
+  end
+  
+
   def new_list_form
     @list = current_user.lists.build
   end
@@ -96,20 +117,19 @@ class WordsController < ApplicationController
     @letters = ('A'..'Z').to_a
   end
 
-  def show
-    @word = Word.find(params[:id])
-    @list = current_user.lists.build
+  # def show
+  #   @word = Word.find(params[:id])
+  #   @list = current_user.lists.build
   
-    respond_to do |format|
-      format.html do
-        render partial: 'words/word_detail', locals: { word: @word, list: @list }
-      end
-      format.turbo_stream do
-        render partial: 'words/word_detail', locals: { word: @word, list: @list }
-      end
-    end
-  end
-  
+  #   respond_to do |format|
+  #     format.html do
+  #       render partial: 'words/word_detail', locals: { word: @word, list: @list }
+  #     end
+  #     format.turbo_stream do
+  #       render partial: 'words/word_detail', locals: { word: @word, list: @list }
+  #     end
+  #   end
+  # end
 
   def save
     @word = Word.find(params[:id])

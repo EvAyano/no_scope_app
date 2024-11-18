@@ -11,13 +11,19 @@
     <!-- 既存リストへの追加の通知やエラーメッセージを表示 -->
   <% end %>
 
-  <%= turbo_frame_tag "new_list" do %>
-    <%= render 'form', list: list, word: word %>
+  <% if user_signed_in? %>
+    <!-- ログインしている場合 -->
+    <%= turbo_frame_tag "new_list" do %>
+      <%= render 'form', list: list, word: word %>
+    <% end %>
+
+    <%= turbo_frame_tag "existing_list" do %>
+      <%= render 'words/lists', lists: current_user.lists, word: word %>
+    <% end %>
+  <% else %>
+    <!-- ログインしていない場合 -->
+    <%= turbo_frame_tag "not-logged-in" do %>
+      <%= render 'words/login_prompt' %>
+    <% end %>
   <% end %>
-
-  <%= turbo_frame_tag "existing_list" do %>
-    <%= render 'words/lists', lists: current_user.lists, word: word %>
-  <% end %>
-
-
 <% end %>
