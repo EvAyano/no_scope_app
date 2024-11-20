@@ -1,15 +1,28 @@
 <%= turbo_frame_tag "word_list" do %>
   <% if letter.nil? %>
-    <h2>単語リストはここ</h2>
-  <% elsif words.present? %>
-    <h2><%= letter %>から始まる単語一覧</h2>
+    <h2>すべての単語</h2>
     <ul>
       <% words.each do |word| %>
-        <li><%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %></li>
+        <li>
+          <%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif words.present? %>
+    <% unless letter == "すべて" %>
+      <h2><%= letter %>から始まる単語一覧</h2>
+    <% end %>
+    <ul>
+      <% words.each do |word| %>
+        <li>
+          <%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %>
+        </li>
       <% end %>
     </ul>
   <% else %>
-    <h2><%= letter %>から始まる単語は見つかりませんでした。</h2>
+    <% unless letter == "すべて" %>
+      <h2><%= letter %>から始まる単語は見つかりませんでした。</h2>
+    <% end %>
   <% end %>
 
   <%= turbo_frame_tag "word_detail" do %>

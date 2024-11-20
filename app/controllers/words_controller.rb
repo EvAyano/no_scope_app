@@ -115,6 +115,7 @@ class WordsController < ApplicationController
 
   def index
     @letters = ('A'..'Z').to_a
+    @words = Word.all.order(:term)
   end
 
   # def show
@@ -157,9 +158,14 @@ class WordsController < ApplicationController
   end
 
   def filter
-    @letter = params[:letter].upcase
-    @words = Word.where('term LIKE ?', "#{@letter}%")
-  
+    if params[:letter] == "all"
+      @words = Word.all.order(:term)
+      @letter = "すべて"
+    else
+      @letter = params[:letter].upcase
+      @words = Word.where('term LIKE ?', "#{@letter}%").order(:term)
+    end
+    
     respond_to do |format|
       format.turbo_stream
       format.html { render partial: 'words/initial_before_filter', locals: { words: @words, letter: @letter } }
