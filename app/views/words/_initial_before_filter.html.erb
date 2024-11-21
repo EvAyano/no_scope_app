@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "word_list" do %>
+  <%= turbo_frame_tag "word_detail" do %>
+<% end %>
   <% if letter.nil? %>
     <h2>すべての単語</h2>
     <ul>
@@ -23,9 +25,5 @@
     <% unless letter == "すべて" %>
       <h2><%= letter %>から始まる単語は見つかりませんでした。</h2>
     <% end %>
-  <% end %>
-
-  <%= turbo_frame_tag "word_detail" do %>
-    <p>ここに単語の詳細</p>
   <% end %>
 <% end %>
