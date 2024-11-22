@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "word_detail" do %>
+<%= turbo_frame_tag "word_detail", autoscroll: true, data: { autoscroll_block: "start" } do %>
   <h1><%= word.term %></h1>
   <p><strong>意味:</strong> <%= word.definition %></p>
   <p><strong>詳細:</strong> <%= word.explanation %></p>
