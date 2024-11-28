@@ -1,8 +1,10 @@
 <%= turbo_frame_tag "word_list" do %>
   <%= turbo_frame_tag "word_detail" do %>
   <% end %>
-  <% if letter.nil? %>
-    <h2>すべての単語</h2>
+
+  <h2><%= defined?(message) ? message : "アルファベットを選択してください" %></h2>
+
+  <% if defined?(words_present) && words_present %>
     <ul>
       <% words.each do |word| %>
         <li>
@@ -10,20 +12,5 @@
         </li>
       <% end %>
     </ul>
-  <% elsif words.present? %>
-    <% unless letter == "すべて" %>
-      <h2><%= letter %>から始まる単語一覧</h2>
-    <% end %>
-    <ul>
-      <% words.each do |word| %>
-        <li>
-          <%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <% unless letter == "すべて" %>
-      <h2><%= letter %>から始まる単語は見つかりませんでした。</h2>
-    <% end %>
   <% end %>
 <% end %>

@@ -5,7 +5,6 @@
     <div class="row">
       <div class="col-12">
         <div class="browse-by-categories category-menu d-flex flex-wrap align-items-center mb-3">
-          <%= link_to "All", filter_words_path(letter: "all"), data: { turbo_frame: "word_list" }, class: "alpha-filter" %>
           <% @letters.each do |letter| %>
             <%= link_to letter, filter_words_path(letter: letter.downcase), data: { turbo_frame: "word_list" }, class: "alpha-filter" %>
           <% end %>
