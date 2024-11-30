@@ -14,7 +14,7 @@ class WordsController < ApplicationController
     @words = Word.where('term LIKE ?', "#{@letter}%").order(:term)
   
     if @words.any?
-      @message = "#{@letter}から始まる単語一覧"
+      @message = nil
       @words_present = true
     else
       @message = "#{@letter}から始まる単語は見つかりませんでした。"

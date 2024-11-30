@@ -2,15 +2,24 @@
   <%= turbo_frame_tag "word_detail" do %>
   <% end %>
 
-  <h2><%= defined?(message) ? message : "アルファベットを選択してください" %></h2>
+  <% if defined?(message) && message.present? %>
+    <div class="message-container">
+      <h2><%= message %></h2>
+    </div>
+  <% end %>
 
   <% if defined?(words_present) && words_present %>
-    <ul>
+    <div class="word-list">
       <% words.each do |word| %>
-        <li>
-          <%= link_to word.term, word_path(word), data: { turbo_frame: "word_detail" } %>: <%= word.definition %>
-        </li>
+        <%= link_to word_path(word), data: { turbo_frame: "word_detail" }, class: "word-item d-flex align-items-center gap-3 p-2 mb-2 alpha-filter text-decoration-none" do %>
+          <div class="word-term text-dark fw-bold">
+            <%= word.term %>
+          </div>
+          <div class="word-definition text-muted">
+            <%= word.definition %>
+          </div>
+        <% end %>
       <% end %>
-    </ul>
+    </div>
   <% end %>
 <% end %>

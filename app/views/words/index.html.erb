@@ -1,16 +1,22 @@
-<h1>単語一覧 (A-Z)</h1>
+
+<div class="hero-section">
+  <div class="hero-overlay">
+    <h2 class="hero-subtitle">sub title</h2>
+    <h1 class="hero-title">単語一覧</h1>
+  </div>
+</div>
 
 <section class="word-filter section-padding-100-0">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="browse-by-categories category-menu d-flex flex-wrap align-items-center mb-3">
+        <div class="browse-by-alphabets category-menu d-flex flex-wrap align-items-center mb-3">
           <% @letters.each do |letter| %>
             <%= link_to letter, filter_words_path(letter: letter.downcase), data: { turbo_frame: "word_list" }, class: "alpha-filter" %>
           <% end %>
         </div>
         <%= turbo_frame_tag "word_list" do %>
-          <%= render partial: 'words/initial_before_filter', locals: { words: @words, letter: nil } %>
+          <%= render partial: 'words/initial_before_filter', locals: { words: @words, letter: nil, message: @message } %>
         <% end %>
       </div>
     </div>

@@ -1,6 +1,12 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+
+body {
+  background-color: #445160;
+}
+
+
 .offcanvas.offcanvas-end {
     width: 250px 
   }
@@ -33,6 +39,46 @@
       }
     }
   }
+
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-image: url(asset-path("landscape-2373649_1280.jpg"));
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    bottom: -70px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 40px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 10px 0 0;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ddd;
+  }
+  
+  .category-menu {
+    margin-top: 20px;
+  }
+  
   
   .word-filter {
     .category-menu {
@@ -61,4 +107,64 @@
       }
     }
   }
+
+
+  .word-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .word-item {
+    background-color: #e0e5de;
+    border: 2px solid transparent;
+    border-radius: 0;
+    transition: border-color 0.3s ease;
+  }
+  
+  .word-item:hover {
+    border-color: #000;
+  }
+  
+  .word-detail-frame {
+    background-color: #e0e5de;
+    border: 2px solid transparent;
+    border-radius: 0;
+    padding: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .word-detail-frame h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem; 
+    font-weight: bold;
+  }
+  
+  .word-detail-frame p {
+    font-size: 1rem; 
+    margin-bottom: 0.5rem; 
+  }
+
+
+  .message-container {
+    background-color: #e0e5de; 
+    border: 2px solid transparent; 
+    border-radius: 0; /* 四角形 */
+    padding: 1rem; 
+    margin-bottom: 1rem; /* 他の要素とスペースを確保 */
+    text-align: center;
+    color: #333; 
+  }
+  
+  .browse-by-alphabets {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* ボタンが折り返し */
+    gap: 0.5rem;
+    margin: 6rem auto; /* 上下の余白*/
+  }
+  
+  
+  
   
