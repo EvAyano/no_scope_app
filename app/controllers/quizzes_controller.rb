@@ -26,19 +26,23 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    
-    # if params[:question_id].blank?
-    #   @current_question = @quiz.quiz_questions.where(user_answer: nil).first
-    #   redirect_to quiz_path(@quiz, question_id: @current_question.id) and return
-    # end
-    
-    @current_question = @quiz.quiz_questions.find_by(id: params[:question_id])
-    @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1
-
-    if @current_question.nil?
-      render file: "#{Rails.root}/public/404.html", status: :not_found
+  
+    # 現在の問題を取得
+    if params[:question_id].present?
+      @current_question = @quiz.quiz_questions.find_by(id: params[:question_id])
+    else
+      @current_question = @quiz.quiz_questions.where(user_answer: nil).first
     end
+  
+    # 未回答の問題がない場合は404エラー
+    if @current_question.nil?
+      render file: "#{Rails.root}/public/404.html", status: :not_found and return
+    end
+  
+    # 現在の問題番号を計算
+    @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1
   end
+  
 
   def answer
     @quiz = Quiz.find(params[:id])
