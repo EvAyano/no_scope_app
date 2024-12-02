@@ -1,14 +1,18 @@
 <%= turbo_frame_tag "quiz-frame" do %>
 
-  <h1>結果</h1>
-  <p><%= @current_question_number %>/10</p>
-
+  <h2>結果</h2>
+  <h2><%= @current_question_number %>/10</h2>
   <p>問題: <%= @question.word.definition %></p>
   <p>あなたの回答: <%= @question.user_answer %></p>
   <p>正解: <%= @question.word.term %></p>
-
   <p><%= @result_message %></p>
+  
+  <%= link_to(
+    @button_label,
+    play_quizzes_path(state: @next_state, id: @quiz.id),
+    data: { turbo_frame: 'quiz-frame' }
+  ) %>
 
-  <%= link_to @button_label, @next_link, data: { turbo_frame: 'quiz-frame' } %>
+
 
 <% end %>

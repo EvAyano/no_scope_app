@@ -1,91 +1,41 @@
 class QuizzesController < ApplicationController
-  before_action :authenticate_user!, only: [:history]  
+  before_action :authenticate_user!, only: [:history]
 
-  def create
-    @quiz = current_user ? current_user.quizzes.create(start_time: Time.current) : Quiz.create
 
-    words = Word.order("RAND()").limit(10)
-    words.each do |word|
-      choices = Word.where.not(id: word.id).order("RAND()").limit(3).pluck(:term)
-      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.push(word.term).shuffle)
-    end
-    redirect_to quiz_path(@quiz)
-  end
+  def play
+    case params[:state]
+    when 'new'
+      @view_state = :intro
+    when 'create'
+      create_quiz
+      redirect_to play_quizzes_path(state: 'question', id: @quiz.id) and return
+      print "デバッグ"
+      print(@view_state)
+    when 'question'
+      print "questionに行きます"
 
-  def show
-    print"問題表示"
-
-    @quiz = Quiz.find(params[:id])
-  
-    if @quiz.completed
-      redirect_to results_quiz_path(@quiz) and return
-    end
-  
-    if @quiz.quiz_questions.where(user_answer: nil).exists?
-      @current_question = @quiz.quiz_questions.where(user_answer: nil).first
-      @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1
+      load_question
       @view_state = :question
-    end
-  end
 
-  def answer
-    @quiz = Quiz.find(params[:id])
-    question = @quiz.quiz_questions.find(params[:question_id])
-    
-    if params[:answer].blank?
-      flash[:alert] = "選択肢を1つ選んでください。"
-      redirect_to quiz_path(@quiz) and return
-    end
-    print"答え確認"
 
-    question.update(user_answer: params[:answer], correct: question.correct?(params[:answer]))
+    when 'answer'
+      print"answerケース"
+      process_answer
+      return if @view_state == :question
 
-    redirect_to show_per_answer_quiz_path(@quiz, question_id: question.id)
-  end
-
-  def show_per_answer
-    @view_state = :answer
-    @quiz = Quiz.find(params[:id])
-    @question = @quiz.quiz_questions.find_by(id: params[:question_id])
-    @current_question_number = @quiz.quiz_questions.where("id < ?", @question.id).count + 1
-    print"答え表示"
-
-    if @question.nil?
-      render file: "#{Rails.root}/public/404.html", status: :not_found and return
-    end
+      # state_info = determine_next_state
+      # @next_state = state_info[:next_state]
+      # @button_label = state_info[:button_label]
+      # @view_state = :answer
   
-    if @question.correct
-      @result_message = "正解です"
-      else
-      @result_message = "ざんねん！不正解です。"
-    end
-
-    #未回答の問題がまだあるかどうかを確認、すべて回答済みの場合はクイズを完了状態にして結果ページへいく
-    if @quiz.quiz_questions.where(user_answer: nil).exists?
-       @button_label = '次の問題へ進む'
-       @next_link = quiz_path(@quiz)
+    when 'results'
+      print"resultステータス"
+      @view_state = :results
+      load_results
     else
-      @quiz.update(completed: true)
-      @button_label = '結果をみる'
-      @next_link = results_quiz_path(@quiz)
+      @view_state = :intro
     end
-
-    # #戻るボタン
-    # if @current_question_number >= 2
-    #   previous_question = @quiz.quiz_questions.where("id < ?", @question.id).last
-    #   @back_link = show_per_answer_quiz_path(@quiz, question_id: previous_question.id)
-    # else
-    #   @back_link = quizzes_intro_path
-    # end
-  end
-
-  #結果表示
-  def results
-    print"結果表示"
-    @view_state = :results
-    @quiz = Quiz.find(params[:id])
-    @questions = @quiz.quiz_questions
-    @show_start_time = @quiz.start_time.present? ? @quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明"
+    render :play
   end
 
   #クイズ履歴
@@ -94,8 +44,84 @@ class QuizzesController < ApplicationController
       {
         id: quiz.id,
         formatted_start_time: quiz.start_time.present? ? quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明",
-        path: results_quiz_path(quiz)
+        path: play_quizzes_path(state: "results", id: quiz.id)
       }
     end
   end
+
+
+  def determine_next_state
+    if @quiz.quiz_questions.where(user_answer: nil).exists?
+      { next_state: 'question', button_label: '次へ進む' }
+    else
+      @quiz.update(completed: true)
+      { next_state: 'results', button_label: '結果を見る' }
+    end
+  end
+  
+
+
+  private
+
+  def create_quiz
+    @quiz = current_user ? current_user.quizzes.create(start_time: Time.current) : Quiz.create
+
+    words = Word.order("RAND()").limit(10)
+    words.each do |word|
+      choices = Word.where.not(id: word.id).order("RAND()").limit(3).pluck(:term)
+      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.push(word.term).shuffle)
+    end
+    print"クリエイトの中身！"
+  end
+
+  def load_question
+    print"questionの中身"
+    @quiz = Quiz.find(params[:id])
+    @current_question = @quiz.quiz_questions.where(user_answer: nil).first
+    @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
+
+    if @quiz.completed || @current_question.nil?
+      redirect_to play_quizzes_path(state: "results", id: @quiz.id) and return
+    end
+  end
+
+  
+
+  def process_answer
+    print"answerの中身"
+    @quiz = Quiz.find(params[:id])
+    @question = @quiz.quiz_questions.find(params[:question_id])
+    @current_question = @quiz.quiz_questions.where(user_answer: nil).first
+    @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
+
+  
+    if params[:answer].blank?
+      print "answerがnil"
+      flash.now[:alert] = "選択肢を1つ選んでください。"
+      load_question
+      @view_state = :question
+      return
+    end
+    @question.update(user_answer: params[:answer], correct: @question.correct?(params[:answer]))
+    if @quiz.quiz_questions.where(user_answer: nil).empty?
+      # 全て回答済みの場合、最後の結果表示へ
+      @quiz.update(completed: true)
+      @view_state = :answer 
+      @next_state = 'results'
+      @button_label = '結果を見る'
+    else
+      # 未回答の問題が残っている場合
+      @view_state = :answer
+      @next_state = 'question'
+      @button_label = '次へ進む'
+    end
+  end
+  
+
+
+  def load_results
+    @quiz = Quiz.find(params[:id])
+    @questions = @quiz.quiz_questions
+    @show_start_time = @quiz.start_time.present? ? @quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明"
+  end  
 end

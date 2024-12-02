@@ -137,7 +137,7 @@
             <!-- もう一つのホバー対象div -->
             <div class="col-12 col-md-6 p-0 border-top border-bottom border-start">
               <!-- ここにリンクを全体に適用 -->
-              <%= link_to new_quiz_path, class: 'text-decoration-none' do %>
+              <%= link_to play_quizzes_path(state: 'new'), class: 'text-decoration-none' do %>
                 <div class="card border-0 bg-transparent hover-card">
                   <div class="card-body text-center p-5 p-xl-8">
                     <h4 class="fw-bold mb-4">単語クイズ</h4>
@@ -170,4 +170,6 @@
 <% end %>
 
 <%= link_to '単語一覧を表示', words_path, class: 'button' %>
-<%= link_to '単語クイズに挑戦', new_quiz_path, class: 'button' %>
+
+<%= link_to "イントロ画面へ", play_quizzes_path(state: "new"), data: { turbo_frame: "quiz-frame" } %>
+

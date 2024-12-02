@@ -1,7 +1,7 @@
+<%= turbo_frame_tag "quiz-frame" do %>
 
-  <h1>英単語クイズ</h1>
-
-  <p> 4 択クイズが 10 問出されるので、各問題で表示された日本語の意味に合った英単語を選んでください^ ^</p>
-
-  <%= button_to "クイズ開始", quizzes_path, method: :post %>
-
+  <%= form_with url: play_quizzes_path(state: 'create'), method: :post, data: { turbo_frame: 'quiz-frame' } do %>
+    <p>4択クイズが10問出されます。それぞれ日本語の意味に合った英単語を選んでください。</p>
+    <%= submit_tag "クイズ開始" %>
+  <% end %>
+<% end %>
