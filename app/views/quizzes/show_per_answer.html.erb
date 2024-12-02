@@ -1,11 +1,14 @@
-<h1>結果</h1>
-<p><%= @current_question_number %>/10</p>
+<%= turbo_frame_tag "quiz-frame" do %>
 
-<p>問題: <%= @question.word.definition %></p>
-<p>あなたの回答: <%= @question.user_answer %></p>
-<p>正解: <%= @question.word.term %></p>
+  <h1>結果</h1>
+  <p><%= @current_question_number %>/10</p>
 
-<p><%= @result_message %></p>
+  <p>問題: <%= @question.word.definition %></p>
+  <p>あなたの回答: <%= @question.user_answer %></p>
+  <p>正解: <%= @question.word.term %></p>
 
-<%= link_to @button_label, @next_link %>
-<%= link_to "もどる", @back_link %>
+  <p><%= @result_message %></p>
+
+  <%= link_to @button_label, @next_link, data: { turbo_frame: 'quiz-frame' } %>
+
+<% end %>

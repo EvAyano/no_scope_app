@@ -1,12 +1,14 @@
-<h1>クイズ問題</h1>
-<p><%= @current_question_number %>/10</p>
+<h1>英単語クイズ</h1>
 
-<p><%= @current_question.word.definition %></p>
-
-<%= form_with url: answer_quiz_path(@quiz, question_id: @current_question.id), method: :post do |f| %>
-  <% @current_question.choices.each do |choice| %>
-    <%= radio_button_tag :answer, choice, @current_question.user_answer == choice %>
-    <%= label_tag :answer, choice %><br>
+<%= turbo_frame_tag "quiz-frame" do %>
+  <% case @view_state %>
+  <% when :question %>
+    <%= render partial: "quizzes/quiz_question", locals: { quiz: @quiz } %>
+  <% when :answer %>
+    <%= render partial: "quizzes/show_per_answer", locals: { quiz: @quiz, question: @question } %>
+  <% when :results %>
+    <%= render partial: "quizzes/results", locals: { quiz: @quiz } %>
+  <% else %>
+    <%= render partial: "quizzes/quiz_intro" %>
   <% end %>
-  <%= f.submit "回答" %>
 <% end %>
