@@ -1,19 +1,32 @@
 <%= turbo_frame_tag "quiz-frame" do %>
-
-  <% if flash[:alert] %>
-    <div class="alert alert-danger">
-      <%= flash[:alert] %>
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-container">
+        <div class="text-center">
+          <h2><%= @current_question_number %>/10</h2>
+          <p class="fs-6"><%= @current_question.word.definition %></p>
+        </div>
+        <div class="quiz-question-alert">
+          <% if flash[:alert] %>
+            <%= flash[:alert] %>
+          <% end %>
+        </div>
+        <%= form_with url: play_quizzes_path(state: 'answer', id: @quiz.id, question_id: @current_question.id), method: :post, data: { turbo_frame: 'quiz-frame' } do %>
+          <div class="quiz-options">
+            <% @current_question.choices.each do |choice| %>
+              <label>
+                <%= radio_button_tag :answer, choice, false, class: "hidden-radio" %>
+                <div class="quiz-option">
+                  <%= choice %>
+                </div>
+              </label>
+            <% end %>
+          </div>
+          <div class="quiz-button-container">
+            <%= submit_tag "回答", class: "submit-button" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <h2><%= @current_question_number %>/10</h2>
-  <p><%= @current_question.word.definition %></p>
-
-  <%= form_with url: play_quizzes_path(state: 'answer', id: @quiz.id, question_id: @current_question.id), method: :post, data: { turbo_frame: 'quiz-frame' } do %>
-    <% @current_question.choices.each do |choice| %>
-      <%= radio_button_tag :answer, choice %>
-      <%= label_tag :answer, choice %><br>
-    <% end %>
-    <%= submit_tag "回答" %>
-  <% end %>
+  </section>
 <% end %>

@@ -1,25 +1,46 @@
 <%= turbo_frame_tag "quiz-frame" do %>
-  <h2>クイズ結果</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>問題</th>
-        <th>あなたの回答</th>
-        <th>正解</th>
-        <th>結果</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @questions.each do |q| %>
-        <tr>
-          <td><%= q.word.definition %></td>
-          <td><%= q.user_answer %></td>
-          <td><%= q.word.term %></td>
-          <td><%= q.correct ? '正解' : '不正解' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to "もう一度プレイ", play_quizzes_path(state: 'new'), data: { turbo_frame: 'quiz-frame' } %>
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-container quiz-container-results">
+        <div class="text-center">
+          <h2>クイズ結果</h2>
+          <p class="fs-5"><%= @show_start_time %></p>
+        </div>
 
+        <!-- 結果テーブル -->
+        <div class="quiz-results-table-container">
+          <table class="quiz-results-table">
+            <thead>
+              <tr>
+                <th>問題</th>
+                <th>あなたの回答</th>
+                <th>正解</th>
+                <th>結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @questions.each do |q| %>
+                <tr class="<%= q.correct ? 'result-correct' : 'result-incorrect' %>">
+                  <td><%= q.word.definition %></td>
+                  <td><%= q.user_answer %></td>
+                  <td><%= q.word.term %></td>
+                  <td><%= q.correct ? '正解' : '不正解' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- もう一度プレイボタン -->
+        <div class="quiz-button-container">
+          <%= link_to(
+            "もう一度プレイ",
+            play_quizzes_path(state: 'new'),
+            class: "submit-button",
+            data: { turbo_frame: 'quiz-frame' }
+          ) %>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>

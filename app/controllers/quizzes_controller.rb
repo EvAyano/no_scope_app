@@ -17,16 +17,10 @@ class QuizzesController < ApplicationController
       load_question
       @view_state = :question
 
-
     when 'answer'
       print"answerケース"
       process_answer
       return if @view_state == :question
-
-      # state_info = determine_next_state
-      # @next_state = state_info[:next_state]
-      # @button_label = state_info[:button_label]
-      # @view_state = :answer
   
     when 'results'
       print"resultステータス"
@@ -102,6 +96,14 @@ class QuizzesController < ApplicationController
       @view_state = :question
       return
     end
+
+      # 正誤判定
+    is_correct = @question.correct?(params[:answer]) # モデルで
+    @question.update(user_answer: params[:answer], correct: is_correct)
+
+    # 正解・不正解メッセージを設定
+    @result_message = is_correct ? "正解です！" : "ざんねん、不正解です。"
+
     @question.update(user_answer: params[:answer], correct: @question.correct?(params[:answer]))
     if @quiz.quiz_questions.where(user_answer: nil).empty?
       # 全て回答済みの場合、最後の結果表示へ
@@ -116,8 +118,6 @@ class QuizzesController < ApplicationController
       @button_label = '次へ進む'
     end
   end
-  
-
 
   def load_results
     @quiz = Quiz.find(params[:id])
