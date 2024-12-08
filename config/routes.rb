@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/my_page'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   devise_scope :user do
@@ -24,6 +23,9 @@ Rails.application.routes.draw do
       get 'filter', to: 'words#filter', as: 'filter'
       get 'initial/:letter', to: 'words#initial', as: 'initial'
       get 'search', to: 'words#search', as: 'search'
+      get 'new_list_form', to: 'words#new_list_form'
+      post 'create_list_and_save_word', to: 'words#create_list_and_save_word'
+      post 'add_word_to_existing_list', to: 'words#add_word_to_existing_list'
     end
     member do
       post 'save', to: 'words#save'
