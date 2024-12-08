@@ -3,9 +3,8 @@
 
 
 body {
-  background-color: #445160;
+  background-color: #070E27;
 }
-
 
 .offcanvas.offcanvas-end {
     width: 250px 
@@ -40,6 +39,11 @@ body {
     }
   }
 
+
+  .navbar {
+    background-color: #133e7c !important;
+  }
+
   .hero-section {
     position: relative;
     width: 100%;
@@ -57,7 +61,7 @@ body {
     position: absolute;
     bottom: -70px;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #091833;
     padding: 20px 40px;
     text-align: center;
     color: #fff;
@@ -92,8 +96,8 @@ body {
         align-items: center;
         width: 40px;
         height: 40px;
-        color: #000;
-        background-color: #e0e5de;
+        color: #fcfafa;
+        background-color:  #162044;
         text-decoration: none;
         border-radius: 0;
         border: 2px solid transparent;
@@ -102,7 +106,7 @@ body {
   
         &:hover,
         &.active {
-          border-color: #000;
+          background-color: #4E5A85;
         }
       }
     }
@@ -117,18 +121,18 @@ body {
   }
   
   .word-item {
-    background-color: #e0e5de;
+    background-color: #162044;
     border: 2px solid transparent;
     border-radius: 0;
     transition: border-color 0.3s ease;
   }
   
   .word-item:hover {
-    border-color: #000;
+    border-color: #4E5A85;
   }
   
   .word-detail-frame {
-    background-color: #e0e5de;
+    background-color: #133e7c;
     border: 2px solid transparent;
     border-radius: 0;
     padding: 1rem;
@@ -148,23 +152,236 @@ body {
 
 
   .message-container {
-    background-color: #e0e5de; 
+    background-color: #133e7c; 
     border: 2px solid transparent; 
     border-radius: 0; /* 四角形 */
     padding: 1rem; 
-    margin-bottom: 1rem; /* 他の要素とスペースを確保 */
+    margin-bottom: 1rem;
     text-align: center;
-    color: #333; 
+    color: #ffffff; 
   }
   
   .browse-by-alphabets {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* ボタンが折り返し */
+    flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 6rem auto; /* 上下の余白*/
+    margin: 6rem auto;
   }
   
   
   
+    /* クイズ質問セクション */
+  .quiz-section {
+    background-color: #091833;
+  }
+
+  .quiz-container {
+    background-color: #133e7c; 
+    border-radius: 10px; /* カード角丸 */
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    position: relative;
+    min-height: 500px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column; /* 縦方向に要素を並べる */
+    justify-content: space-between;
+  }
   
+
+  .quiz-title {
+    font-size: 2.5rem; 
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .quiz-intro-text {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #dddddd;
+  }
+
+  .intro-button-container {
+    text-align: center; 
+    margin-top: 2rem;
+  }
+  
+
+  .quiz-container h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .quiz-container p {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .hidden-radio {
+    display: none;
+  }
+
+  .quiz-option {
+    background-color: #1c1e21;
+    color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .quiz-option:hover {
+    background-color: #104c6d;
+    border-color: #ea00d9;
+  }
+
+  .hidden-radio:checked + .quiz-option {
+    background-color: #882995;
+    border-color: #ffffff;
+    font-weight: bold;
+  }
+
+
+  /* 回答ボタン */
+
+
+  .quiz-button-container {
+    text-align: right;
+    margin-top: 2rem;
+  }
+
+  .submit-button {
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    padding: 0.5rem 1rem; 
+    font-size: 1rem;
+    background-color: #882995;
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px; /* 角丸 */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+
+  .submit-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05); 
+  }
+
+  .quiz-question-alert {
+    min-height: 2rem; 
+    background-color: transparent;
+    border: none;
+    color: #ff0000;
+    font-weight: bold; 
+    text-align: left;
+    padding: 0;
+    margin: 1rem 0; 
+    display: flex; 
+    align-items: center; /* 縦方向のセンタリング */
+  }
+
+  .quiz-option-answer {
+    background-color: #1c1e21;
+    color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* プレイヤーが正解を選択した場合 */
+  .quiz-option-answer.correct-answer {
+    border-color: #00ff00;
+  }
+
+  /* プレイヤーが不正解の選択肢を選んだ場合 */
+  .quiz-option-answer.incorrect-answer {
+    border-color: #ff0000;
+  }
+
+  .quiz-option-answer.correct-answer-dotted {
+    border: 2px dashed #00ff00;
+  }
+
+  /* ホバーを無効化（結果ページ） */
+  .quiz-option-answer:hover {
+    background-color: #1c1e21;
+    border-color: none;
+  }
+
+  /* アラート部分のスタイル */
+  .quiz-answer-alert {
+    color: #ff9900; 
+    font-weight: bold;
+    text-align: left; 
+    margin: 1rem 0;
+    font-size: 1.25rem; 
+    padding-left: 0.5rem;
+  }
+
+  .quiz-container-results {
+    min-height: auto; 
+    max-height: none; 
+    overflow: visible; /* コンテンツのはみ出しOK */
+  }
+
+  .quiz-results-table-container {
+    margin: 2rem auto; 
+    text-align: center;
+  }
+
+  .quiz-results-table {
+    width: 100%;
+    border-collapse: collapse; 
+    background-color: #1c1e21;
+    border: 2px solid #133e7c;
+    color: #ffffff;
+  }
+
+  .quiz-results-table th,
+  .quiz-results-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #133e7c;
+  }
+
+  .quiz-results-table th {
+    background-color: #133e7c;
+    color: #ffffff; 
+    font-weight: bold; 
+  }
+
+  .quiz-results-table td {
+    font-size: 0.9rem;
+  }
+
+  .quiz-results-table tr.result-correct {
+    background-color: #104c6d;
+  }
+
+  .quiz-results-table tr.result-incorrect {
+    background-color: #6d1c1c;
+  }
+
+

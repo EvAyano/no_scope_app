@@ -23,9 +23,6 @@ Rails.application.routes.draw do
       get 'filter', to: 'words#filter', as: 'filter'
       get 'initial/:letter', to: 'words#initial', as: 'initial'
       get 'search', to: 'words#search', as: 'search'
-      get 'new_list_form', to: 'words#new_list_form'
-      post 'create_list_and_save_word', to: 'words#create_list_and_save_word'
-      post 'add_word_to_existing_list', to: 'words#add_word_to_existing_list'
     end
     member do
       post 'save', to: 'words#save'
@@ -41,16 +38,14 @@ Rails.application.routes.draw do
 
   get 'my_page', to: 'users#my_page'
 
-  resources :quizzes, only: [:new, :create, :show] do
-    member do
-      post 'answer'
-      get 'show_per_answer', to: 'quizzes#show_per_answer', as: 'show_per_answer'
-      get 'results'
-    end
+  resources :quizzes, only: [] do
     collection do
+      get 'play'
+      post 'play'
       get 'history'
     end
   end
+  
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

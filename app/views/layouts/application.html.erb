@@ -29,7 +29,7 @@
                 <%= link_to 'Word list', words_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Quiz', new_quiz_path, class: 'nav-link' %>
+                <%= link_to 'Quiz', play_quizzes_path(state: 'new'), class: 'nav-link' %>
               </li>
               <%= render login_partial %>
             </ul>

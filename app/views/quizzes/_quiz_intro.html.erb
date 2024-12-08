@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "quiz-frame" do %>
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-container">
+        <div class="text-center">
+          <h2 class="quiz-title">英単語クイズ</h2>
+          <p class="quiz-intro-text">
+            4択クイズが10問出されます。それぞれ日本語の意味に合った英単語を選んでください。
+          </p>
+        </div>
+
+        <!-- クイズ開始ボタン -->
+        <div class="intro-button-container">
+          <%= form_with url: play_quizzes_path(state: 'create'), method: :post, data: { turbo_frame: 'quiz-frame' }, class: "start-quiz-form" do %>
+            <%= submit_tag "クイズ開始", class: "submit-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
