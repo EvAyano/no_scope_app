@@ -1,29 +1,7 @@
 <%= turbo_frame_tag "word_detail", autoscroll: true, data: { autoscroll_block: "start" } do %>
-  <h1><%= word.term %></h1>
-  <p><strong>意味:</strong> <%= word.definition %></p>
-  <p><strong>詳細:</strong> <%= word.explanation %></p>
-
-  <%= turbo_frame_tag "new_list_flash" do %>
-    <!-- 新規リスト作成の通知やエラーメッセージを表示 -->
-  <% end %>
-
-  <%= turbo_frame_tag "existing_list_flash" do %>
-    <!-- 既存リストへの追加の通知やエラーメッセージを表示 -->
-  <% end %>
-
-  <% if user_signed_in? %>
-    <!-- ログインしている場合 -->
-    <%= turbo_frame_tag "new_list" do %>
-      <%= render 'form', list: list, word: word %>
-    <% end %>
-
-    <%= turbo_frame_tag "existing_list" do %>
-      <%= render 'words/lists', lists: current_user.lists, word: word %>
-    <% end %>
-  <% else %>
-    <!-- ログインしていない場合 -->
-    <%= turbo_frame_tag "not-logged-in" do %>
-      <%= render 'words/login_prompt' %>
-    <% end %>
-  <% end %>
+  <div class= "word-detail-frame">
+    <h1><%= word.term %></h1>
+    <p><strong>意味:</strong> <%= word.definition %></p>
+    <p><strong>詳細:</strong> <%= word.explanation %></p>
+  </div>
 <% end %>
