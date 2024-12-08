@@ -41,7 +41,7 @@ body {
 
 
   .navbar {
-    background-color: #133e7c !important;
+    background-color: #162044 !important;
   }
 
   .hero-section {
@@ -61,7 +61,7 @@ body {
     position: absolute;
     bottom: -70px;
     z-index: 10;
-    background-color: #091833;
+    background-color:#070E27;
     padding: 20px 40px;
     text-align: center;
     color: #fff;
@@ -125,18 +125,20 @@ body {
     border: 2px solid transparent;
     border-radius: 0;
     transition: border-color 0.3s ease;
+    color: #ffffff ; /* 親要素の文字色を白に設定 */
   }
   
   .word-item:hover {
-    border-color: #4E5A85;
+    background-color: #4E5A85;
   }
   
   .word-detail-frame {
-    background-color: #133e7c;
+    background-color: #162044;
     border: 2px solid transparent;
     border-radius: 0;
     padding: 1rem;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: #ffffff;
   }
   
   .word-detail-frame h1 {
@@ -152,7 +154,7 @@ body {
 
 
   .message-container {
-    background-color: #133e7c; 
+    background-color: #162044; 
     border: 2px solid transparent; 
     border-radius: 0; /* 四角形 */
     padding: 1rem; 
