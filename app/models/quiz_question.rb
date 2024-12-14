@@ -7,4 +7,8 @@ class QuizQuestion < ApplicationRecord
   def correct?(user_answer)
     word.term == user_answer
   end
+
+  def css_class
+    correct ? 'result-correct' : 'result-incorrect'
+  end
 end

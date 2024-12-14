@@ -34,14 +34,14 @@ class QuizzesController < ApplicationController
 
   #クイズ履歴
   def history
-    @quizzes_log = current_user.quizzes.where(completed: true).map do |quiz|
-      {
-        id: quiz.id,
-        formatted_start_time: quiz.start_time.present? ? quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明",
-        path: play_quizzes_path(state: "results", id: quiz.id)
-      }
-    end
+    year = params[:year]
+    month = params[:month]
+  
+    # モデルで
+    @quizzes_log = Quiz.fetch_logs_for_user(current_user, year: year, month: month)
   end
+    
+    
 
 
   def determine_next_state

@@ -1,28 +1,36 @@
-<h1>Users#my_page</h1>
-<p>Find me in app/views/users/my_page.html.erb</p>
-
-<h1>マイページ</h1>
-
-<div>
-  <h2>アカウント管理</h2>
-  <p>ニックネーム: <%= @user.nickname.presence || "不明" %></p>
-
-  <p>メールアドレス: <%= @user.email %></p>
-
-  <%= link_to 'メールアドレスを変更', edit_user_email_path, class: 'button' %>
-  <%= link_to 'ニックネームを変更', edit_user_nickname_path, class: 'button' %>
-
-  <%= link_to 'パスワードを変更', edit_custom_user_password_path, class: 'button' %>
-  <%= link_to 'アカウント削除', edit_user_registration_path, class: 'button', data: { confirm: '本当にアカウントを削除しますか？' } %>
-
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'button' %>
+<div class="hero-section">
+  <div class="hero-titles">
+    <h2 class="hero-subtitle">sub title</h2>
+    <h1 class="hero-title">マイページ</h1>
+  </div>
 </div>
 
-<div>
-  <h2>あなたの単語リスト</h2>
-  <%= link_to '単語リスト一覧', lists_path, class: 'button' %>
-</div>
-<div>
-  <h2>単語クイズ履歴</h2>
-  <%= link_to '単語クイズ履歴', history_quizzes_path, class: 'button' %>
+
+<div class="background-container">
+  <section class="account-management-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="account-details-card card bg-dark text-white mb-4">
+            <div class="card-header text-center">
+              <h2 class="mb-0">アカウント管理</h2>
+            </div>
+            <div class="card-body">
+              <p><strong>ニックネーム:</strong> <%= @user.nickname.presence || "不明" %></p>
+              <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+              <div class="d-flex flex-wrap gap-2">
+                <%= link_to 'メールアドレスを変更', edit_user_email_path, class: 'btn btn-outline-light flex-grow-1' %>
+                <%= link_to 'ニックネームを変更', edit_user_nickname_path, class: 'btn btn-outline-light flex-grow-1' %>
+                <%= link_to 'パスワードを変更', edit_custom_user_password_path, class: 'btn btn-outline-light flex-grow-1' %>
+                <%= link_to 'アカウント削除', edit_user_registration_path, class: 'btn btn-danger flex-grow-1', data: { confirm: '本当にアカウントを削除しますか？' } %>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'btn btn-outline-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
