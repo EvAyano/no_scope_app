@@ -2,8 +2,8 @@
   <% if quiz_log[:message] %>
     <td colspan="3" class="text-center text-warning"><%= quiz_log[:message] %></td>
   <% else %>
-    <td><%= quiz_log[:id] %></td>
     <td><%= quiz_log[:formatted_start_time] %></td>
+    <td><%= quiz_log[:score] %></td>
     <td><%= link_to "詳細を見る", quiz_log[:path], class: "btn btn-outline-primary" %></td>
   <% end %>
 </tr>

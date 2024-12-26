@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
-  before_action :register_nickname_params, only: [:create]
-  before_action :update_nickname_params, only: [:update]
+  before_action :configure_permitted_parameters, only: [:create, :update]
 
   def edit_email
     @user = current_user
@@ -13,36 +10,51 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_email
     @user = current_user
-  
+
     if @user.update(email_params)
       redirect_to email_update_success_path
     else
-      # できなかったら編集ページに戻る
       render 'devise/registrations/edit_email'
     end
   end
-  
 
-  def email_update_success
-  end
-  
+  def email_update_success; end
 
   def edit_password
     @user = current_user
     render 'devise/registrations/edit_password'
   end
 
-  # パスワード変更
   def update_password
+  
     @user = current_user
-
+  
+    if params[:user][:current_password].blank?
+      @user.errors.add(:current_password, "を入力してください")
+    end
+  
+    if params[:user][:password].blank?
+      @user.errors.add(:password, "を入力してください")
+    end
+  
+    if params[:user][:password_confirmation].blank?
+      @user.errors.add(:password_confirmation, "を入力してください")
+    end
+  
+    if @user.errors.any?
+      render :edit_password and return
+    end
+  
     if @user.update_with_password(password_params)
       bypass_sign_in(@user)
       redirect_to password_update_success_path, notice: 'パスワードが更新されました。'
     else
-      render 'devise/registrations/edit_password'
+      render :edit_password
     end
   end
+      
+  
+  
 
   def edit_nickname
     @user = current_user
@@ -50,10 +62,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_nickname
     @user = current_user
+
     if @user.update(nickname_params)
-      redirect_to my_page_path, notice: 'ニックネームが更新されました。'
+      redirect_to edit_user_registration_path, notice: 'ニックネームが更新されました。'
     else
       render :edit_nickname
+    end
+  end
+
+  def edit_avatar
+    @user = current_user
+    render 'devise/registrations/edit_avatar'
+  end
+
+  def update_avatar
+    @user = current_user
+
+    if @user.update(user_avatar_params)
+      flash[:notice] = 'プロフィール画像を更新しました。'
+      redirect_to edit_user_registration_path
+    else
+      flash.now[:alert] = 'プロフィール画像の更新に失敗しました。'
+      render 'devise/registrations/edit_avatar'
     end
   end
 
@@ -62,13 +92,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def password_params
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
-  
+
   def email_params
     params.require(:user).permit(:email)
   end
 
   def nickname_params
     params.require(:user).permit(:nickname)
+  end
+  
+  def user_avatar_params
+    params.require(:user).permit(:avatar)
   end
 
   # GET /resource/sign_up
@@ -109,6 +143,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def email_params
     params.require(:user).permit(:email)
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :email, :password, :password_confirmation, :current_password])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

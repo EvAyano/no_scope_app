@@ -9,21 +9,16 @@ class QuizzesController < ApplicationController
     when 'create'
       create_quiz
       redirect_to play_quizzes_path(state: 'question', id: @quiz.id) and return
-      print "デバッグ"
-      print(@view_state)
     when 'question'
-      print "questionに行きます"
 
       load_question
       @view_state = :question
 
     when 'answer'
-      print"answerケース"
       process_answer
       return if @view_state == :question
   
     when 'results'
-      print"resultステータス"
       @view_state = :results
       load_results
     else

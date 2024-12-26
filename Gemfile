@@ -43,7 +43,6 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,3 +72,11 @@ gem "mysql2", "~> 0.5.6"
 gem "devise", "~> 4.9"
 
 gem "jquery-rails", "~> 4.6"
+
+gem "image_processing", "~> 1.13"
+
+gem "mini_magick", "~> 4.13"
+
+gem "devise-i18n", "~> 1.12"
+
+gem "devise-i18n-views", "~> 0.3.7"

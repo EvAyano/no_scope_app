@@ -17,15 +17,15 @@
         <div class="col-md-8">
           <div class="account-details-card card bg-dark text-white mb-4">
             <div class="card-header text-center">
-              <h2 class="mb-0">ニックネームを編集</h2>
+              <h2 class="mb-0">プロフィール画像の編集</h2>
             </div>
             <div class="card-body">
-              <%= form_for(resource, as: resource_name, url: update_user_nickname_path(resource_name), html: { method: :put, class: "needs-validation" }) do |f| %>
-                <%= render "devise/shared/error_messages", resource: resource %>
+              <%= form_with model: @user, url: update_user_avatar_path, local: true, html: { multipart: true, class: "needs-validation" } do |f| %>
+                <%= render "devise/shared/error_messages", resource: @user %>
 
                 <div class="mb-3">
-                  <%= f.label :nickname, "新しいニックネーム", class: "form-label" %>
-                  <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "新しいニックネームを入力" %>
+                  <%= f.label :avatar, "新しいプロフィール画像を選択", class: "form-label" %>
+                  <%= f.file_field :avatar, class: "form-control" %>
                 </div>
 
                 <div class="d-flex justify-content-end mt-4">

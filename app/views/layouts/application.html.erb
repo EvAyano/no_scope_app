@@ -53,14 +53,16 @@
       <div class="container">
 
         <div class="mt-4">
-          <%= link_to '単語一覧を表示', words_path, class: 'btn btn-secondary me-2' %>
-          <%= link_to "クイズへ", play_quizzes_path(state: "new"), data: { turbo_frame: "quiz-frame" }, class: 'btn btn-success' %>
+          <p>ここに追加</p>
         </div>      
       </div>
     </section>
 
     <script>
-      document.addEventListener("turbo:load", function () {
+      document.addEventListener("turbo:load", updateNavbarBackgroundOnLoad);
+      document.addEventListener("turbo:render", updateNavbarBackgroundOnLoad);
+
+      function updateNavbarBackgroundOnLoad() {
         const navbar = document.querySelector(".navbar");
 
         function updateNavbarBackground() {
@@ -71,12 +73,13 @@
           }
         }
 
-        // ページロード時にスクロール状態を確認
+        // ページロード時または再レンダリング時にスクロール状態を確認
         updateNavbarBackground();
 
         // スクロール時に背景色を更新
         window.addEventListener("scroll", updateNavbarBackground);
-      });
+      }
+
     </script>
   </body>
 </html>
