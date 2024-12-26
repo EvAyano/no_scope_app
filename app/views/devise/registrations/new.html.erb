@@ -1,34 +1,70 @@
-<h2>アカウント登録画面</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="hero-section">
+  <div class="hero-titles">
+    <h1 class="hero-title">アカウント新規登録</h1>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+<div class="background-container">
+  <section class="account-management-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="account-details-card card bg-dark text-white mb-4">
+            <div class="card-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, class: "needs-validation" }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                <!-- メールアドレス -->
+                <div class="mb-3">
+                  <%= f.label :email, "メールアドレス", class: "form-label" %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                </div>
 
-  <div class="field">
-  <%= f.label :nickname %><br />
-  <%= f.text_field :nickname, autofocus: true %>
-  </div>
+                <!-- パスワード -->
+                <div class="mb-3">
+                  <%= f.label :password, class: "form-label d-flex align-items-center" do %>
+                    パスワード
+                    <% if @minimum_password_length %>
+                      <span class="ms-2">（<%= @minimum_password_length %>文字以上）</span>
+                    <% end %>
+                  <% end %>
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+
+                <!-- パスワード確認 -->
+                <div class="mb-3">
+                  <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label" %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                </div>
+
+                <!-- ニックネーム -->
+                <div class="mb-3">
+                  <%= f.label :nickname, "ニックネーム", class: "form-label" %>
+                  <%= f.text_field :nickname, autofocus: true, class: "form-control" %>
+                </div>
+
+                <!-- プロフィール画像 -->
+                <div class="mb-3">
+                  <%= f.label :avatar, "プロフィール画像", class: "form-label" %>
+                  <%= f.file_field :avatar, class: "form-control" %>
+                </div>
+
+                <!-- 登録ボタン -->
+                <div class="d-flex justify-content-center">
+                  <%= f.submit "登録", class: "btn btn-primary px-5" %>
+                </div>
+              <% end %>
+
+              <div class="mt-3 text-center">
+                <%= render "devise/shared/links" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

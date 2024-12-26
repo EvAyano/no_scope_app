@@ -1,38 +1,33 @@
 <%= turbo_frame_tag "quiz-frame" do %>
   <section class="quiz-section">
     <div class="container">
-      <div class="quiz-container quiz-container-results">
-        <div class="text-center">
-          <h2>クイズ結果</h2>
-          <p class="fs-5"><%= @show_start_time %></p>
+      <div class="quiz-container"> <!-- 統一されたデザインのコンテナ -->
+        <div class="text-center mb-4">
+          <h2 class="quiz-header">クイズ結果</h2>
+          <p class="quiz-intro-text"><%= @show_start_time %></p>
         </div>
 
         <!-- 結果テーブル -->
         <div class="quiz-results-table-container">
-          <table class="quiz-results-table">
-            <thead>
-              <tr>
-                <th>問題</th>
-                <th>あなたの回答</th>
-                <th>正解</th>
-                <th>結果</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @questions.each do |q| %>
-                <tr class="<%= q.correct ? 'result-correct' : 'result-incorrect' %>">
-                  <td><%= q.word.definition %></td>
-                  <td><%= q.user_answer %></td>
-                  <td><%= q.word.term %></td>
-                  <td><%= q.correct ? '正解' : '不正解' %></td>
+          <div class="table-responsive">
+            <table class="quiz-results-table table table-bordered w-100">
+              <thead>
+                <tr>
+                  <th>問題</th>
+                  <th>あなたの回答</th>
+                  <th>正解</th>
+                  <th>結果</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <%= render partial: 'quiz_result_partial', collection: @questions, as: :question %>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- もう一度プレイボタン -->
-        <div class="quiz-button-container">
+        <div class="quiz-button-container mt-4 text-center">
           <%= link_to(
             "もう一度プレイ",
             play_quizzes_path(state: 'new'),

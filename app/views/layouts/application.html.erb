@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>NoScorpApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md sticky-top border-bottom" data-bs-theme="dark">
+    <!-- ナビバー -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top transparent-nav">
       <div class="container">
         <%= link_to "No scope", root_path, class: "navbar-brand button" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
@@ -38,17 +39,47 @@
       </div>
     </nav>
 
+    <!-- 背景画像セクション -->
+    <div class="fullscreen-bg">
+    </div>
 
-    <% if flash[:notice] %>
-      <p class="alert"><%= notice %>
-    <% elsif flash[:alert] %>
-      <p class="alert"><%= alert %>
-    <% end %>
+    <!-- 各ページのコンテンツ -->
     <%= yield %>
+    
 
-    <nav>
-      <%= link_to "ホーム", root_path, class: "button" %>
-      <%= render login_partial %>
-    </nav>
+
+      <!-- 背景画像の下部-->
+    <section class="not-on-image-content py-5">
+      <div class="container">
+
+        <div class="mt-4">
+          <p>ここに追加</p>
+        </div>      
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("turbo:load", updateNavbarBackgroundOnLoad);
+      document.addEventListener("turbo:render", updateNavbarBackgroundOnLoad);
+
+      function updateNavbarBackgroundOnLoad() {
+        const navbar = document.querySelector(".navbar");
+
+        function updateNavbarBackground() {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        }
+
+        // ページロード時または再レンダリング時にスクロール状態を確認
+        updateNavbarBackground();
+
+        // スクロール時に背景色を更新
+        window.addEventListener("scroll", updateNavbarBackground);
+      }
+
+    </script>
   </body>
 </html>

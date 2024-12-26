@@ -1,8 +1,46 @@
-<h1>過去のクイズ履歴</h1>
-<ul>
-  <% @quizzes_log.each do |quiz_log| %>
-    <li>
-      <%= link_to "クイズ ##{quiz_log[:id]} (日時: #{quiz_log[:formatted_start_time]})", quiz_log[:path] %>
-    </li>
-  <% end %>
-</ul>
+<div class="hero-section">
+  <div class="hero-titles">
+    <h2 class="hero-subtitle">Word Quiz History</h2>
+    <h1 class="hero-title">過去のクイズ履歴</h1>
+  </div>
+</div>
+
+<div class="background-container">
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-container">
+        <div class="filter-form mb-4">
+          <%= form_with url: history_quizzes_path, method: :get, local: true, class: "row g-3 align-items-center justify-content-center" do %>
+            <div class="col-auto">
+              <%= select_tag :year, options_for_select((2020..Time.now.year).to_a.reverse, selected: params[:year]), class: "form-select" %>
+            </div>
+            <div class="col-auto">
+              <%= select_tag :month, options_for_select((1..12).to_a.map { |m| [m, m] }, selected: params[:month]), class: "form-select" %>
+            </div>
+            <div class="col-auto">
+              <%= submit_tag "フィルター", class: "submit-button" %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- 履歴リスト -->
+        <div class="quiz-results-table-container">
+          <div class="table-responsive">
+            <table class="quiz-results-table table table-bordered w-100">
+              <thead>
+                <tr>
+                  <th>開始日時</th>
+                  <th>スコア</th>
+                  <th>詳細</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: 'quiz_log', collection: @quizzes_log, as: :quiz_log %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

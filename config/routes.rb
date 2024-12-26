@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   
     get 'users/edit_nickname', to: 'users/registrations#edit_nickname', as: 'edit_user_nickname'
     put 'users/update_nickname', to: 'users/registrations#update_nickname', as: 'update_user_nickname'
+    
+    get 'users/edit_avatar', to: 'users/registrations#edit_avatar', as: 'edit_user_avatar'
+    patch 'users/update_avatar', to: 'users/registrations#update_avatar', as: 'update_user_avatar'
   end
+  
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -26,13 +30,6 @@ Rails.application.routes.draw do
     end
     member do
       post 'save', to: 'words#save'
-    end
-  end
-
-  resources :lists do
-    member do
-      delete 'remove_word'
-      patch 'change_name'
     end
   end
 

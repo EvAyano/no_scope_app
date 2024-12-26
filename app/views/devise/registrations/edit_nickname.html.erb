@@ -1,14 +1,42 @@
-<h2>ニックネームを編集</h2>
-
-<%= form_for(@user, url: update_user_nickname_path, method: :put) do |f| %>
-  <div class="field">
-    <%= f.label :nickname, "ニックネーム" %><br>
-    <%= f.text_field :nickname, autofocus: true %>
+<div class="hero-section my-page-hero-section"> 
+  <div class="hero-titles my-page-hero">
+    <div class="profile-image-wrapper">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]), class: "profile-image rounded-circle" %>
+      <% else %>
+        <%= image_tag "default_avatar.png", class: "profile-image rounded-circle", size: "150x150" %>
+      <% end %>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "更新する" %>
-  </div>
-<% end %>
+<div class="background-container">
+  <section class="account-management-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="account-details-card card bg-dark text-white mb-4">
+            <div class="card-header text-center">
+              <h2 class="mb-0">ニックネームを編集</h2>
+            </div>
+            <div class="card-body">
+              <%= form_for(resource, as: resource_name, url: update_user_nickname_path(resource_name), html: { method: :put, class: "needs-validation" }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= link_to "マイページに戻る", my_page_path, class: "button" %>
+                <div class="mb-3">
+                  <%= f.label :nickname, "新しいニックネーム", class: "form-label" %>
+                  <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "新しいニックネームを入力" %>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                  <%= link_to "プロフィールにもどる", edit_user_registration_path, class: "btn btn-secondary me-2" %>
+                  <%= f.submit "更新する", class: "btn btn-primary px-5" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

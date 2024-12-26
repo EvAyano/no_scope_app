@@ -3,8 +3,91 @@
 
 
 body {
-  background-color: #070E27;
+  color: #fff;
 }
+
+.offcanvas .dropdown-menu {
+  background-color: #162044;
+}
+
+.offcanvas .dropdown-item {
+  color: #ffffff;
+}
+
+.offcanvas .dropdown-item:hover {
+  background-color: #4E5A85;
+}
+
+
+
+
+.fullscreen-bg {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 全画面の高さ */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url(asset-path("aesthetic-dark-wallpaper-background-neon-light.jpg"));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+
+.fullscreen-bg-content {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+}
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+
+.home-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+
+.not-on-image-content {
+  background-color: #000002;
+  color: #ffff;
+  padding: 2rem 0;
+}
+
+.main-content {
+  background-color: #f8f9fa;
+  color: #212529;
+  padding: 2rem 0;
+}
+
 
 .offcanvas.offcanvas-end {
     width: 250px 
@@ -40,37 +123,56 @@ body {
   }
 
 
+  // Transparent navbar (初期状態では透明)
   .navbar {
-    background-color: #162044 !important;
+    position: fixed; /* 背景の上に重ねる */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* 背景より前面に表示 */
+    background-color: transparent; /* 最初は透明 */
+    transition: background-color 0.3s ease;
   }
 
-  .hero-section {
+  // Navbar when scrolled (スクロール時の背景色)
+  .navbar.scrolled {
+    background-color: rgba(22, 32, 68, 0.7);
+  }
+
+  
+  .category-menu {
+    margin-top: 20px;
+  }
+
+  .background-container {
+    background-color: #000002;
+    padding: 6rem 0;
+    margin-top: -60vh;
     position: relative;
-    width: 100%;
-    height: 300px;
-    background-image: url(asset-path("landscape-2373649_1280.jpg"));
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    align-items: flex-end;
-    justify-content: center;
+    z-index: 1;
+    min-height: 70vh;
   }
   
-  .hero-overlay {
+  .hero-section {
     position: absolute;
-    bottom: -70px;
-    z-index: 10;
-    background-color:#070E27;
-    padding: 20px 40px;
+    width: 100%;
     text-align: center;
+    margin-top: -70vh;
+    z-index: 2;
+  }
+  
+  .hero-titles {
+    display: inline-block;
+    padding: 20px 40px;
+    background-color: #000002;
+    border-radius: 0px;
     color: #fff;
   }
   
   .hero-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin: 10px 0 0;
+    margin-top: 10px;
   }
   
   .hero-subtitle {
@@ -79,9 +181,6 @@ body {
     color: #ddd;
   }
   
-  .category-menu {
-    margin-top: 20px;
-  }
   
   
   .word-filter {
@@ -125,7 +224,7 @@ body {
     border: 2px solid transparent;
     border-radius: 0;
     transition: border-color 0.3s ease;
-    color: #ffffff ; /* 親要素の文字色を白に設定 */
+    color: #ffffff ;
   }
   
   .word-item:hover {
@@ -169,28 +268,47 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 6rem auto;
+    margin-top: 10px;
   }
   
   
   
-    /* クイズ質問セクション */
+    /* クイズの質問セクション */
+
+
   .quiz-section {
-    background-color: #091833;
+    background-color: transparent;
+  }
+  
+  .quiz-container {
+    background-color: #162044;
+    color: #ffffff;
+    border: 2px solid transparent;
+    padding: 2rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
-  .quiz-container {
-    background-color: #133e7c; 
-    border-radius: 10px; /* カード角丸 */
-    padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    position: relative;
-    min-height: 500px;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column; /* 縦方向に要素を並べる */
-    justify-content: space-between;
+
+  .quiz-intro-text {
+    font-size: 1.25rem;
+    text-align: center;
+    color: #fcfafa;
+    margin-bottom: 1rem;
   }
+  
+  .quiz-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1cb8db;
+  }
+
+
+  .quiz-definition {
+    font-size: 1rem;
+    color: #fcfafa;
+  }
+
+
   
 
   .quiz-title {
@@ -200,13 +318,6 @@ body {
     text-align: center;
   }
 
-  .quiz-intro-text {
-    font-size: 1.25rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #dddddd;
-  }
-
   .intro-button-container {
     text-align: center; 
     margin-top: 2rem;
@@ -214,7 +325,7 @@ body {
   
 
   .quiz-container h2 {
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
     margin-bottom: 1rem;
     text-align: center;
@@ -230,7 +341,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 
   .hidden-radio {
@@ -241,7 +352,6 @@ body {
     background-color: #1c1e21;
     color: #ffffff;
     border: 2px solid transparent;
-    border-radius: 10px;
     padding: 1rem;
     text-align: center;
     cursor: pointer;
@@ -249,8 +359,7 @@ body {
   }
 
   .quiz-option:hover {
-    background-color: #104c6d;
-    border-color: #ea00d9;
+    background-color: #4E5A85;
   }
 
   .hidden-radio:checked + .quiz-option {
@@ -270,43 +379,51 @@ body {
 
   .submit-button {
     display: inline-block;
-    width: 100%;
-    max-width: 200px;
-    text-align: center;
-    padding: 0.5rem 1rem; 
+    max-width: 150px;
+    padding: 0.5rem 1rem;
     font-size: 1rem;
-    background-color: #882995;
-    color: #ffffff; 
+    text-align: center;
+    background-color: #1cb8db; 
+    color: #ffffff;
     border: none;
-    border-radius: 5px; /* 角丸 */
-    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
+    text-decoration: none;
   }
+  
+  .submit-button:hover {
+    background-color: #4E5A85;
+    transform: scale(1.03);
+  }
+  
+  
+  .submit-button:hover {
+    background-color: #4E5A85;
+    transform: scale(1.05);
+  }
+  
   
 
   .submit-button:hover {
-    background-color: #c0392b;
-    transform: scale(1.05); 
+    background-color: #4E5A85;
+    transform: scale(1.05);
+    text-decoration: none;
   }
 
-  .quiz-question-alert {
-    min-height: 2rem; 
-    background-color: transparent;
-    border: none;
-    color: #ff0000;
-    font-weight: bold; 
-    text-align: left;
-    padding: 0;
-    margin: 1rem 0; 
-    display: flex; 
-    align-items: center; /* 縦方向のセンタリング */
-  }
-
+  .quiz-question-alert .alert {
+    min-height: 1.5rem;
+    color: #ff9900;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }  
+  
   .quiz-option-answer {
     background-color: #1c1e21;
     color: #ffffff;
     border: 2px solid transparent;
-    border-radius: 10px;
     padding: 1rem;
     text-align: center;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -332,7 +449,6 @@ body {
     border-color: none;
   }
 
-  /* アラート部分のスタイル */
   .quiz-answer-alert {
     color: #ff9900; 
     font-weight: bold;
@@ -342,48 +458,218 @@ body {
     padding-left: 0.5rem;
   }
 
-  .quiz-container-results {
-    min-height: auto; 
-    max-height: none; 
-    overflow: visible; /* コンテンツのはみ出しOK */
+  .quiz-results-table-container {
+    margin: 2rem auto;
+    max-width: 100%;
   }
+
+  
 
   .quiz-results-table-container {
-    margin: 2rem auto; 
-    text-align: center;
+    margin: 2rem auto;
+    max-width: 90%;
   }
-
+  
   .quiz-results-table {
     width: 100%;
-    border-collapse: collapse; 
-    background-color: #1c1e21;
-    border: 2px solid #133e7c;
+    background: rgba(0, 0, 0, 0.3);
     color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    th,
+    td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 1rem;
+    }
+
+    th {
+      background-color: #162044;
+      color: #ffffff;
+      font-weight: bold;
+    }
+  
+    td {
+      text-align: center;
+      vertical-align: middle;
+    }
   }
 
-  .quiz-results-table th,
-  .quiz-results-table td {
+  .quiz-results-table tr.result-correct,
+  .quiz-results-table tr.result-correct td {
+    background-color: rgba(176,0, 178, 255);
+  }
+  
+  .quiz-results-table tr.result-incorrect,
+  .quiz-results-table tr.result-incorrect td {
+    background-color: rgba(147, 0, 156, 255);
+  }
+  
+//クイズ履歴
+  .filter-form {
+    .form-select,
+    .btn {
+      margin-bottom: 0.5rem;
+    }
+  
+    .form-label {
+      color: #ffffff;
+    }
+  }
+
+/*アカウント情報*/
+
+
+.account-details-card {
+  margin-top: 3rem;
+}
+/* プロフィールテーブル */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #162044;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+
+  th, td {
     padding: 1rem;
-    text-align: center;
-    border-bottom: 1px solid #133e7c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
   }
 
-  .quiz-results-table th {
-    background-color: #133e7c;
-    color: #ffffff; 
-    font-weight: bold; 
+  th {
+    width: 30%;
+    text-align: left;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
-  .quiz-results-table td {
+  td {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      flex: 1;
+    }
+
+    .edit-link {
+      color: #1cb8db;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-size: 0.9rem;
+      margin-left: 10px;
+
+      &:hover {
+        text-decoration: underline;
+        color: #3498db;
+      }
+    }
+  }
+
+  tr {
+    &:hover .edit-link {
+      opacity: 1;
+    }
+
+    &:last-child td, &:last-child th {
+      border-bottom: none;
+    }
+  }
+}
+
+.action-buttons {
+  margin-top: 1rem;
+
+  .btn {
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
+    border-radius: 5px;
   }
 
-  .quiz-results-table tr.result-correct {
-    background-color: #104c6d;
+  .btn-danger {
+    background-color: #c0392b;
+    border-color: #c0392b;
+
+    &:hover {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+    }
   }
 
-  .quiz-results-table tr.result-incorrect {
-    background-color: #6d1c1c;
+  .btn-outline-danger {
+    color: #c0392b;
+    border-color: #c0392b;
+
+    &:hover {
+      background-color: rgba(192, 57, 43, 0.1);
+      color: #e74c3c;
+      border-color: #e74c3c;
+    }
+  }
+}
+
+
+
+
+.my-page-hero {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .profile-image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+    
+
+  .hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
   }
 
+  &:hover .hover-overlay {
+    opacity: 1;
+  }
+}
+
+
+/* 登録画面 */
 

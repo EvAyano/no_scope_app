@@ -1,12 +1,30 @@
-<%= turbo_frame_tag "quiz-frame" do %>
-  <% case @view_state %>
-  <% when :intro %>
-    <%= render partial: "quizzes/quiz_intro" %>
-  <% when :question %>
-    <%= render partial: "quizzes/quiz_question", locals: { quiz: @quiz } %>
-  <% when :answer %>
-    <%= render partial: "quizzes/show_per_answer", locals: { quiz: @quiz, question: @question } %>
-  <% when :results %>
-    <%= render partial: "quizzes/results", locals: { quiz: @quiz } %>
-  <% end %>
-<% end %>
+<div class="fullscreen-bg-content">
+</div>
+
+<div class="hero-section">
+  <div class="hero-titles">
+    <h2 class="hero-subtitle">Word Quiz</h2>
+    <h1 class="hero-title">単語クイズ</h1>
+  </div>
+</div>
+
+<div class="background-container">
+  <section class="quiz-section">
+    <div class="container">
+      <div class="row">
+        <%= turbo_frame_tag "quiz-frame" do %>
+          <% case @view_state %>
+          <% when :intro %>
+            <%= render partial: "quizzes/quiz_intro" %>
+          <% when :question %>
+            <%= render partial: "quizzes/quiz_question", locals: { quiz: @quiz } %>
+          <% when :answer %>
+            <%= render partial: "quizzes/show_per_answer", locals: { quiz: @quiz, question: @question } %>
+          <% when :results %>
+            <%= render partial: "quizzes/results", locals: { quiz: @quiz } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>

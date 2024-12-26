@@ -1,0 +1,57 @@
+name: CI & Deploy to Heroku
+
+on:
+  push:
+    # By default, this runs on every branch. 
+    # If you want to specify only certain branches, you can list them here.
+    # For example:
+    # branches: ["main", "develop", "feature/*"]
+    # Otherwise, leaving it out (or using ["*"]) means "all branches".
+    branches: ["*"]
+
+jobs:
+  build:
+    name: Build on all branches
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.4
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      # - name: Run tests
+      #   run: |
+      #     # Adjust this command for your project's test tasks
+      #     bundle exec rake test
+
+  deploy:
+    name: Deploy only on main
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.4
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          branch: main
+          dontuseforce: true
+          appdir: "."
