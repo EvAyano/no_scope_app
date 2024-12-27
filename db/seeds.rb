@@ -26,7 +26,7 @@ words = Word.create([
   { term: "Crossfire", definition: "複数の方向から同時に攻撃すること", explanation: "別方向から攻撃することで挟み撃ちにする", game_name: "general" },
   { term: "Cubby", definition: "小さな隠れ場所", explanation: "保留", game_name: "general" },
   { term: "Default", definition: "敵の出方を見てから戦略を決めること", explanation: "大抵の場合はマップ全体に広がり情報を取得したり、敵のアビリティを無駄に使わせたり、マップコントロールすることが目的", game_name: "general" },
-  { term: "Deffuse", definition: "スパイクを解除すること", explanation: "Fake defuse:解除音を出して解除するフリをすること。Ninja Defuse:アタッカー側に気づかれることなく、こっそり解除すること。", game_name: "general" },
+  { term: "Defuse", definition: "スパイクを解除すること", explanation: "Fake defuse:解除音を出して解除するフリをすること。Ninja Defuse:アタッカー側に気づかれることなく、こっそり解除すること。", game_name: "general" },
   { term: "Double Peek", definition: "二人のプレイヤーが同時に壁などの遮蔽物から姿をあらわすこと", explanation: "同時にピークすることで一人がキルされてしまってもトレードキルができる", game_name: "general" },
   { term: "Drop", definition: "武器などをチームメイトに渡すこと", explanation: "お金が余っている人が足りない人に買ってあげる場面で使う言葉", game_name: "general" },
   { term: "Eco", definition: "節約ラウンド", explanation: "次のラウンドのために節約しよう", game_name: "general" },
