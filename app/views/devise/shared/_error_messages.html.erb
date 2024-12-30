@@ -13,8 +13,18 @@
   </div>
 <% end %>
 
-<% if flash[:alert] %>
-  <div class="alert alert-danger" role="alert">
-    <%= flash[:alert] %>
+<% if flash[:alert].present? %>
+  <div class="alert" role="alert">
+    <% if flash[:alert].is_a?(Array) %>
+      <strong>エラーが発生しました。</strong>
+      <ul class="mb-0 ps-3">
+        <% flash[:alert].each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= flash[:alert] %>
+    <% end %>
   </div>
 <% end %>
+
