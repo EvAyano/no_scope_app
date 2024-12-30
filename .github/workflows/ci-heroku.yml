@@ -54,3 +54,7 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           branch: main
           dontuseforce: false
+
+      - name: Run migrations and precompile assets
+        run: |
+          heroku run rake assets:precompile -a no-scope && heroku run rake db:migrate -a no-scope
