@@ -1,5 +1,4 @@
 class WordsController < ApplicationController
-  # before_action :set_word, only: [:create_list_and_save_word, :add_word_to_existing_list]
   
   def index
     @letters = ('A'..'Z').to_a
