@@ -53,5 +53,6 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           branch: main
-          dontuseforce: true
+          dontuseforce: false
           appdir: "."
+          postbuild: "heroku run rake assets:precompile && heroku run rake db:migrate"
