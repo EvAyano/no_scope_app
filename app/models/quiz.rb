@@ -17,7 +17,7 @@ class Quiz < ApplicationRecord
         {
           id: quiz.id,
           formatted_start_time: quiz.start_time.present? ? quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明",
-          score: quiz.calculate_score,
+          score: quiz.display_score,
           path: Rails.application.routes.url_helpers.play_quizzes_path(state: "results", id: quiz.id)
         }
       end
@@ -27,12 +27,13 @@ class Quiz < ApplicationRecord
   end
 
   # スコア計算
-  def calculate_score
-    total_questions = quiz_questions.count
+  def calculate_and_save_score
     correct_answers = quiz_questions.where(correct: true).count
-    "#{correct_answers}/#{total_questions}"
+    update(score: correct_answers)
   end
 
-
-
+  def display_score
+    total_questions = quiz_questions.count
+    "#{score || 0}/#{total_questions}"
+  end
 end

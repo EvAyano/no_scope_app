@@ -53,18 +53,16 @@ class QuizzesController < ApplicationController
   private
 
   def create_quiz
-    @quiz = current_user ? current_user.quizzes.create(start_time: Time.current) : Quiz.create
+    @quiz = current_user ? current_user.quizzes.create(start_time: Time.current) : Quiz.create(start_time: Time.current)
 
     words = Word.order("RAND()").limit(10)
     words.each do |word|
       choices = Word.where.not(id: word.id).order("RAND()").limit(3).pluck(:term)
       @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.push(word.term).shuffle)
     end
-    print"クリエイトの中身！"
   end
 
   def load_question
-    print"questionの中身"
     @quiz = Quiz.find(params[:id])
     @current_question = @quiz.quiz_questions.where(user_answer: nil).first
     @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
@@ -77,7 +75,6 @@ class QuizzesController < ApplicationController
   
 
   def process_answer
-    print"answerの中身"
     @quiz = Quiz.find(params[:id])
     @question = @quiz.quiz_questions.find(params[:question_id])
     @current_question = @quiz.quiz_questions.where(user_answer: nil).first
@@ -85,7 +82,6 @@ class QuizzesController < ApplicationController
 
   
     if params[:answer].blank?
-      print "answerがnil"
       flash.now[:alert] = "選択肢を1つ選んでください。"
       load_question
       @view_state = :question
@@ -117,6 +113,7 @@ class QuizzesController < ApplicationController
   def load_results
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.quiz_questions
+    @quiz.calculate_and_save_score
     @show_start_time = @quiz.start_time.present? ? @quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明"
   end  
 end

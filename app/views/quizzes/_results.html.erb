@@ -4,7 +4,10 @@
       <div class="quiz-container">
         <div class="text-center mb-4">
           <h2 class="quiz-header">クイズ結果</h2>
-          <p class="quiz-intro-text"><%= @show_start_time %></p>
+          <p class="quiz-intro-text">
+            開始日時: <%= @show_start_time %><br>
+            スコア: <span class="quiz-score"><%= @quiz.display_score %></span>
+          </p>
         </div>
 
         <div class="quiz-results-table-container">
@@ -27,7 +30,7 @@
 
         <!-- もう一度プレイボタン -->
         <div class="quiz-button-container mt-4 text-center">
-        <%= link_to("もう一度プレイ",play_quizzes_path(state: 'new'),class: "submit-button",data: { turbo_frame: 'quiz-frame' }) %>
+          <%= link_to("もう一度プレイ", play_quizzes_path(state: 'new'), class: "submit-button", data: { turbo_frame: 'quiz-frame' }) %>
         </div>
       </div>
     </div>
