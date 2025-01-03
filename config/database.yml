@@ -32,7 +32,6 @@ test:
   <<: *default
   host: 0.0.0.0
   url: <%= ENV["DATABASE_URL"] || "mysql2://root:password@0.0.0.0:3306/no_scope_app_test" %>
-  database: no_scope_app_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
