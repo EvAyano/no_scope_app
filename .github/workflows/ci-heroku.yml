@@ -13,6 +13,8 @@ jobs:
   build:
     name: Build on all branches
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -27,10 +29,14 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      # - name: Run tests
-      #   run: |
-      #     # Adjust this command for your project's test tasks
-      #     bundle exec rake test
+      - name: Run DB Migration
+        run: |
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+
+      - name: Run tests
+        run: |
+          bundle exec rspec  # Run the RSpec tests
 
   deploy:
     name: Deploy only on main
