@@ -33,9 +33,10 @@ jobs:
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate
+
       - name: Run tests
         run: |
-          heroku run rake db:migrate -a no-scope
+          bundle exec rspec  # Run the RSpec tests
 
   deploy:
     name: Deploy only on main
