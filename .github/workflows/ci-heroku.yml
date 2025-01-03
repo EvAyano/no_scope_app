@@ -27,10 +27,13 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      # - name: Run tests
-      #   run: |
-      #     # Adjust this command for your project's test tasks
-      #     bundle exec rake test
+      - name: Run DB Migration
+        run: |
+          bundle exec rake db:create
+          bundle exec rake db:migrate
+      - name: Run tests
+        run: |
+          heroku run rake db:migrate -a no-scope
 
   deploy:
     name: Deploy only on main
