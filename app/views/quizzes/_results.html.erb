@@ -7,6 +7,7 @@
           <p class="quiz-intro-text">
             開始日時: <%= @show_start_time %><br>
             スコア: <span class="quiz-score"><%= @quiz.display_score %></span>
+            <%= render 'score_message' %>
           </p>
         </div>
 

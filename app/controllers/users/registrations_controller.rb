@@ -65,6 +65,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if params[:user][:nickname].blank?
       @user.errors.add(:nickname, "を入力してください")
+    elsif params[:user][:nickname].length > 10
+      @user.errors.add(:nickname, "は10文字以内で入力してください")
     end
 
     if @user.errors.any?
@@ -98,10 +100,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
-  def email_params
-    params.require(:user).permit(:email)
-  end
-
   def nickname_params
     params.require(:user).permit(:nickname)
   end
@@ -114,10 +112,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def email_params
     params.require(:user).permit(:email)
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :password, :password_confirmation])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :email, :password, :password_confirmation, :current_password])
   end
 end

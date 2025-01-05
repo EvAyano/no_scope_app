@@ -33,8 +33,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'my_page', to: 'users#my_page'
-
   resources :quizzes, only: [] do
     collection do
       get 'play'

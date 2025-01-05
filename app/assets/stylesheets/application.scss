@@ -211,7 +211,6 @@ body {
     }
   }
 
-
   .word-list {
     display: flex;
     flex-direction: column;
@@ -475,6 +474,31 @@ body {
     margin: 2rem auto;
     max-width: 90%;
   }
+
+.score-message-perfect {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #28a745;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.score-message-close {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #007bff;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.score-message-ganbatte {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ff6f61;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
   
   .quiz-results-table {
     width: 100%;
@@ -524,7 +548,32 @@ body {
   }
 
 /*アカウント情報*/
+.error-message-container {
+  background-color: #162044;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
 
+.error-message-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #ff6f61;
+}
+
+.error-message-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.error-message-item {
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+
+}
 
 .account-details-card {
   margin-top: 3rem;
@@ -675,7 +724,3 @@ body {
     opacity: 1;
   }
 }
-
-
-/* 登録画面 */
-
