@@ -15,7 +15,7 @@
     <!-- ナビバー -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top transparent-nav">
       <div class="container">
-        <%= link_to "No scope", root_path, class: "navbar-brand button" %>
+        <%= link_to "No scope", root_path, class: "navbar-brand nav-link" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,12 +46,8 @@
     <!-- 各ページのコンテンツ -->
     <%= yield %>
     
-
-
-      <!-- 背景画像の下部-->
     <section class="not-on-image-content py-5">
       <div class="container">
-
         <div class="mt-4">
           <p>ここに追加</p>
         </div>      
@@ -79,7 +75,6 @@
         // スクロール時に背景色を更新
         window.addEventListener("scroll", updateNavbarBackground);
       }
-
     </script>
   </body>
 </html>
