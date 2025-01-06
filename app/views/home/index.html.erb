@@ -1,11 +1,21 @@
-<main>
+<main class="fullscreen-bg">
   <div class="fullscreen-bg-content">
     <h1 class="home-sub-title">No Scope</h1>
     <h3 class="home-main-title">スコープなしで瞬時に話せるようになろう</h3>
-
     <div class="home-buttons">
       <%= link_to 'Word list', words_path, class: "home-button" %>
       <%= link_to "Word quiz", play_quizzes_path(state: "new"), class: "home-button", data: { turbo_frame: "quiz-frame" } %>
+    </div>
+  </div>
+
+  <div class="home content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="hero-title">ここに必要に応じて追加のコンテンツ等</h1>
+          <p class="hero-subtitle">説明等これ英単語を覚えるためのアプリケーション</p>
+        </div>
+      </div>
     </div>
   </div>
 </main>

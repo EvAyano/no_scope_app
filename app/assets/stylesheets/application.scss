@@ -78,34 +78,48 @@ body {
   }
 }
 
-
+.footer {
+  background-color: #162044;
+  color: #ffffff;
+  padding: 2rem 0; 
+}
 
 .fullscreen-bg {
   position: relative;
   width: 100%;
-  height: 100vh; /* 全画面の高さ */
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-              url(asset-path("aesthetic-dark-wallpaper-background-neon-light.jpg"));
+  min-height: 100vh;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url(asset-path("background.jpg"));
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+  
+.fullscreen-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url(asset-path("background.jpg")) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+
   display: flex;
+  flex-direction: column;
+}
+
+.fullscreen-bg-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
-}
-
-
-.fullscreen-bg-content {
-  position: absolute;
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  color: #fff;
-  text-align: center;
-  z-index: 2;
+  transform: translateY(15rem);
 }
 
 .home-buttons {
@@ -115,6 +129,14 @@ body {
   margin-top: 2rem;
 }
 
+.home.content {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 35rem auto 0;
+}
 
 .home-button {
   display: inline-block;
@@ -132,19 +154,6 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   transform: scale(1.05);
-}
-
-
-.not-on-image-content {
-  background-color: #000002;
-  color: #ffff;
-  padding: 2rem 0;
-}
-
-.main-content {
-  background-color: #f8f9fa;
-  color: #212529;
-  padding: 2rem 0;
 }
   
 .col-12.col-md-6.p-0 {
@@ -171,14 +180,13 @@ body {
     }
   }
 
-
   // Transparent navbar (初期状態では透明)
   .navbar {
-    position: fixed; /* 背景の上に重ねる */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* 背景より前面に表示 */
+    z-index: 10;
     background-color: transparent; /* 最初は透明 */
     transition: background-color 0.3s ease;
   }
@@ -188,32 +196,30 @@ body {
     background-color: rgba(22, 32, 68, 0.7);
   }
 
-  
   .category-menu {
     margin-top: 20px;
   }
 
   .background-container {
-    background-color: #000002;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 6rem 0;
-    margin-top: -60vh;
     position: relative;
-    z-index: 1;
-    min-height: 70vh;
+    margin-top: 30vh; 
   }
   
   .hero-section {
-    position: absolute;
+    position: relative;
     width: 100%;
     text-align: center;
-    margin-top: -70vh;
     z-index: 2;
+    margin-bottom: 2rem;
+    transform: translateY(20vh);
   }
-  
+
   .hero-titles {
     display: inline-block;
     padding: 20px 40px;
-    background-color: #000002;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0px;
     color: #fff;
   }
@@ -299,7 +305,6 @@ body {
     margin-bottom: 0.5rem; 
   }
 
-
   .message-container {
     background-color: #162044; 
     border: 2px solid transparent; 
@@ -319,10 +324,7 @@ body {
     margin-top: 10px;
   }
   
-  
-  
     /* クイズの質問セクション */
-
 
   .quiz-section {
     background-color: transparent;
@@ -548,7 +550,6 @@ body {
   margin: 1rem 0;
 }
 
-  
   .quiz-results-table {
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
