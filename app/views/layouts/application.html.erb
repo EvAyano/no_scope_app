@@ -109,6 +109,21 @@
         // スクロール時に背景色を更新
         window.addEventListener("scroll", updateNavbarBackground);
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            dropdownMenu.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+            dropdownMenu.classList.remove("scrolled");
+          }
+        });
+      });
     </script>
   </body>
 </html>

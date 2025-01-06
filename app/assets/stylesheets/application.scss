@@ -6,8 +6,8 @@ body {
 }
 
 .offcanvas {
-  background-color: #162044;
-  
+  background-color: #212529;
+
   .offcanvas-title {
     color: #ffffff;
   }
@@ -20,24 +20,29 @@ body {
       color: #1cb8db;
     }
   }
-  
+
   .btn-close {
     color: #ffffff;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.offcanvas.show .nav-link {
+  color: #ffffff;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #1cb8db;
   }
 }
 
 .offcanvas-header {
-  background-color: #162044;
+  background-color: #212529;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.btn-close {
-  color: #ffffff;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .offcanvas.offcanvas-end {
@@ -51,18 +56,25 @@ body {
 }
 
 .dropdown-menu {
-  background-color: #162044;
-  border: none;
-  box-shadow: none;
+  background-color: #212529;
+  transition: background-color 0.3s ease;
+
+  &.scrolled {
+    background-color: rgba(10, 18, 255, 0.7);
+  }
+}
+.dropdown-menu.show {
+  margin-top: 0.5rem;
 }
 
 .dropdown-item {
   color: #ffffff;
-  transition: background-color 0.3s ease, color 0.3s ease; 
+  background-color: transparent;
+  transition: color 0.3s ease;
 
   &:hover {
-    background-color: #4E5A85;
-    color: #ffffff;
+    color: #1cb8db;
+    background-color: transparent;
   }
 }
 
@@ -155,7 +167,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
+  color: #212529;
   transform: translateY(15rem);
 }
 
@@ -173,19 +185,41 @@ body {
   padding: 2rem;
   max-width: 800px;
   margin: 35rem auto 0;
+  margin-bottom: 10rem;
+  width: 80% !important;
+  max-width: 80% !important;
 }
 
 .home-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  color: #fff;
+  color: #212529;
   background-color: transparent;
-  border: 2px solid #fff;
+  border: 2px solid #212529;
   border-radius: 5px;
   text-decoration: none;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
+
+.home-button2 {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sub-home-explanation {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
 
 .btn-outline:hover {
   background-color: rgba(255, 255, 255, 0.1);
