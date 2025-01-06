@@ -3,7 +3,7 @@ class WordsController < ApplicationController
   def index
     @letters = ('A'..'Z').to_a
     @words = nil
-    @message = "アルファベットを選択してください"
+    @message = "アルファベットを選択すると、その文字から始まる単語がここに表示されます"
     @words_present = false
   end
   

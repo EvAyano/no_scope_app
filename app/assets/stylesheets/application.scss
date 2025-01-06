@@ -348,7 +348,7 @@ body {
         width: 40px;
         height: 40px;
         color: #fcfafa;
-        background-color:  #162044;
+        background-color:  #212529;
         text-decoration: none;
         border-radius: 0;
         border: 2px solid transparent;
@@ -357,7 +357,7 @@ body {
   
         &:hover,
         &.active {
-          background-color: #4E5A85;
+          background-color: rgba(10, 18, 255, 0.7);
         }
       }
     }
@@ -371,7 +371,7 @@ body {
   }
   
   .word-item {
-    background-color: #162044;
+    background-color:#212529;
     border: 2px solid transparent;
     border-radius: 0;
     transition: border-color 0.3s ease;
@@ -379,11 +379,11 @@ body {
   }
   
   .word-item:hover {
-    background-color: #4E5A85;
+    background-color: rgba(10, 18, 255, 0.7);
   }
   
   .word-detail-frame {
-    background-color: #162044;
+    background-color: #212529;
     border: 2px solid transparent;
     border-radius: 0;
     padding: 1rem;
@@ -403,13 +403,13 @@ body {
   }
 
   .message-container {
-    background-color: #162044; 
+    background-color: transparent;
     border: 2px solid transparent; 
     border-radius: 0; /* 四角形 */
     padding: 1rem; 
     margin-bottom: 1rem;
     text-align: center;
-    color: #ffffff; 
+    color: #212529; 
   }
   
   .browse-by-alphabets {
