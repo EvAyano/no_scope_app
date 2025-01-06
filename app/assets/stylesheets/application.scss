@@ -230,8 +230,36 @@ body {
 
   // Navbar when scrolled (スクロール時の背景色)
   .navbar.scrolled {
-    background-color: rgba(22, 32, 68, 0.7);
+    background-color: rgba(10, 18, 255, 0.7);
+}
+
+.navbar {
+  .navbar-brand {
+    color: #cccccc;
+
+    &:hover {
+      color: #1cb8db;
+    }
   }
+
+  .navbar-side {
+    color: #212529; // スクロール前デフォルト色
+
+    &:hover {
+      color: #0A12FF; // スクロール前のホバー
+    }
+  }
+
+  &.scrolled {
+    .navbar-side {
+      color: #cccccc; // スクロール時,デフォルト
+
+      &:hover {
+        color: #1cb8db; // スクロール,ホバー
+      }
+    }
+  }
+}
 
   .category-menu {
     margin-top: 20px;

@@ -15,7 +15,7 @@
     <!-- ナビバー -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top transparent-nav">
       <div class="container">
-        <%= link_to "No scope", root_path, class: "navbar-brand nav-link" %>
+        <%= link_to "NoScope", root_path, class: "navbar-brand nav-link" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,10 +27,10 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 justify-content-end">
               <li class="nav-item">
-                <%= link_to 'Word list', words_path, class: 'nav-link' %>
+                <%= link_to 'Word list', words_path, class: "navbar-side nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Quiz', play_quizzes_path(state: 'new'), class: 'nav-link' %>
+                <%= link_to 'Quiz', play_quizzes_path(state: 'new'), class: "navbar-side nav-link" %>
               </li>
               <%= render login_partial %>
             </ul>
@@ -48,7 +48,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 mb-2 mb-md-0">
-            <h5 class="footer-title">NoScopeApp</h5>
+            <h5 class="footer-title">NoScope</h5>
             <p class="footer-disclaimer">
               当サイトは Counter-Strike シリーズのファンによる非公式サイトです。<br>
               ゲーム名や武器名などの固有名詞は、Valve Corporation の商標または登録商標です。<br>
@@ -81,7 +81,7 @@
         <div class="row mt-2">
           <div class="col text-center">
             <p class="mb-0 footer-copy">
-              &copy; <%= Time.now.year %> NoScopeApp. All rights reserved.
+              &copy; <%= Time.now.year %> NoScope. All rights reserved.
             </p>
           </div>
         </div>
