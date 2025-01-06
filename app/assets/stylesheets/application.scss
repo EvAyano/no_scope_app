@@ -81,7 +81,45 @@ body {
 .footer {
   background-color: #162044;
   color: #ffffff;
-  padding: 2rem 0; 
+  .footer-title {
+    font-size: 0.8rem;   
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.6rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-contact,
+  .footer-copy {
+    font-size: 0.6rem; 
+    line-height: 1.3;
+  }
+
+  .footer-single-link {
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-link {
+    font-size: 0.75rem;
+    color: #ffffff;
+    text-decoration: none;
+
+    &:hover {
+      color: #1cb8db;
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .row > div {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .fullscreen-bg {
