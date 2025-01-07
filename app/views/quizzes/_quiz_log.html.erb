@@ -2,8 +2,15 @@
   <% if quiz_log[:message] %>
     <td colspan="3" class="text-center text-warning"><%= quiz_log[:message] %></td>
   <% else %>
-    <td><%= link_to quiz_log[:formatted_start_time], quiz_log[:path], class: "text-decoration-none" %></td>
-    <td><%= link_to quiz_log[:score], quiz_log[:path], class: "text-decoration-none" %></td>
-    <td class="text-center"><%= link_to "詳細を見る", quiz_log[:path], class: "btn btn-outline-primary" %></td>
+    <td>
+      <%= link_to quiz_log[:path], class: "link-wrapper" do %>
+        <%= quiz_log[:formatted_start_time] %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to quiz_log[:path], class: "link-wrapper" do %>
+        <%= quiz_log[:score] %>
+      <% end %>
+    </td>
   <% end %>
 </tr>

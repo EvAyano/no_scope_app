@@ -42,14 +42,8 @@
 
                 <!-- ニックネーム -->
                 <div class="mb-3">
-                  <%= f.label :nickname, "ニックネーム", class: "form-label" %>
+                  <%= f.label :nickname, "ニックネーム (10文字以内) ", class: "form-label" %>
                   <%= f.text_field :nickname, autofocus: true, class: "form-control" %>
-                </div>
-
-                <!-- プロフィール画像 -->
-                <div class="mb-3">
-                  <%= f.label :avatar, "プロフィール画像", class: "form-label" %>
-                  <%= f.file_field :avatar, class: "form-control" %>
                 </div>
 
                 <!-- 登録ボタン -->

@@ -1,9 +1,0 @@
-<h1>検索結果</h1>
-
-<ul>
-  <% @words.each do |word| %>
-    <li>
-      <strong><%= link_to word.term, word_path(word) %></strong>: <%= word.definition %>
-    </li>
-  <% end %>
-</ul>

@@ -1,52 +1,174 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
-
 body {
   color: #fff;
 }
 
-.offcanvas .dropdown-menu {
-  background-color: #162044;
+.offcanvas {
+  background-color: #212529;
+
+  .offcanvas-title {
+    color: #ffffff;
+  }
+
+  .nav-link {
+    color: #ffffff;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #1cb8db;
+    }
+  }
+
+  .btn-close {
+    color: #ffffff;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
-.offcanvas .dropdown-item {
+.offcanvas.show .nav-link {
   color: #ffffff;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #1cb8db;
+  }
 }
 
-.offcanvas .dropdown-item:hover {
-  background-color: #4E5A85;
+.offcanvas-header {
+  background-color: #212529;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.offcanvas.offcanvas-end {
+  width: 250px;
+}
 
+@media (max-width: 767px) {
+  .offcanvas.offcanvas-end {
+    width: 230px;
+  }
+}
 
+.dropdown-menu {
+  background-color: #212529;
+  transition: background-color 0.3s ease;
+
+  &.scrolled {
+    background-color: rgba(10, 18, 255, 0.7);
+  }
+}
+.dropdown-menu.show {
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  color: #ffffff;
+  background-color: transparent;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #1cb8db;
+    background-color: transparent;
+  }
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-toggle {
+  color: #ffffff;
+  &:hover {
+    color: #1cb8db;
+  }
+}
+
+.footer {
+  background-color: #162044;
+  color: #ffffff;
+  .footer-title {
+    font-size: 0.8rem;   
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.6rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-contact,
+  .footer-copy {
+    font-size: 0.6rem; 
+    line-height: 1.3;
+  }
+
+  .footer-single-link {
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-link {
+    font-size: 0.75rem;
+    color: #ffffff;
+    text-decoration: none;
+
+    &:hover {
+      color: #1cb8db;
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .row > div {
+      margin-bottom: 1rem;
+    }
+  }
+}
 
 .fullscreen-bg {
   position: relative;
   width: 100%;
-  height: 100vh; /* 全画面の高さ */
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-              url(asset-path("aesthetic-dark-wallpaper-background-neon-light.jpg"));
+  min-height: 100vh;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url(asset-path("background.jpg"));
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+  
+.fullscreen-bg {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url(asset-path("background.jpg")) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+
   display: flex;
+  flex-direction: column;
+}
+
+.fullscreen-bg-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
-}
-
-
-.fullscreen-bg-content {
-  position: absolute;
-  top: 50%;
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  color: #fff;
-  text-align: center;
-  z-index: 2;
+  color: #212529;
+  transform: translateY(15rem);
 }
 
 .home-buttons {
@@ -56,47 +178,54 @@ body {
   margin-top: 2rem;
 }
 
+.home.content {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 35rem auto 0;
+  margin-bottom: 10rem;
+  width: 80% !important;
+  max-width: 80% !important;
+}
 
 .home-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  color: #fff;
+  color: #212529;
   background-color: transparent;
-  border: 2px solid #fff;
+  border: 2px solid #212529;
   border-radius: 5px;
   text-decoration: none;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
 
+.home-button2 {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sub-home-explanation {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+
 .btn-outline:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   transform: scale(1.05);
 }
-
-
-.not-on-image-content {
-  background-color: #000002;
-  color: #ffff;
-  padding: 2rem 0;
-}
-
-.main-content {
-  background-color: #f8f9fa;
-  color: #212529;
-  padding: 2rem 0;
-}
-
-
-.offcanvas.offcanvas-end {
-    width: 250px 
-  }
-    @media (max-width: 767px) {
-    .offcanvas.offcanvas-end {
-      width: 200px  
-    }
-  }
   
 .col-12.col-md-6.p-0 {
     transition: background-color 0.3s, transform 0.3s;
@@ -122,49 +251,74 @@ body {
     }
   }
 
-
   // Transparent navbar (初期状態では透明)
   .navbar {
-    position: fixed; /* 背景の上に重ねる */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* 背景より前面に表示 */
+    z-index: 10;
     background-color: transparent; /* 最初は透明 */
     transition: background-color 0.3s ease;
   }
 
   // Navbar when scrolled (スクロール時の背景色)
   .navbar.scrolled {
-    background-color: rgba(22, 32, 68, 0.7);
+    background-color: rgba(10, 18, 255, 0.7);
+}
+
+.navbar {
+  .navbar-brand {
+    color: #cccccc;
+
+    &:hover {
+      color: #1cb8db;
+    }
   }
 
-  
+  .navbar-side {
+    color: #212529; // スクロール前デフォルト色
+
+    &:hover {
+      color: #0A12FF; // スクロール前のホバー
+    }
+  }
+
+  &.scrolled {
+    .navbar-side {
+      color: #cccccc; // スクロール時,デフォルト
+
+      &:hover {
+        color: #1cb8db; // スクロール,ホバー
+      }
+    }
+  }
+}
+
   .category-menu {
     margin-top: 20px;
   }
 
   .background-container {
-    background-color: #000002;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 6rem 0;
-    margin-top: -60vh;
     position: relative;
-    z-index: 1;
-    min-height: 70vh;
+    margin-top: 30vh; 
   }
   
   .hero-section {
-    position: absolute;
+    position: relative;
     width: 100%;
     text-align: center;
-    margin-top: -70vh;
     z-index: 2;
+    margin-bottom: 2rem;
+    transform: translateY(20vh);
   }
-  
+
   .hero-titles {
     display: inline-block;
     padding: 20px 40px;
-    background-color: #000002;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0px;
     color: #fff;
   }
@@ -181,8 +335,6 @@ body {
     color: #ddd;
   }
   
-  
-  
   .word-filter {
     .category-menu {
       display: flex;
@@ -196,7 +348,7 @@ body {
         width: 40px;
         height: 40px;
         color: #fcfafa;
-        background-color:  #162044;
+        background-color:  #212529;
         text-decoration: none;
         border-radius: 0;
         border: 2px solid transparent;
@@ -205,12 +357,11 @@ body {
   
         &:hover,
         &.active {
-          background-color: #4E5A85;
+          background-color: rgba(10, 18, 255, 0.7);
         }
       }
     }
   }
-
 
   .word-list {
     display: flex;
@@ -220,7 +371,7 @@ body {
   }
   
   .word-item {
-    background-color: #162044;
+    background-color:#212529;
     border: 2px solid transparent;
     border-radius: 0;
     transition: border-color 0.3s ease;
@@ -228,11 +379,11 @@ body {
   }
   
   .word-item:hover {
-    background-color: #4E5A85;
+    background-color: rgba(10, 18, 255, 0.7);
   }
   
   .word-detail-frame {
-    background-color: #162044;
+    background-color: #212529;
     border: 2px solid transparent;
     border-radius: 0;
     padding: 1rem;
@@ -251,15 +402,14 @@ body {
     margin-bottom: 0.5rem; 
   }
 
-
   .message-container {
-    background-color: #162044; 
+    background-color: transparent;
     border: 2px solid transparent; 
     border-radius: 0; /* 四角形 */
     padding: 1rem; 
     margin-bottom: 1rem;
     text-align: center;
-    color: #ffffff; 
+    color: #212529; 
   }
   
   .browse-by-alphabets {
@@ -271,23 +421,19 @@ body {
     margin-top: 10px;
   }
   
-  
-  
     /* クイズの質問セクション */
-
 
   .quiz-section {
     background-color: transparent;
   }
   
   .quiz-container {
-    background-color: #162044;
+    background-color: #212529;
     color: #ffffff;
     border: 2px solid transparent;
     padding: 2rem;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
-
 
   .quiz-intro-text {
     font-size: 1.25rem;
@@ -302,14 +448,10 @@ body {
     color: #1cb8db;
   }
 
-
   .quiz-definition {
     font-size: 1rem;
     color: #fcfafa;
   }
-
-
-  
 
   .quiz-title {
     font-size: 2.5rem; 
@@ -322,7 +464,6 @@ body {
     text-align: center; 
     margin-top: 2rem;
   }
-  
 
   .quiz-container h2 {
     font-size: 1.7rem;
@@ -349,7 +490,7 @@ body {
   }
 
   .quiz-option {
-    background-color: #1c1e21;
+    background-color: #0f1112;
     color: #ffffff;
     border: 2px solid transparent;
     padding: 1rem;
@@ -359,19 +500,16 @@ body {
   }
 
   .quiz-option:hover {
-    background-color: #4E5A85;
+    background-color: rgba(10, 18, 255, 0.5);
   }
 
   .hidden-radio:checked + .quiz-option {
-    background-color: #882995;
+    background-color: #0A12FF;;
     border-color: #ffffff;
     font-weight: bold;
   }
 
-
   /* 回答ボタン */
-
-
   .quiz-button-container {
     text-align: right;
     margin-top: 2rem;
@@ -397,13 +535,10 @@ body {
     transform: scale(1.03);
   }
   
-  
   .submit-button:hover {
     background-color: #4E5A85;
     transform: scale(1.05);
   }
-  
-  
 
   .submit-button:hover {
     background-color: #4E5A85;
@@ -469,17 +604,37 @@ body {
     max-width: 100%;
   }
 
-  
-
   .quiz-results-table-container {
     margin: 2rem auto;
     max-width: 90%;
   }
-  
+
+  .score-message-perfect {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #28a745;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .score-message-close {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .score-message-ganbatte {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fb1a1a;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
   .quiz-results-table {
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     th,
@@ -487,10 +642,11 @@ body {
       text-align: center;
       vertical-align: middle;
       padding: 1rem;
+      color: #ffffff;
     }
 
     th {
-      background-color: #162044;
+      background-color: #0f1112;
       color: #ffffff;
       font-weight: bold;
     }
@@ -503,12 +659,12 @@ body {
 
   .quiz-results-table tr.result-correct,
   .quiz-results-table tr.result-correct td {
-    background-color: rgba(176,0, 178, 255);
+    background-color: #1119ff8b;
   }
   
   .quiz-results-table tr.result-incorrect,
   .quiz-results-table tr.result-incorrect td {
-    background-color: rgba(147, 0, 156, 255);
+    background-color: #ff74118b;
   }
   
 //クイズ履歴
@@ -523,159 +679,290 @@ body {
     }
   }
 
-/*アカウント情報*/
+  .quiz-history-table {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
 
-
-.account-details-card {
-  margin-top: 3rem;
-}
-/* プロフィールテーブル */
-.profile-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #162044;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-
-  th, td {
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 1rem;
-  }
-
-  th {
-    width: 30%;
-    text-align: left;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  td {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    span {
-      flex: 1;
+    th,
+    td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 1rem;
+      color: #ffffff;
     }
 
-    .edit-link {
-      color: #1cb8db;
-      text-decoration: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      font-size: 0.9rem;
-      margin-left: 10px;
+    th {
+      background-color: #0f1112;
+      color: #ffffff;
+      font-weight: bold;
+    }
+  
+    td {
+      background-color: #3b3e40;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
 
-      &:hover {
-        text-decoration: underline;
-        color: #3498db;
+  .quiz-history-table td {
+    transition: background-color 0.3s ease;
+  }
+  
+  .quiz-history-table tr:hover td {
+    background-color: rgba(10, 18, 255, 0.7);
+  }
+
+  .link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /*アカウント情報*/
+  .error-message-container {
+    background-color: #212529;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .error-message-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #f0301e;
+  }
+
+  .error-message-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .error-message-item {
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .account-details-card {
+    margin-top: 3rem;
+    border-radius: 0;
+  }
+  /* プロフィールテーブル */
+  .account-settings-section {
+    background-color: #212529;
+    color: #ffffff;
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    .profile-image-and-nickname{
+      transform: translateY(3rem);
+    }
+
+    .profile-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      overflow: hidden;
+
+      .profile-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .profile-hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 5px;
+      }
+
+      &:hover .profile-hover-overlay {
+        opacity: 1;
+      }
+    }
+
+    .nickname-container {
+      .nickname-text {
+        font-size: 1.2rem;
+        font-weight: bold;
+        display: block;
+      }
+
+      .nickname-edit-link {
+        font-size: 0.9rem;
+        color: #1cb8db;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #3498db;
+          text-decoration: underline;
+        }
+      }
+    }
+
+  .account-info-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+
+      .info-label {
+        width: 30%;
+        text-align: left;
+        font-weight: bold;
+        padding: 0.5rem 0;
+      }
+
+      .info-value {
+        font-size: 1rem;
+      }
+
+      .info-edit-link {
+        font-size: 0.9rem;
+        color: #1cb8db;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #3498db;
+          text-decoration: underline;
+        }
       }
     }
   }
-
-  tr {
-    &:hover .edit-link {
-      opacity: 1;
-    }
-
-    &:last-child td, &:last-child th {
-      border-bottom: none;
-    }
-  }
-}
-
-.action-buttons {
-  margin-top: 1rem;
 
   .btn {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
     border-radius: 5px;
-  }
+    transition: background-color 0.3s ease, transform 0.2s;
 
-  .btn-danger {
-    background-color: #c0392b;
-    border-color: #c0392b;
+    &.btn-logout {
+      background-color: #4E5A85;
+      border: none;
+      color: #ffffff;
 
-    &:hover {
-      background-color: #e74c3c;
-      border-color: #e74c3c;
+      &:hover {
+        background-color: #1cb8db;
+        transform: scale(1.05);
+      }
     }
-  }
 
-  .btn-outline-danger {
-    color: #c0392b;
-    border-color: #c0392b;
+    &.btn-delete-account {
+      background-color: #c0392b;
+      border: none;
+      color: #ffffff;
 
-    &:hover {
-      background-color: rgba(192, 57, 43, 0.1);
-      color: #e74c3c;
-      border-color: #e74c3c;
+      &:hover {
+        background-color: #e74c3c;
+        transform: scale(1.05);
+      }
     }
   }
 }
 
-
-
-
-.my-page-hero {
+.error-background {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #000;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-
-  .profile-image-wrapper {
-    position: relative;
-    width: 150px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-    
-
-  .hover-overlay {
+  &::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 50%;
+    background: url(asset-path("chicken-image.png")) no-repeat center center;
+    background-size: auto 70%;
+    background-position: center center;
+    opacity: 0.5;
+    z-index: 1;
+    padding: 5%;
   }
 
-  &:hover .hover-overlay {
-    opacity: 1;
+  .error-page {
+    position: relative;
+    z-index: 2;
+
+    .error-content {
+      max-width: 600px;
+      width: 80%;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 1.1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
   }
 }
 
+@media (max-width: 768px) {
+  .error-background::before {
+    background-size: auto 50%;
+  }
 
-/* 登録画面 */
+  .error-page {
+    .error-content {
+      max-width: 90%;
+      width: 90%;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
 
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+.error-home-button{
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}

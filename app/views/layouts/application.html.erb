@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NoScorpApp</title>
+    <title>NoScopeApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +15,7 @@
     <!-- ナビバー -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top transparent-nav">
       <div class="container">
-        <%= link_to "No scope", root_path, class: "navbar-brand button" %>
+        <%= link_to "NoScope", root_path, class: "navbar-brand nav-link" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,10 +27,10 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 justify-content-end">
               <li class="nav-item">
-                <%= link_to 'Word list', words_path, class: 'nav-link' %>
+                <%= link_to 'Word list', words_path, class: "navbar-side nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Quiz', play_quizzes_path(state: 'new'), class: 'nav-link' %>
+                <%= link_to 'Quiz', play_quizzes_path(state: 'new'), class: "navbar-side nav-link" %>
               </li>
               <%= render login_partial %>
             </ul>
@@ -39,24 +39,54 @@
       </div>
     </nav>
 
-    <!-- 背景画像セクション -->
     <div class="fullscreen-bg">
+      <%= yield %>
     </div>
-
-    <!-- 各ページのコンテンツ -->
-    <%= yield %>
     
-
-
-      <!-- 背景画像の下部-->
-    <section class="not-on-image-content py-5">
+  <!-- フッター -->
+    <footer class="footer bg-dark text-white py-1">
       <div class="container">
+        <div class="row">
+          <div class="col-md-6 mb-2 mb-md-0">
+            <h5 class="footer-title">NoScope</h5>
+            <p class="footer-disclaimer">
+              当サイトは Counter-Strike シリーズのファンによる非公式サイトです。<br>
+              ゲーム名や武器名などの固有名詞は、Valve Corporation の商標または登録商標です。<br>
+              本サイトは Valve Corporation および関連企業とは一切関係がありません。
+            </p>
+          </div>
 
-        <div class="mt-4">
-          <p>ここに追加</p>
-        </div>      
+          <div class="col-md-3 mb-2 mb-md-0 text-md-end">
+            <h5 class="footer-title">お問い合わせ</h5>
+            <p class="footer-single-link">
+              <a href="mailto:NoScopeinquiry@example.com" class="footer-link d-block">
+                NoScopeinquiry@example.com
+              </a>
+            </p>
+          </div>
+
+          <div class="col-md-3 mb-2 mb-md-0 text-md-end">
+            <h5 class="footer-title">関連リンク</h5>
+            <p class="footer-single-link">
+              <a href="https://www.valvesoftware.com/" target="_blank" rel="noopener" class="footer-link d-block">
+                Valve 公式サイト
+              </a>
+              <a href="https://store.steampowered.com/app/730/CounterStrike_2/?l=japanese" target="_blank" rel="noopener" class="footer-link d-block">
+                Counter-Strike 2 Steam ストアページ
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col text-center">
+            <p class="mb-0 footer-copy">
+              &copy; <%= Time.now.year %> NoScope. All rights reserved.
+            </p>
+          </div>
+        </div>
       </div>
-    </section>
+    </footer>
 
     <script>
       document.addEventListener("turbo:load", updateNavbarBackgroundOnLoad);
@@ -80,6 +110,20 @@
         window.addEventListener("scroll", updateNavbarBackground);
       }
 
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            dropdownMenu.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+            dropdownMenu.classList.remove("scrolled");
+          }
+        });
+      });
     </script>
   </body>
 </html>

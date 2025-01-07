@@ -1,0 +1,14 @@
+<% case @quiz.score %>
+<% when 10 %>
+  <div class="score-message-perfect">
+    Perfect!
+  </div>
+<% when 8..9 %>
+  <div class="score-message-close">
+    So close! 惜しかったです
+  </div>
+<% else %>
+  <div class="score-message-ganbatte">
+    大丈夫、まだ勉強中です。次回に期待！
+  </div>
+<% end %>
