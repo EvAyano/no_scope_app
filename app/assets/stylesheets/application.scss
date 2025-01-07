@@ -885,3 +885,84 @@ body {
     }
   }
 }
+
+.error-background {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(asset-path("chicken-image.png")) no-repeat center center;
+    background-size: auto 70%;
+    background-position: center center;
+    opacity: 0.5;
+    z-index: 1;
+    padding: 5%;
+  }
+
+  .error-page {
+    position: relative;
+    z-index: 2;
+
+    .error-content {
+      max-width: 600px;
+      width: 80%;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 1.1rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .error-background::before {
+    background-size: auto 50%;
+  }
+
+  .error-page {
+    .error-content {
+      max-width: 90%;
+      width: 90%;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+.error-home-button{
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
