@@ -1,9 +1,0 @@
-<%= turbo_frame_tag "not-logged-in" do %>
-  <div class="alert alert-warning">
-    <p>単語リストを利用するにはログインが必要です。</p>
-    <p>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary", data: { turbo: false } %>
-      <%= link_to "アカウントを新規", new_user_registration_path, class: "btn btn-secondary", data: { turbo: false } %>
-    </p>
-  </div>
-<% end %>

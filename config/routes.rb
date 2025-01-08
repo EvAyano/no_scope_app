@@ -25,11 +25,6 @@ Rails.application.routes.draw do
   resources :words, only: [:index, :show] do
     collection do
       get 'filter', to: 'words#filter', as: 'filter'
-      get 'initial/:letter', to: 'words#initial', as: 'initial'
-      get 'search', to: 'words#search', as: 'search'
-    end
-    member do
-      post 'save', to: 'words#save'
     end
   end
 
