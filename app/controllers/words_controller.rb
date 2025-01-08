@@ -28,6 +28,9 @@ class WordsController < ApplicationController
   
 
   def show
+    unless request.headers["Turbo-Frame"]
+      raise ActiveRecord::RecordNotFound
+    end
     @word = Word.find(params[:id])
 
     respond_to do |format|
@@ -39,19 +42,4 @@ class WordsController < ApplicationController
       end
     end
   end
-  
-
-  
-
-  private
-
-  def set_word
-    word_id = params[:word_id] || params[:selected_word_id]
-
-    Rails.logger.debug "set_wordで params[:word_id]: #{params[:word_id]}"
-    Rails.logger.debug "取得したword_id: #{word_id}"
-
-    @word = Word.find(word_id)
-  end
-   
 end

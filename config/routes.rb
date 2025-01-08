@@ -25,11 +25,6 @@ Rails.application.routes.draw do
   resources :words, only: [:index, :show] do
     collection do
       get 'filter', to: 'words#filter', as: 'filter'
-      get 'initial/:letter', to: 'words#initial', as: 'initial'
-      get 'search', to: 'words#search', as: 'search'
-    end
-    member do
-      post 'save', to: 'words#save'
     end
   end
 
@@ -45,4 +40,6 @@ Rails.application.routes.draw do
   
   get '/404', to: 'errors#not_found', as: :not_found
   get '/500', to: 'errors#internal_server_error', as: :internal_server_error
+
+  match '*path', to: 'errors#not_found', via: :all
 end
