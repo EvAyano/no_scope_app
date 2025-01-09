@@ -10,6 +10,8 @@ CSV.foreach(csv_file_path, headers: true) do |row|
     term: row['term'],
     definition: row['definition'],
     explanation: row['explanation'],
+    example_en: row['example_en'],
+    example_jp: row['example_jp'],
   )
 end
 
