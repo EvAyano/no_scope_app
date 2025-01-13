@@ -38,8 +38,11 @@ Rails.application.routes.draw do
   
   get "up" => "rails/health#show", as: :rails_health_check
   
-  get '/404', to: 'errors#not_found', as: :not_found
-  get '/500', to: 'errors#internal_server_error', as: :internal_server_error
+  get '*not_found',
+    to: 'errors#not_found',
+    constraints: ->(req) { !req.path.include?('rails/active_storage') }
 
-  match '*path', to: 'errors#not_found', via: :all
+  post '*not_found',
+    to: 'errors#not_found',
+    constraints: ->(req) { !req.path.include?('rails/active_storage') }
 end

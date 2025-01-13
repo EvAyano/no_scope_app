@@ -36,4 +36,17 @@ class Quiz < ApplicationRecord
     total_questions = quiz_questions.count
     "#{score || 0}/#{total_questions}"
   end
+
+  def display_username
+    if user_id.present?
+      user.nickname
+    else
+      "ゲストユーザー"
+    end
+  end
+
+  def display_start_time
+    return "不明" unless start_time.present?
+    start_time.strftime("%Y-%m-%d %H:%M")
+  end
 end
