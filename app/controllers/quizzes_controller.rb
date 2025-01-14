@@ -53,7 +53,12 @@ class QuizzesController < ApplicationController
   private
 
   def create_quiz
-    @quiz = current_user ? current_user.quizzes.create(start_time: Time.current) : Quiz.create(start_time: Time.current)
+    @quiz = if current_user
+      current_user.quizzes.create(start_time: Time.current)
+    else
+      Quiz.create(start_time: Time.current)
+    end
+    
 
     words = Word.order("RAND()").limit(10)
     words.each do |word|
@@ -115,5 +120,5 @@ class QuizzesController < ApplicationController
     @questions = @quiz.quiz_questions
     @quiz.calculate_and_save_score
     @show_start_time = @quiz.start_time.present? ? @quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明"
-  end  
+  end
 end

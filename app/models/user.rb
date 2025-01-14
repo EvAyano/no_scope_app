@@ -10,6 +10,14 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :quizzes, dependent: :destroy
 
+  def display_avatar(width: 100, height: 100)
+    if avatar.attached?
+      avatar.variant(resize_to_limit: [width, height])
+    else
+      "user-default-image.png"
+    end
+  end
+
   private
 
   def password_required?

@@ -37,10 +37,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="hero-title">ここに必要に応じて追加のコンテンツ等</h1>
-          <p class="hero-subtitle">説明等なんらかのコンテンツ</p>
+          <%= render partial: @partial_to_render, locals: { recent_quizzes: @recent_quizzes } %>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </main>
