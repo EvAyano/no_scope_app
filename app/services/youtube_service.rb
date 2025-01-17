@@ -1,7 +1,7 @@
 class YoutubeService
     def initialize
       @youtube = Google::Apis::YoutubeV3::YouTubeService.new
-      @youtube.key = ENV['YOUTUBE_API_KEY']
+      @youtube.key = Rails.application.credentials.dig(:youtube, :api_key)
     end
   
     def search_video(query, related_video_id = nil)
