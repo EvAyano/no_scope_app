@@ -17,7 +17,7 @@ class YoutubeService
       end
   
       #API検索
-      Rails.cache.fetch("youtube_search_#{query}", expires_in: 12.hours) do
+      Rails.cache.fetch("youtube_search_#{query}", expires_in: 24.hours) do
         response = @youtube.list_searches(
           'snippet',
           q: query,

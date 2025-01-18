@@ -38,17 +38,16 @@ class WordsController < ApplicationController
     else
       youtube_service = YoutubeService.new
       query = "counter strike #{@word.term}"
-      video = youtube_service.search_video(query)
-      @youtube_video_id = video&.id&.video_id
+
+      begin
+        video = youtube_service.search_video(query)
+        @youtube_video_id = video&.id&.video_id
+      rescue StandardError => e
+        Rails.logger.error "YouTubeAPIのエラー: #{e.message}"
+        @youtube_video_id = nil
+      end
     end
 
-    respond_to do |format|
-      format.html do
-        render partial: 'words/word_detail', locals: { word: @word, youtube_video_id: @youtube_video_id }
-      end
-      format.turbo_stream do
-        render partial: 'words/word_detail', locals: { word: @word, youtube_video_id: @youtube_video_id }
-      end
-    end
+    render partial: 'words/word_detail', locals: { word: @word, youtube_video_id: @youtube_video_id }
   end
 end
