@@ -14,7 +14,7 @@ jobs:
     name: Build on all branches
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: 'mysql2://i9zlnv1f1poamdyz:e403wak28dhy3gvr@ctgplw90pifdso61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/plawmpo7i3oe9x0g'
+      DATABASE_URL: "${{ secrets.TEST_DATABASE_URL }}"
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -28,6 +28,9 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+
+      - name: Sanitize DATABASE_URL
+        run: echo "DATABASE_URL=$(echo '${{ secrets.TEST_DATABASE_URL }}' | tr -d '\n\r')" >> $GITHUB_ENV
 
       - name: Run DB Migration
         run: |
