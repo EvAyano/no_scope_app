@@ -1,9 +1,27 @@
 <%= turbo_frame_tag "word_detail", autoscroll: true, data: { autoscroll_block: "start" } do %>
-  <div class= "word-detail-frame">
-    <h1><%= word.term %></h1>
-    <p><strong>意味:</strong> <%= word.definition %></p>
-    <p><strong>詳細:</strong> <%= word.explanation %></p>
-    <p><strong>例文:</strong> <%= word.example_en %></p>
-    <p><strong>ニュアンス訳:</strong> <%= word.example_jp %></p>
+  <div class="word-detail-frame container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1><%= word.term %></h1>
+        <p><strong>意味:</strong> <%= word.definition %></p>
+        <p><strong>詳細:</strong> <%= word.explanation %></p>
+        <p><strong>例文:</strong> <%= word.example_en %></p>
+        <p><strong>ニュアンス訳:</strong> <%= word.example_jp %></p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="youtube-video">
+          <% if youtube_video_id.present? %>
+            <iframe class="embed-responsive-item"
+                    src="https://www.youtube.com/embed/<%= youtube_video_id %>"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+          <% else %>
+            <p>関連する動画はありません。</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

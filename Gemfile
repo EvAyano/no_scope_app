@@ -82,3 +82,5 @@ gem "devise-i18n", "~> 1.12"
 gem "devise-i18n-views", "~> 0.3.7"
 
 gem "rspec-rails", "~> 7.1"
+
+gem "google-apis-youtube_v3", "~> 0.53.0"
