@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :words, only: [:index, :show] do
     collection do
       get 'filter', to: 'words#filter', as: 'filter'
+      get 'search', to: 'words#search', as: 'search'
     end
   end
 

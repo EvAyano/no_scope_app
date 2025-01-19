@@ -26,6 +26,24 @@ class WordsController < ApplicationController
     end
   end
 
+  def search
+    @query = params[:q].to_s.strip
+
+    if @query.empty?
+      @words = []
+    else
+      if is_japanese?(@query)
+        @words = japanese_search(@query)
+      else
+        @words = english_search(@query)
+      end
+    end
+
+    @message = @words.any? ? nil : "検索結果はありません。"
+
+    render "words/search_result", locals: { words: @words, message: @message }
+  end
+
   def show
     unless request.headers["Turbo-Frame"]
       raise ActiveRecord::RecordNotFound
@@ -49,5 +67,34 @@ class WordsController < ApplicationController
     end
 
     render partial: 'words/word_detail', locals: { word: @word, youtube_video_id: @youtube_video_id }
+  end
+
+  private
+
+  def is_japanese?(str)
+    # 例: 正規表現で 和文文字が含まれていたら true
+    !!(str =~ /[\p{Hiragana}\p{Katakana}\p{Han}]/)
+  end
+
+  def english_search(query)
+    # 1文字だけの場合 → その文字で「term の先頭一致」: 例 "A" => [Abc..., Ace...]
+    if query.size == 1
+      Word.where("term LIKE ?", "#{query}%").order(:term)
+    else
+      # 2文字以上 → term, definition, explanation, example_en, example_jp の部分一致
+      Word.where(
+        "term LIKE :q OR definition LIKE :q OR explanation LIKE :q OR example_en LIKE :q OR example_jp LIKE :q",
+        q: "%#{query}%"
+      ).order(:term)
+    end
+  end
+
+  def japanese_search(query)
+    # 1文字でも、2文字以上でも同じロジック:
+    # definition, explanation, example_jp, pronunciation_jp の部分一致
+    Word.where(
+      "definition LIKE :q OR explanation LIKE :q OR example_jp LIKE :q OR pronunciation_jp LIKE :q",
+      q: "%#{query}%"
+    ).order(:term)
   end
 end
