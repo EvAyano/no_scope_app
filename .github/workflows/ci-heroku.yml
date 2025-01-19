@@ -68,3 +68,6 @@ jobs:
       - name: Run migrations and precompile assets
         run: |
           heroku run rake assets:precompile -a no-scope && heroku run rake db:migrate -a no-scope
+      - name: Seed database
+        run: |
+          heroku run rake db:seed -a no-scope
