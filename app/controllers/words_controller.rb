@@ -72,12 +72,11 @@ class WordsController < ApplicationController
   private
 
   def is_japanese?(str)
-    # 例: 正規表現で 和文文字が含まれていたら true
     !!(str =~ /[\p{Hiragana}\p{Katakana}\p{Han}]/)
   end
 
   def english_search(query)
-    # 1文字だけの場合 → その文字で「term の先頭一致」: 例 "A" => [Abc..., Ace...]
+    # 1文字だけの場合 → その文字でterm の先頭一致
     if query.size == 1
       Word.where("term LIKE ?", "#{query}%").order(:term)
     else
@@ -90,7 +89,6 @@ class WordsController < ApplicationController
   end
 
   def japanese_search(query)
-    # 1文字でも、2文字以上でも同じロジック:
     # definition, explanation, example_jp, pronunciation_jp の部分一致
     Word.where(
       "definition LIKE :q OR explanation LIKE :q OR example_jp LIKE :q OR pronunciation_jp LIKE :q",
