@@ -76,11 +76,9 @@ class WordsController < ApplicationController
   end
 
   def english_search(query)
-    # 1文字だけの場合 → その文字でterm の先頭一致
     if query.size == 1
       Word.where("term LIKE ?", "#{query}%").order(:term)
     else
-      # 2文字以上 → term, definition, explanation, example_en, example_jp の部分一致
       Word.where(
         "term LIKE :q OR definition LIKE :q OR explanation LIKE :q OR example_en LIKE :q OR example_jp LIKE :q",
         q: "%#{query}%"
@@ -89,7 +87,6 @@ class WordsController < ApplicationController
   end
 
   def japanese_search(query)
-    # definition, explanation, example_jp, pronunciation_jp の部分一致
     Word.where(
       "definition LIKE :q OR explanation LIKE :q OR example_jp LIKE :q OR pronunciation_jp LIKE :q",
       q: "%#{query}%"
