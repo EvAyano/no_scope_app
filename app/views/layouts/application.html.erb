@@ -26,6 +26,17 @@
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 justify-content-end">
+              <div class="nav-item">
+                <div class="search-form me-3 navbar-side">
+                  <%= form_with url: search_words_path, method: :get,
+                                data: { turbo_frame: "word_list" }, local: true do %>
+                    <div class="input-group">
+                      <%= text_field_tag :q, nil, class: "form-control", placeholder: "単語を検索" %>
+                      <button class="btn btn-outline-light navbar-side" type="submit">検索</button>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
               <li class="nav-item">
                 <%= link_to 'Word list', words_path, class: "navbar-side nav-link" %>
               </li>

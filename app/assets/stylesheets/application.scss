@@ -328,7 +328,8 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 6rem 0;
     position: relative;
-    margin-top: 30vh; 
+    margin-top: 30vh;
+    min-height: calc(80vh - 30vh);
   }
   
   .hero-section {
@@ -426,6 +427,14 @@ body {
     font-size: 1rem; 
     margin-bottom: 0.5rem; 
   }
+
+  .pronunciation-en {
+    font-size: 0.75rem;
+    color: gray;
+    margin-left: 8px;
+    font-style: italic;
+  }
+  
 
   .youtube-video {
     margin-top: 10px;
