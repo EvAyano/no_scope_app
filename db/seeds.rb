@@ -12,7 +12,9 @@ CSV.foreach(csv_file_path, headers: true) do |row|
     explanation: row['explanation'],
     example_en: row['example_en'],
     example_jp: row['example_jp'],
-    related_videos: row['related_videos']
+    related_videos: row['related_videos'],
+    pronunciation_jp: row['pronunciation_jp'],
+    pronunciation_en: row['pronunciation_en']
   )
 end
 

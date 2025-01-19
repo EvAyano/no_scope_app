@@ -2,7 +2,10 @@
   <div class="word-detail-frame container">
     <div class="row">
       <div class="col-md-8">
-        <h1><%= word.term %></h1>
+        <h1>
+          <%= word.term %>
+          <span class="pronunciation-en"><%= word.pronunciation_en %></span>
+        </h1>
         <p><strong>意味:</strong> <%= word.definition %></p>
         <p><strong>詳細:</strong> <%= word.explanation %></p>
         <p><strong>例文:</strong> <%= word.example_en %></p>
