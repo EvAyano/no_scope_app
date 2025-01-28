@@ -1,0 +1,11 @@
+<turbo-stream target="word_detail" action="replace">
+  <template>
+    <%= render partial: "words/word_detail",locals: { word: word, youtube_video_id: youtube_video_id },formats: :html %>
+  </template>
+</turbo-stream>
+
+<turbo-stream target="favorite_word_list" action="replace">
+  <template>
+    <%= render partial: "favorites/favorite_word_list",locals: { words: @favorite_words },formats: :html %>
+  </template>
+</turbo-stream>
