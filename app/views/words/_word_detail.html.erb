@@ -2,10 +2,19 @@
   <div class="word-detail-frame container">
     <div class="row">
       <div class="col-md-8">
-        <h1>
-          <%= word.term %>
+        <h1 class="d-flex gap-3">
+          <span><%= word.term %></span>
           <span class="pronunciation-en"><%= word.pronunciation_en %></span>
+          <% if user_signed_in? %>
+            <% existing_fav = current_user.favorites.find_by(word_id: word.id) %>
+            <% if existing_fav.present? %>
+              <%= button_to "お気に入り解除", favorite_path(existing_fav), method: :delete, data: { turbo_frame: "word_detail" }, class: "btn btn-outline-warning btn-sm fav-button" %>
+            <% else %>
+              <%= button_to "お気に入り追加", favorites_path(word_id: word.id), method: :post, data: { turbo_frame: "word_detail" }, class: "btn btn-outline-warning btn-sm fav-button" %>
+            <% end %>
+          <% end %>
         </h1>
+
         <p><strong>意味:</strong> <%= word.definition %></p>
         <p><strong>詳細:</strong> <%= word.explanation %></p>
         <p><strong>例文:</strong> <%= word.example_en %></p>

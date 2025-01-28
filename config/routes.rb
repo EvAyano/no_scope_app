@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :favorites, only: [:index, :create, :destroy]
+
   resources :quizzes, only: [] do
     collection do
       get 'play'
