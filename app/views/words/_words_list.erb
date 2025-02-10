@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "word_list" do %>
+  <%= turbo_frame_tag "word_detail" do %>
+  <% end %>
+
+  <% if defined?(message) && message.present? %>
+    <div class="message-container">
+      <h5><%= message %></h5>
+    </div>
+  <% end %>
+
+  <% if defined?(words_present) && words_present %>
+    <div class="word-list">
+      <%= render partial: "words/word_item", collection: words, as: :word %>
+    </div>
+  <% end %>
+<% end %>
