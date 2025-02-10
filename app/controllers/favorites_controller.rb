@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
           render "favorites/require_login"
         end
         format.html do
-          redirect_to new_user_session_path, alert: "ログインが必要です"
+          redirect_to new_user_session_path
         end
       end
       return
