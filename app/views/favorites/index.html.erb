@@ -1,0 +1,20 @@
+<div class="hero-section">
+  <div class="hero-titles">
+    <h2 class="hero-subtitle">Favorite words</h2>
+    <h1 class="hero-title">お気に入りの単語</h1>
+  </div>
+</div>
+
+<div class="background-container">
+  <section class="word-filter">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <%= turbo_frame_tag "favorite_word_list" do %>
+            <%= render partial: "favorites/favorite_word_list", locals: { words: @favorite_words } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :quizzes, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_words, through: :favorites, source: :word
+
   def display_avatar(width: 100, height: 100)
     if avatar.attached?
       avatar.variant(resize_to_limit: [width, height])
