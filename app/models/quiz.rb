@@ -16,7 +16,7 @@ class Quiz < ApplicationRecord
       quizzes.map do |quiz|
         {
           id: quiz.id,
-          formatted_start_time: quiz.start_time.present? ? quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明",
+          formatted_start_time: quiz.start_time.present? ? quiz.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') : "不明",
           score: quiz.display_score,
           path: Rails.application.routes.url_helpers.play_quizzes_path(state: "results", id: quiz.id)
         }
@@ -47,6 +47,6 @@ class Quiz < ApplicationRecord
 
   def display_start_time
     return "不明" unless start_time.present?
-    start_time.strftime("%Y-%m-%d %H:%M")
+    start_time.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M")
   end
 end
