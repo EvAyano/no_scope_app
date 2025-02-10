@@ -12,6 +12,11 @@
             <% else %>
               <%= button_to "お気に入り追加", favorites_path(word_id: word.id), method: :post, data: { turbo_frame: "word_detail" }, class: "btn btn-outline-warning btn-sm fav-button" %>
             <% end %>
+          <% else %>
+            <%= button_to "お気に入り追加",favorites_path(word_id: word.id),method: :post,data: { turbo_frame: "fav_not_login" },  class: "btn btn-outline-warning btn-sm fav-button" %>
+          <% end %>
+
+          <%= turbo_frame_tag "fav_not_login" do %>
           <% end %>
         </h1>
 

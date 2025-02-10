@@ -1,21 +1,32 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user!
-  
+  before_action :authenticate_user!, only: [:index, :destroy]
+  skip_before_action :authenticate_user!, only: [:create]
+
   def index
     @favorite_words = current_user.favorite_words.order(:term)
   end
-  
+
   def create
+    unless user_signed_in?
+      respond_to do |format|
+        format.turbo_stream do
+          render "favorites/require_login"
+        end
+        format.html do
+          redirect_to new_user_session_path, alert: "ログインが必要です"
+        end
+      end
+      return
+    end
+
     word = Word.find(params[:word_id])
     current_user.favorites.create(word: word)
 
     respond_to do |format|
       format.turbo_stream do
         youtube_id = fetch_youtube_id_for(word)
-        render "words/switch_favorite",
-          locals: { word: word, youtube_video_id: youtube_id }
+        render "words/switch_favorite", locals: { word: word, youtube_video_id: youtube_id }
       end
-
       format.html { redirect_to words_path }
     end
   end
@@ -26,7 +37,6 @@ class FavoritesController < ApplicationController
     favorite.destroy
 
     youtube_id = fetch_youtube_id_for(word)
-
     @favorite_words = current_user.favorite_words.order(:term)
 
     respond_to do |format|
@@ -36,9 +46,9 @@ class FavoritesController < ApplicationController
       format.html { redirect_to favorites_path }
     end
   end
-  
+
   private
-  
+
   def fetch_youtube_id_for(word)
     if word.related_videos.present?
       word.related_videos
