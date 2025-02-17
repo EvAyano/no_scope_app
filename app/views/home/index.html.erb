@@ -21,7 +21,7 @@
             分からないと、チャンスを逃してしまうかもしれません🫤
 
             No Scopeは、スコープを覗き込まずに瞬時に的を狙い射撃する技術、"No scope"のように、
-            検索したり考えたりせずとも、すぐに頭に言いたいフレーズが出てくるようになるまでサポートします！
+            検索したり考えたりせずとも、すぐに頭に言いたいフレーズが出てくるようになるまでサポートします !
             
             当サイトのコンセプトは気に入りましたか ?
             ではまず、腕試しにクイズを受けてみましょう ! 何問正解できるでしょうか👀
@@ -29,6 +29,14 @@
           <div class="home-buttons">
             <%= link_to "Word quiz", play_quizzes_path(state: "new"), class: "home-button2", data: { turbo_frame: "quiz-frame" } %>
           </div>
+          <p class="sub-home-explanation">
+            「敵を反対方向から挟んで撃つ」という意味の単語が知りたい場合は
+            単語リストの「C」から始まる単語の中から探してみてください !
+          </p>
+          <div class="home-buttons">
+            <%= link_to 'Word list', words_path, class: "home-button2" %>
+          </div>
+          <%= render login_about_partial %>
         </div>
       </div>
     </div>
