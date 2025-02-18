@@ -275,7 +275,7 @@ body {
 
 .recent-quizzes{
   display: inline-block;
-  padding: 20px 40px;
+  padding: 5px 5px;
 }
 
 .col-12.col-md-6.p-0 {
@@ -835,7 +835,7 @@ body {
     max-width: 1200px;
 
     .profile-image-and-nickname{
-      transform: translateY(3rem);
+      margin-top: 3rem;
     }
 
     .profile-container {
@@ -900,32 +900,19 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
-    .info-table {
-      width: 100%;
-      border-collapse: collapse;
+    .info-edit-link {
+      font-size: 0.9rem;
+      color: #1cb8db;
+      text-decoration: none;
+      transition: color 0.3s ease;
 
-      .info-label {
-        width: 30%;
-        text-align: left;
-        font-weight: bold;
-        padding: 0.5rem 0;
+      &:hover {
+        color: #3498db;
+        text-decoration: underline;
       }
-
-      .info-value {
-        font-size: 1rem;
-      }
-
-      .info-edit-link {
-        font-size: 0.9rem;
-        color: #1cb8db;
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: #3498db;
-          text-decoration: underline;
-        }
-      }
+    }
+    .col-12.col-md-8 {
+      overflow-wrap: break-word;
     }
   }
 

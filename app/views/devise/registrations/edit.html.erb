@@ -29,34 +29,34 @@
           </div>
         </div>
 
-        <!-- 右側: メールアドレスとパスワード -->
         <div class="col-md-8">
           <div class="account-info-card p-3">
-            <table class="info-table w-100">
-              <tr>
-                <th class="info-label">メールアドレス</th>
-                <td>
-                  <span class="info-value"><%= @user.email %></span>
-                  <%= link_to "変更", edit_user_email_path, class: "info-edit-link ms-2" %>
-                </td>
-              </tr>
-              <tr>
-                <th class="info-label">パスワード</th>
-                <td>
-                  <span class="info-value">********</span>
-                  <%= link_to "変更", edit_custom_user_password_path, class: "info-edit-link ms-2" %>
-                </td>
-              </tr>
-            </table>
+            <div class="row mb-3">
+              <div class="col-12 col-md-4">
+                <strong>メールアドレス</strong>
+              </div>
+              <div class="col-12 col-md-8">
+                <%= @user.email %>
+                <%= link_to "変更", edit_user_email_path, class: "info-edit-link ms-2" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <strong>パスワード</strong>
+              </div>
+              <div class="col-12 col-md-8">
+                ********
+                <%= link_to "変更", edit_custom_user_password_path, class: "info-edit-link ms-2" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 下部: ログアウトとアカウント削除ボタン -->
       <div class="row mt-4">
         <div class="col-12 text-end d-flex justify-content-end gap-2">
-          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-logout' %>
-          <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか？", turbo_confirm: "本当にアカウントを削除しますか？" }, method: :delete, class: 'btn btn-delete-account' %>
+          <%= link_to 'ログアウト', destroy_user_session_path,  data: { turbo_method: :delete }, class: 'btn btn-logout' %>
+          <%= button_to "アカウント削除", registration_path(resource_name),data: { confirm: "本当にアカウントを削除しますか？", turbo_confirm: "本当にアカウントを削除しますか？" },method: :delete,class: 'btn btn-delete-account' %>
         </div>
       </div>
     </div>
