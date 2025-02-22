@@ -19,7 +19,7 @@
             <% end %>
           <% else %>
             <%= form_with url: play_quizzes_path(state: 'create'), method: :post, data: { turbo_frame: 'quiz-frame' }, class: "start-quiz-form" do %>
-              <%= submit_tag "ゲストユーザーとしてクイズ開始", class: "btn btn-primary" %>
+              <%= submit_tag "ゲストユーザーとしてクイズ開始", class: "btn btn-primary btn-wrap-break" %>
             <% end %>
             <div class="mt-3">
               <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary", data: { turbo_frame: "_top" } %>

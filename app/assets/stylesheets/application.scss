@@ -551,6 +551,12 @@ body {
     margin-bottom: 2rem;
   }
 
+  .btn-wrap-break{
+    white-space: normal !important;
+    word-break: break-word;
+    text-align: center; 
+  }
+
   .quiz-options {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -738,6 +744,35 @@ body {
   .quiz-results-table tr.result-incorrect,
   .quiz-results-table tr.result-incorrect td {
     background-color: #ff74118b;
+  }
+
+  .desktop-view {
+    display: block;
+  }
+  .mobile-view {
+    display: none;
+  }
+
+  .mobile-quiz-result {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    text-align: center; 
+  }
+  
+  .mobile-quiz-result .label-row {
+    background-color: #0f1112;
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .correct-result {
+    background-color: #1119FFCC;
+  }
+  
+  .incorrect-result {
+    background-color: #FF7411CC;
   }
   
 //クイズ履歴
@@ -1049,5 +1084,42 @@ body {
   .home-quiz-info span {
     display: block;
     margin: 0.3rem 0; 
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .quiz-option {
+    display: flex;             
+    align-items: center;       
+    justify-content: center;   
+  }
+
+  .desktop-view {
+    display: none !important;
+  }
+  .mobile-view {
+    display: block;
+  }
+
+  .mobile-quiz-result {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+  }
+
+  .mobile-quiz-result .label-row {
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+
+  .mobile-quiz-result .value-row {
+    padding: 0.5rem 1rem;
   }
 }
