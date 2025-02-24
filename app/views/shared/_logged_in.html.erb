@@ -2,7 +2,7 @@
   <a class="navbar-side nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <%= current_user.nickname.truncate(8, omission: '') %>
   </a>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu dropdown-menu-end">
     <li><%= link_to 'アカウント情報', edit_user_registration_path, class: 'dropdown-item' %></li>
     <li><%= link_to '単語クイズ履歴', history_quizzes_path, class: 'dropdown-item' %></li>
     <li><%= link_to 'お気に入り単語一覧', favorites_path, class: 'dropdown-item' %></li>
