@@ -20,15 +20,15 @@ body {
       color: #1cb8db;
     }
   }
+}
 
-  .btn-close {
-    color: #ffffff;
-    opacity: 0.8;
+.offcanvas .btn-close {
+  filter: invert(1);
+  opacity: 1;
+}
 
-    &:hover {
-      opacity: 1;
-    }
-  }
+.offcanvas .btn-close:hover {
+  opacity: 0.6;
 }
 
 .offcanvas.show .nav-link {
@@ -87,6 +87,18 @@ body {
   &:hover {
     color: #1cb8db;
   }
+}
+
+.offcanvas.show .search-form .btn {
+  color: #ffffff;
+}
+
+.offcanvas.show .search-form .btn:hover {
+  color: #0A12FF;
+}
+
+.offcanvas.show .word-list-link {
+  margin-top: 10px;
 }
 
 .footer {
