@@ -13,31 +13,39 @@
       <div class="row">
         <div class="col-md-12">
           <h3 class="home-explanation">No Scopeとは ? </h3>
-          <p class="sub-home-explanation">
-            FPS ゲーム Counter-Strike で使用される英単語を覚えられるサイトです !
+          <p class="sub-home-explanation-about1 d-flex justify-content-center">
+            <div>FPS ゲーム Counter-Strike で使用される英単語を覚えられるサイトです !</div>
 
-            海外のプレイヤーがチームメイトになり、そのプレイヤーに敵を反対方向から挟んで撃ってほしい時、なんと言いますか ?
+            <div>海外のプレイヤーがチームメイトになり、そのプレイヤーに敵を反対方向から挟んで撃ってほしい時、なんと言いますか ?</div>
 
-            分からないと、チャンスを逃してしまうかもしれません🫤
+            <div>分からないと、チャンスを逃してしまうかもしれません🫤</div>
+          </p>
+          <p class="sub-home-explanation-about2 d-flex justify-content-center">
 
-            No Scopeは、スコープを覗き込まずに瞬時に的を狙い射撃する技術、"No scope"のように、
-            検索したり考えたりせずとも、すぐに頭に言いたいフレーズが出てくるようになるまでサポートします！
+            <div>No Scopeは、スコープを覗き込まずに瞬時に的を狙い射撃する技術、"No scope"のように、</div>
+            <div>検索したり考えたりせずとも、すぐに頭に言いたいフレーズが出てくるようになるまでサポートします !</div>
             
-            当サイトのコンセプトは気に入りましたか ?
-            ではまず、腕試しにクイズを受けてみましょう ! 何問正解できるでしょうか👀
+            <div>ではまず、腕試しにクイズを受けてみましょう ! 何問正解できるでしょうか👀</div>
           </p>
           <div class="home-buttons">
             <%= link_to "Word quiz", play_quizzes_path(state: "new"), class: "home-button2", data: { turbo_frame: "quiz-frame" } %>
           </div>
+          <p class="sub-home-explanation-about3 d-flex justify-content-center">
+            <div>「敵を反対方向から挟んで撃つ」という意味の単語が知りたい場合は、単語リストの「C」から始まる単語の中から探してみてください !</div>
+          </p>
+          <div class="home-buttons">
+            <%= link_to 'Word list', words_path, class: "home-button2" %>
+          </div>
+          <%= render login_about_partial %>
         </div>
       </div>
     </div>
   </div>
-    <div class="home content">
+    <div class="home content2">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <%= render partial: @partial_to_render, locals: { recent_quizzes: @recent_quizzes } %>
+          <%= render partial: @everyone_quiz_result, locals: { recent_quizzes: @recent_quizzes } %>
         </div>
       </div>
     </div>

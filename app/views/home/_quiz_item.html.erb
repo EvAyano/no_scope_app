@@ -1,4 +1,4 @@
-<li class="recent-quiz-item d-flex align-items-center gap-3 mb-3">
+<li class="recent-quiz-item d-flex align-items-center gap-2 mb-5">
   <div class="avatar-wrapper" style="flex-shrink: 0; width: 60px; text-align: center;">
     <% if quiz.user.present? %>
       <%= image_tag quiz.user.display_avatar, alt: quiz.display_username, class: "avatar-img border",size: "60x60" %>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="home-quiz-info d-flex flex-wrap align-items-center">
-    <strong><%= quiz.display_username %></strong> さんが
+    <strong><%= quiz.display_username %> さんが</strong>
     <div><%= quiz.display_score %> 点をとりました！</div>
     <span class="home-quiz-time ms-2"><%= quiz.display_start_time %></span>
   </div>

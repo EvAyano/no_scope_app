@@ -119,6 +119,6 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.quiz_questions
     @quiz.calculate_and_save_score
-    @show_start_time = @quiz.start_time.present? ? @quiz.start_time.strftime('%Y-%m-%d %H:%M') : "不明"
+    @show_start_time = @quiz.start_time.present? ? @quiz.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') : "不明"
   end
 end

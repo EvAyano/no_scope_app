@@ -14,14 +14,7 @@
           </div>
           <%= form_with url: play_quizzes_path(state: 'answer', id: @quiz.id, question_id: @current_question.id), method: :post, data: { turbo_frame: 'quiz-frame' } do %>
             <div class="quiz-options">
-              <% @current_question.choices.each do |choice| %>
-                <label>
-                  <%= radio_button_tag :answer, choice, false, class: "hidden-radio" %>
-                  <div class="quiz-option">
-                    <%= choice %>
-                  </div>
-                </label>
-              <% end %>
+              <%= render partial: "quizzes/quiz_choice", collection: @current_question.choices, as: :choice %>
             </div>
             <div class="quiz-button-container mt-4">
               <%= submit_tag "回答", class: "submit-button" %>

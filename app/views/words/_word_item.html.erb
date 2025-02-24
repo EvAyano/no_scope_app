@@ -1,0 +1,8 @@
+<%= link_to word_path(word), data: { turbo_frame: "word_detail" }, class: "word-item d-flex align-items-center gap-3 p-2 mb-2 alpha-filter text-decoration-none" do %>
+  <div class="word-term fw-bold">
+    <%= word.term %>
+  </div>
+  <div class="word-definition">
+    <%= word.definition %>
+  </div>
+<% end %>

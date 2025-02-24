@@ -4,16 +4,7 @@
   <% end %>
   <% if words.any? %>
     <div class="word-list">
-      <% words.each do |word| %>
-        <%= link_to word_path(word),data: { turbo_frame: "word_detail" },class: "word-item d-flex align-items-center gap-3 p-2 mb-2 alpha-filter text-decoration-none" do %>
-          <div class="word-term fw-bold">
-            <%= word.term %>
-          </div>
-          <div class="word-definition">
-            <%= word.definition %>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render partial: "words/word_item", collection: words, as: :word %>
     </div>
   <% else %>
     <p>お気に入りはまだありません。</p>

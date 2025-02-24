@@ -22,7 +22,7 @@ class WordsController < ApplicationController
   
     respond_to do |format|
       format.turbo_stream
-      format.html { render partial: 'words/initial_before_filter', locals: { words: @words, message: @message, words_present: @words_present } }
+      format.html { render partial: 'words/words_list', locals: { words: @words, message: @message, words_present: @words_present } }
     end
   end
 

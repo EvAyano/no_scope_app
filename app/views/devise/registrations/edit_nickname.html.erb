@@ -20,9 +20,9 @@
                   <%= f.text_field :nickname, autofocus: true, class: "form-control", placeholder: "新しいニックネームを入力" %>
                 </div>
 
-                <div class="d-flex justify-content-end mt-4">
-                  <%= link_to "プロフィールにもどる", edit_user_registration_path, class: "btn btn-secondary me-2" %>
-                  <%= f.submit "更新する", class: "btn btn-primary px-5" %>
+                <div class="d-flex flex-column flex-md-row justify-content-center mt-4">
+                  <%= link_to "プロフィールにもどる", edit_user_registration_path, class: "btn btn-secondary me-md-2 mb-2 mb-md-0" %>
+                  <%= f.submit "変更する", class: "btn btn-primary px-5" %>
                 </div>
               <% end %>
             </div>

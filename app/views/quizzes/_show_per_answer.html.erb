@@ -12,19 +12,10 @@
           </div>
         </div>
         <div class="quiz-options">
-          <% @question.choices.each do |choice| %>
-            <label class="quiz-option-answer <%= quiz_option_class(choice) %>">
-              <span><%= choice %></span>
-            </label>
-          <% end %>
+          <%= render partial: "quizzes/answer_option", collection: @current_question.choices, as: :choice %>
         </div>
         <div class="quiz-button-container">
-          <%= link_to(
-            @button_label,
-            play_quizzes_path(state: @next_state, id: @quiz.id),
-            class: "submit-button",
-            data: { turbo_frame: 'quiz-frame' }
-          ) %>
+          <%= link_to(@button_label, play_quizzes_path(state: @next_state, id: @quiz.id), class: "submit-button", data: { turbo_frame: 'quiz-frame' }) %>
         </div>
       </div>
     </div>
