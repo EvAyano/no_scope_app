@@ -84,3 +84,5 @@ gem "devise-i18n-views", "~> 0.3.7"
 gem "rspec-rails", "~> 7.1"
 
 gem "google-apis-youtube_v3", "~> 0.53.0"
+
+gem "letter_opener", "~> 1.10"
