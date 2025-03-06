@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'contacts/index'
   devise_for :users, controllers: { 
     registrations: 'users/registrations', 
     passwords: 'users/passwords' 
@@ -40,7 +41,11 @@ Rails.application.routes.draw do
       get 'history'
     end
   end
-  
+
+  get 'contacts/new', to: 'contacts#new', as: 'new_contact'
+  post 'contacts', to: 'contacts#create'
+  get 'contacts/completed', to: 'contacts#completed', as: 'contacts_completed'
+
   get "up" => "rails/health#show", as: :rails_health_check
   
   get '*not_found',

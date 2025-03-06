@@ -1,6 +1,20 @@
 
 ---
 ja:
+  activemodel:
+    attributes:
+      contact:
+        name: "名前"
+        email: "メールアドレス"
+        message: "お問い合わせ内容"
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: "を入力してください。"
+            message:
+              blank: "を入力してください。"
   activerecord:
     errors:
       messages:

@@ -1,0 +1,54 @@
+<div class="hero-section">
+  <div class="hero-titles">
+    <h2 class="hero-subtitle">contact form</h2>
+    <h1 class="hero-title">お問い合わせフォーム</h1>
+  </div>
+</div>
+
+<div class="background-container">
+  <section class="account-management-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="account-details-card card bg-dark text-white mb-4">
+            <div class="card-body">
+              
+              <div class="mb-3">
+                <div class="error-message-header text-primary">お問い合わせ前にご確認ください</div>
+                <ul class="list-unstyled small mb-0">
+                  <li>返信をご希望の場合は、正しいメールアドレスをご入力ください。</li>
+                  <li>お問い合わせ内容には、氏名・住所・電話番号などの個人情報を含めないようお願いいたします。</li>
+                  <li>お問い合わせの内容によっては、返信に数日かかる場合や対応ができないこともございます。あらかじめご了承ください。</li>
+                </ul>
+              </div>
+
+              <%= form_with model: @contact, url: contacts_path, method: :post, local: true do |f| %>
+                <%= render "shared/flash_message" %>
+
+                <div class="mb-3">
+                    <label class="form-label">ニックネーム *必須</label>
+                    <%= f.text_field :name, class: 'form-control' %>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">メールアドレス（返信をご希望の場合）</label>
+                  <%= f.email_field :email, class: 'form-control' %>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">お問い合わせ内容 *必須</label>
+                  <%= f.text_area :message, class: 'form-control' %>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <%= f.submit '送信', class: 'btn btn-primary px-5' %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
