@@ -42,9 +42,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'contacts/new', to: 'contacts#new', as: 'new_contact'
-  post 'contacts', to: 'contacts#create'
-  get 'contacts/completed', to: 'contacts#completed', as: 'contacts_completed'
+  resources :contacts, only: [:new, :create] do
+    get 'completed', on: :collection
+  end  
 
   get "up" => "rails/health#show", as: :rails_health_check
   

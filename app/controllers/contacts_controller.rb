@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
     if @contact.valid?
       send_to_google_form(@contact)
       
-      redirect_to contacts_completed_path
+      redirect_to completed_contacts_path
     else
       render :new, status: :unprocessable_entity
     end
