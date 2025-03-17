@@ -4,12 +4,14 @@ class Quiz < ApplicationRecord
   validates :completed, inclusion: { in: [true, false] }
   
   def self.fetch_logs_for_user(user, year: nil, month: nil)
-    quizzes = user.quizzes.where(completed: true)
+    quizzes = user.quizzes.where(completed: true).order(start_time: :desc)
 
     if year.present? && month.present?
       start_date = Date.new(year.to_i, month.to_i, 1).beginning_of_day
       end_date = Date.new(year.to_i, month.to_i, -1).end_of_day
       quizzes = quizzes.where(start_time: start_date..end_date)
+    else
+      quizzes = quizzes.limit(10)
     end
 
     if quizzes.exists?
