@@ -30,15 +30,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = current_user
 
     if params[:user][:current_password].blank?
-      @user.errors.add(:current_password, "を入力してください")
+      @user.errors.add(:current_password, "を入力してください。")
     end
 
     if params[:user][:password].blank?
-      @user.errors.add(:password, "を入力してください")
+      @user.errors.add(:password, "を入力してください。")
     end
 
     if params[:user][:password_confirmation].blank?
-      @user.errors.add(:password_confirmation, "を入力してください")
+      @user.errors.add(:password_confirmation, "を入力してください。")
     end
 
     if @user.errors.any?
@@ -64,9 +64,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = current_user
 
     if params[:user][:nickname].blank?
-      @user.errors.add(:nickname, "を入力してください")
+      @user.errors.add(:nickname, "を入力してください。")
     elsif params[:user][:nickname].length > 10
-      @user.errors.add(:nickname, "は10文字以内で入力してください")
+      @user.errors.add(:nickname, "は10文字以内で入力してください。")
     end
 
     if @user.errors.any?
