@@ -324,6 +324,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (6.4.0)
+      activesupport (>= 5.2.0)
     signet (0.19.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -397,6 +399,7 @@ DEPENDENCIES
   rspec-rails (~> 7.1)
   sassc-rails
   selenium-webdriver
+  shoulda-matchers (~> 6.4)
   sprockets-rails
   stimulus-rails
   turbo-rails
