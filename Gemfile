@@ -86,3 +86,7 @@ gem "rspec-rails", "~> 7.1"
 gem "google-apis-youtube_v3", "~> 0.53.0"
 
 gem "letter_opener", "~> 1.10"
+
+gem "shoulda-matchers", "~> 6.4"
+
+gem "kaminari", "~> 1.2"

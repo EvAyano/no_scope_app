@@ -3,12 +3,12 @@
     <td colspan="3" class="text-center text-warning"><%= quiz_log[:message] %></td>
   <% else %>
     <td>
-      <%= link_to quiz_log[:path], class: "link-wrapper" do %>
+      <%= link_to quiz_log[:path], class: "link-wrapper", data: { turbo_frame: "_top" } do %>
         <%= quiz_log[:formatted_start_time] %>
       <% end %>
     </td>
     <td>
-      <%= link_to quiz_log[:path], class: "link-wrapper" do %>
+      <%= link_to quiz_log[:path], class: "link-wrapper", data: { turbo_frame: "_top" } do %>
         <%= quiz_log[:score] %>
       <% end %>
     </td>

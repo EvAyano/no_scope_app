@@ -1,7 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!, only: [:history]
 
-
   def play
     case params[:state]
     when 'new'
@@ -29,16 +28,30 @@ class QuizzesController < ApplicationController
 
   #クイズ履歴
   def history
+    # フィルターのURLをリロードなどquizzes/hisotory以外からのアクセスの時はフィルターをリセットする
+    if (params[:year].present? || params[:month].present?) &&
+        (request.referer.nil? || URI(request.referer).path != history_quizzes_path)
+      redirect_to history_quizzes_path and return
+    end
+
     year = params[:year]
     month = params[:month]
+    page = params[:page] || 1
   
-    # モデルで
-    @quizzes_log = Quiz.fetch_logs_for_user(current_user, year: year, month: month)
+    #フィルターとページネーションを適用したクイズ履歴
+    paginated_quizzes = Quiz.paginated_quizzes_for(current_user, year: year, month: month, page: page)
+
+    #ビュー表示用データ
+    @quizzes_log = Quiz.fetch_logs_from_relation(paginated_quizzes)
+  
+    @quizzes_pagination = paginated_quizzes
+  
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
-    
-    
-
-
+      
   def determine_next_state
     if @quiz.quiz_questions.where(user_answer: nil).exists?
       { next_state: 'question', button_label: '次へ進む' }

@@ -10,7 +10,7 @@
     <div class="container">
       <div class="quiz-container">
         <div class="filter-form mb-4">
-          <%= form_with url: history_quizzes_path, method: :get, local: true, class: "row g-3 align-items-center justify-content-center" do %>
+          <%= form_with url: history_quizzes_path, method: :get, local: true, class: "row g-3 justify-content-center" do %>
             <div class="col-auto">
               <%= select_tag :year, options_for_select((2020..Time.now.year).to_a.reverse, selected: params[:year]), class: "form-select" %>
             </div>
@@ -20,25 +20,16 @@
             <div class="col-auto">
               <%= submit_tag "フィルター", class: "submit-button" %>
             </div>
+            <div class="col-auto">
+              <%= link_to "リセット", history_quizzes_path, class: "btn btn-outline-secondary" %>
+            </div>
           <% end %>
         </div>
 
         <!-- 履歴リスト -->
-        <div class="quiz-results-table-container">
-          <div class="table-responsive">
-            <table class="quiz-history-table table table-bordered w-100">
-              <thead>
-                <tr>
-                  <th>開始日時</th>
-                  <th>スコア</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%= render partial: 'quiz_log', collection: @quizzes_log, as: :quiz_log %>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <%= turbo_frame_tag "quiz_history_frame" do %>
+        <%= render partial: "quizzes/quiz_history_table" %>
+      <% end %>
       </div>
     </div>
   </section>
