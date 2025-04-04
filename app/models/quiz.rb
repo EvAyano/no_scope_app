@@ -12,8 +12,6 @@ class Quiz < ApplicationRecord
       start_date = Date.new(year.to_i, month.to_i, 1).beginning_of_day
       end_date = Date.new(year.to_i, month.to_i, -1).end_of_day
       quizzes = quizzes.where(start_time: start_date..end_date)
-    else
-      quizzes = quizzes.limit(10)
     end
     quizzes.page(page)
   end
