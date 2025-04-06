@@ -1,5 +1,4 @@
-<% css_class = question.correct ? 'correct-result' : 'incorrect-result' %>
-<div class="mobile-quiz-result <%= css_class %>">
+<div class="mobile-quiz-result <%= quiz_result_class_for_mobile(question) %>">
   <div class="label-row">問題</div>
   <div class="value-row"><%= question.word.definition %></div>
 
@@ -10,5 +9,5 @@
   <div class="value-row"><%= question.word.term %></div>
 
   <div class="label-row">結果</div>
-  <div class="value-row"><%= question.correct ? '正解' : '不正解' %></div>
+  <div class="value-row"><%= question.correctness_text %></div>
 </div>

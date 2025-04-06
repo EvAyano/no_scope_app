@@ -146,4 +146,4 @@ ja:
       user:
         attributes:
           nickname:
-            blank: "を入力してください"
+            blank: "を入力してください。"

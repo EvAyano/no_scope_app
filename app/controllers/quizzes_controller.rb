@@ -107,13 +107,13 @@ class QuizzesController < ApplicationController
     end
 
       # 正誤判定
-    is_correct = @question.correct?(params[:answer]) # モデルで
+    is_correct = @question.is_correct_answer?(params[:answer])#モデルで
     @question.update(user_answer: params[:answer], correct: is_correct)
 
     # 正解・不正解メッセージを設定
     @result_message = is_correct ? "正解です！" : "ざんねん、不正解です。"
 
-    @question.update(user_answer: params[:answer], correct: @question.correct?(params[:answer]))
+    @question.update(user_answer: params[:answer], correct: @question.is_correct_answer?(params[:answer]))
     if @quiz.quiz_questions.where(user_answer: nil).empty?
       # 全て回答済みの場合、最後の結果表示へ
       @quiz.update(completed: true)
