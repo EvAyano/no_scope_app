@@ -109,44 +109,47 @@ RSpec.describe Quiz, type: :model do
         expect(all_completed).to be true
       end
 
-      it 'フィルターがなしの時、1ページ目には全履歴から最新ログを20件(4月3件と3月17件)を取得する' do
-        result = Quiz.paginated_quizzes_for(@user, page: 1)
+      context 'フィルターなしの時' do
+        it '1ページ目には全履歴から最新ログを20件(4月3件と3月17件)を取得する' do
+          result = Quiz.paginated_quizzes_for(@user, page: 1)
 
-        april_count = result.count { |quiz| quiz.start_time.month == 4 && quiz.start_time.year == 2025}
-        march_count = result.count { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025}
-      
-        expect(result.count).to eq(20)
-        expect(april_count).to eq(3)
-        expect(march_count).to eq(17)
-      end
-
-      it 'フィルターがなしの時、2ページ目には残り8件(全て3月)を取得する' do
-        result = Quiz.paginated_quizzes_for(@user, page: 2)
-      
-        expect(result.count).to eq(8)
-      
-        all_march = true
-        result.each do |quiz|
-          unless quiz.start_time.month == 3 && quiz.start_time.year == 2025
-            all_march = false
-            break
-          end
+          april_count = result.count { |quiz| quiz.start_time.month == 4 && quiz.start_time.year == 2025}
+          march_count = result.count { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025}
+        
+          expect(result.count).to eq(20)
+          expect(april_count).to eq(3)
+          expect(march_count).to eq(17)
         end
-        expect(all_march).to be true
+
+        it '2ページ目には残り8件(全て3月)を取得する' do
+          result = Quiz.paginated_quizzes_for(@user, page: 2)
+        
+          expect(result.count).to eq(8)
+        
+          all_march = true
+          result.each do |quiz|
+            unless quiz.start_time.month == 3 && quiz.start_time.year == 2025
+              all_march = false
+              break
+            end
+          end
+          expect(all_march).to be true
+        end
       end
 
-      it 'フィルターがある場合はフィルターされた年月の履歴だけ取得する（１ページ目）' do
-        result = Quiz.paginated_quizzes_for(@user, year: 2025, month: 3, page: 1)
-        expect(result.all? { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025 }).to be true
-        expect(result.count).to eq(20)
-      end
+      context 'フィルターありの時' do
+        it 'フィルターされた年月の履歴だけ取得する（１ページ目）' do
+          result = Quiz.paginated_quizzes_for(@user, year: 2025, month: 3, page: 1)
+          expect(result.all? { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025 }).to be true
+          expect(result.count).to eq(20)
+        end
 
-      it 'フィルターがある場合はフィルターされた年月の履歴だけ取得する（２ページ目）' do
-        result = Quiz.paginated_quizzes_for(@user, year: 2025, month: 3, page: 2)
-        expect(result.all? { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025 }).to be true
-        expect(result.count).to eq(5)
+        it 'フィルターされた年月の履歴だけ取得する（２ページ目）' do
+          result = Quiz.paginated_quizzes_for(@user, year: 2025, month: 3, page: 2)
+          expect(result.all? { |quiz| quiz.start_time.month == 3 && quiz.start_time.year == 2025 }).to be true
+          expect(result.count).to eq(5)
+        end
       end
-
     end
 
     describe '#self.fetch_logs_from_relation' do
