@@ -15,12 +15,14 @@ RSpec.describe Favorite, type: :model do
     )
   end
 
-  describe 'お気に入りの一意性のバリデーション' do
+  describe 'バリデーション' do
     before do
       Favorite.create!(user: user, word: word)
     end
 
     it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:word_id) }
+    it { is_expected.to validate_presence_of(:word_id) }
+    it { is_expected.to validate_presence_of(:user_id) }
   end
 
   describe 'アソシエーション' do
