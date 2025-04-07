@@ -1,9 +1,9 @@
 <li class="recent-quiz-item d-flex align-items-center gap-2 mb-5">
   <div class="avatar-wrapper" style="flex-shrink: 0; width: 60px; text-align: center;">
-    <% if quiz.user.present? %>
+    <% if quiz.user.present? && quiz.user.avatar.attached? %>
       <%= image_tag quiz.user.avatar.variant(resize_to_fill: [60, 60]), class: "avatar-img border", alt: quiz.user.nickname %>
     <% else %>
-      <%= image_tag "user-default-image.png", alt: "ゲストユーザー", class: "avatar-img border",size: "60x60" %>
+      <%= image_tag "user-default-image.png", alt: "ゲストユーザー", class: "avatar-img border", size: "60x60" %>
     <% end %>
   </div>
 
