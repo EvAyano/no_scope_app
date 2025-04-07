@@ -13,24 +13,26 @@
     </table>
   </div>
 
-  <div class="pagination-controls mt-4 text-center">
-    <% current_page = @quizzes_pagination.current_page %>
-    <% total_pages = @quizzes_pagination.total_pages %>
+  <% if @quizzes_pagination.any? %>
+    <div class="pagination-controls mt-4 text-center">
+      <% current_page = @quizzes_pagination.current_page %>
+      <% total_pages = @quizzes_pagination.total_pages %>
 
-    <% unless current_page == 1 %>
-      <%= link_to "最新", history_quizzes_path(page: 1, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
-    <% end %>
+      <% unless current_page == 1 %>
+        <%= link_to "最新", history_quizzes_path(page: 1, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
+      <% end %>
 
-    <% if @quizzes_pagination.prev_page %>
-      <%= link_to "前へ", history_quizzes_path(page: @quizzes_pagination.prev_page, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
-    <% end %>
+      <% if @quizzes_pagination.prev_page %>
+        <%= link_to "前へ", history_quizzes_path(page: @quizzes_pagination.prev_page, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
+      <% end %>
 
-    <% if @quizzes_pagination.next_page %>
-      <%= link_to "次へ", history_quizzes_path(page: @quizzes_pagination.next_page, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
-    <% end %>
+      <% if @quizzes_pagination.next_page %>
+        <%= link_to "次へ", history_quizzes_path(page: @quizzes_pagination.next_page, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
+      <% end %>
 
-    <% unless current_page == total_pages %>
-      <%= link_to "最古", history_quizzes_path(page: total_pages, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
-    <% end %>
-  </div>
+      <% unless current_page == total_pages %>
+        <%= link_to "最古", history_quizzes_path(page: total_pages, year: params[:year], month: params[:month]), data: { turbo_frame: "quiz_history_frame" }, class: "btn btn-outline-primary mx-1" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
