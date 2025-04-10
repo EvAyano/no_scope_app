@@ -71,12 +71,13 @@ class QuizzesController < ApplicationController
     else
       Quiz.create(start_time: Time.current)
     end
-    
-
+  
     words = Word.order("RAND()").limit(10)
+    all_other_terms = Word.where.not(id: words.pluck(:id)).pluck(:term)
+  
     words.each do |word|
-      choices = Word.where.not(id: word.id).order("RAND()").limit(3).pluck(:term)
-      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.push(word.term).shuffle)
+      choices = all_other_terms.sample(3) + [word.term]
+      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.shuffle)
     end
   end
 
