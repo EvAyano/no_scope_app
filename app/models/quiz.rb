@@ -39,7 +39,7 @@ class Quiz < ApplicationRecord
   end
 
   def display_score
-    total_questions = quiz_questions.count
+    total_questions = quiz_questions.size
     "#{score || 0}/#{total_questions}"
   end
 

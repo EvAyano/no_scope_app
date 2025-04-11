@@ -39,7 +39,7 @@ class QuizzesController < ApplicationController
     page = params[:page] || 1
   
     #フィルターとページネーションを適用したクイズ履歴
-    paginated_quizzes = Quiz.paginated_quizzes_for(current_user, year: year, month: month, page: page)
+    paginated_quizzes = Quiz.paginated_quizzes_for(current_user, year: year, month: month, page: page).includes(:quiz_questions)
 
     #ビュー表示用データ
     @quizzes_log = Quiz.fetch_logs_from_relation(paginated_quizzes)
@@ -131,7 +131,7 @@ class QuizzesController < ApplicationController
 
   def load_results
     @quiz = Quiz.find(params[:id])
-    @questions = @quiz.quiz_questions
+    @questions = @quiz.quiz_questions.includes(:word)
     @quiz.calculate_and_save_score
     @show_start_time = @quiz.start_time.present? ? @quiz.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') : "不明"
   end
