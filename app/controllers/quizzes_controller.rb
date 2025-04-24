@@ -11,6 +11,9 @@ class QuizzesController < ApplicationController
     when 'question'
 
       load_question
+      if @quiz.completed || @current_question.nil?
+        redirect_to play_quizzes_path(state: "results", id: @quiz.id) and return
+      end
       @view_state = :question
 
     when 'answer'
@@ -51,17 +54,6 @@ class QuizzesController < ApplicationController
       format.turbo_stream
     end
   end
-      
-  def determine_next_state
-    if @quiz.quiz_questions.where(user_answer: nil).exists?
-      { next_state: 'question', button_label: '次へ進む' }
-    else
-      @quiz.update(completed: true)
-      { next_state: 'results', button_label: '結果を見る' }
-    end
-  end
-  
-
 
   private
 
@@ -73,11 +65,10 @@ class QuizzesController < ApplicationController
     end
   
     words = Word.order("RAND()").limit(10)
-    all_other_terms = Word.where.not(id: words.pluck(:id)).pluck(:term)
   
     words.each do |word|
-      choices = all_other_terms.sample(3) + [word.term]
-      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: choices.shuffle)
+      incorrect_choices = Word.where.not(id: word.id).where.not(term: word.term).order("RAND()").limit(3).pluck(:term)
+      @quiz.quiz_questions.create(word: word, user_answer: nil, choices: incorrect_choices.push(word.term).shuffle)
     end
   end
 
@@ -85,10 +76,6 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @current_question = @quiz.quiz_questions.where(user_answer: nil).first
     @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
-
-    if @quiz.completed || @current_question.nil?
-      redirect_to play_quizzes_path(state: "results", id: @quiz.id) and return
-    end
   end
 
   
