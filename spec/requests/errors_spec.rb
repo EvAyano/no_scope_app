@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Errors", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+  describe "不明なパスのとき" do
+    it "404のページが表示されること" do
+      get "/unknown_path"
+      expect(response).to have_http_status(:not_found)
+    end
   end
 end
