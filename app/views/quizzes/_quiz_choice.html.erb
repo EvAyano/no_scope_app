@@ -1,6 +1,4 @@
-<label>
-  <%= radio_button_tag :answer, choice, false, class: "hidden-radio" %>
-  <div class="quiz-option">
-    <%= choice %>
-  </div>
-</label>
+<%= label_tag "quiz_choice_#{choice}" do %>
+  <%= radio_button_tag :answer, choice, false, id: "quiz_choice_#{choice}", class: "hidden-radio" %>
+  <div class="quiz-option"><%= choice %></div>
+<% end %>
