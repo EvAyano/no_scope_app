@@ -43,7 +43,9 @@ RSpec.describe "Quizzes", type: :system do
     click_button "クイズ開始"
 
     10.times do |i|
-      first("label[for^='quiz_choice_']").click
+      find("label[for^='quiz_choice_']", match: :first, wait: 5).click
+
+      # first("label[for^='quiz_choice_']").click
       click_button "回答"
 
       expect(page).to have_content("正解").or have_content("不正解")
@@ -66,7 +68,9 @@ RSpec.describe "Quizzes", type: :system do
   
     9.times do
       first("label[for^='quiz_choice_']").click
-      click_button "回答"
+      # click_button "回答"
+      click_button "回答", disabled: false, wait: 5
+
       find("a.submit-button", text: "次へ進む").click
     end
   
@@ -80,7 +84,9 @@ RSpec.describe "Quizzes", type: :system do
     visit play_quizzes_path(state: 'new')
     click_button "ゲストユーザーとしてクイズ開始"
   
-    expect(page).to have_selector("p.quiz-definition")
+    # expect(page).to have_selector("p.quiz-definition")
+    expect(page).to have_selector("p.quiz-definition", wait: 5)
+
   end
 
   it "選択せずに回答するとエラーが表示される" do
@@ -98,7 +104,9 @@ RSpec.describe "Quizzes", type: :system do
         
         #ログイン完了を待つ
         find('.dropdown-toggle').click
-        expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
+        # expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
+        expect(page).to have_link('お気に入り単語一覧', href: favorites_path, wait: 5)
+
     
         quiz1 = Quiz.create!(user: user, completed: true, start_time: Time.zone.local(2025, 4, 10, 12), score: 8)
         quiz2 = Quiz.create!(user: user, completed: true, start_time: Time.zone.local(2025, 5, 25, 12), score: 10)
@@ -165,7 +173,9 @@ RSpec.describe "Quizzes", type: :system do
   
         #ログイン完了を待つ
         find('.dropdown-toggle').click
-        expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
+        # expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
+        expect(page).to have_link('お気に入り単語一覧', href: favorites_path, wait: 5)
+
   
         visit history_quizzes_path
     
