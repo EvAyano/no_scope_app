@@ -64,6 +64,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "sqlite3", "~> 1.4"
 end
 
 
@@ -90,5 +91,3 @@ gem "letter_opener", "~> 1.10"
 gem "shoulda-matchers", "~> 6.4"
 
 gem "kaminari", "~> 1.2"
-
-gem "sqlite3", "~> 2.6"
