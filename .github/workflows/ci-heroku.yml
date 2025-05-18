@@ -29,18 +29,19 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      - name: Run DB Migration
-        run: |
-          bundle exec rake db:create
-          bundle exec rake db:migrate
+      # - name: Run DB Migration
+      #   run: |
+      #     bundle exec rake db:create
+      #     bundle exec rake db:migrate
 
       - name: Run tests
         env:
           RAILS_ENV: test
         run: |
+          unset DATABASE_URL
           bundle exec rake db:create
           bundle exec rake db:migrate
-          bundle exec rspec  # Run the RSpec tests
+          bundle exec rspec
 
   deploy:
     name: Deploy only on main
