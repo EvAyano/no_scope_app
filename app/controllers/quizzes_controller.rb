@@ -63,11 +63,13 @@ class QuizzesController < ApplicationController
     else
       Quiz.create(start_time: Time.current)
     end
-  
-    words = Word.order("RAND()").limit(10)
-  
+
+    random_function = ActiveRecord::Base.connection.adapter_name == 'SQLite' ? 'RANDOM()' : 'RAND()'
+
+    words = Word.order(random_function).limit(10)
+
     words.each do |word|
-      incorrect_choices = Word.where.not(id: word.id).where.not(term: word.term).order("RAND()").limit(3).pluck(:term)
+      incorrect_choices = Word.where.not(id: word.id).where.not(term: word.term).order(random_function).limit(3).pluck(:term)
       @quiz.quiz_questions.create(word: word, user_answer: nil, choices: incorrect_choices.push(word.term).shuffle)
     end
   end
