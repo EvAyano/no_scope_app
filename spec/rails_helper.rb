@@ -51,6 +51,13 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.before(:each) do
+    session_data = defined?(rspec_session) ? rspec_session : {}
+    fake_session = FakeSession.new.merge(session_data)
+
+    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(fake_session)
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 

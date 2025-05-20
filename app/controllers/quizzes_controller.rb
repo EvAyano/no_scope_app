@@ -64,6 +64,11 @@ class QuizzesController < ApplicationController
       Quiz.create(start_time: Time.current)
     end
 
+    if @quiz.user.nil?
+      session[:guest_quiz_ids] ||= []
+      session[:guest_quiz_ids] << @quiz.id
+    end
+
     random_function = ActiveRecord::Base.connection.adapter_name == 'SQLite' ? 'RANDOM()' : 'RAND()'
 
     words = Word.order(random_function).limit(10)
@@ -74,16 +79,26 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def quiz_access_control!
+    quiz = Quiz.find(params[:id])
+
+    if quiz.user.present?
+      raise ActiveRecord::RecordNotFound unless quiz.user == current_user
+    else
+      guest_ids = session[:guest_quiz_ids] || []
+      raise ActiveRecord::RecordNotFound unless guest_ids.include?(quiz.id)
+    end
+    quiz
+  end
+
   def load_question
-    @quiz = Quiz.find(params[:id])
+    @quiz = quiz_access_control!
     @current_question = @quiz.quiz_questions.where(user_answer: nil).first
     @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
   end
 
-  
-
   def process_answer
-    @quiz = Quiz.find(params[:id])
+    @quiz = quiz_access_control!
     @question = @quiz.quiz_questions.find(params[:question_id])
     @current_question = @quiz.quiz_questions.where(user_answer: nil).first
     @current_question_number = @quiz.quiz_questions.where("id < ?", @current_question.id).count + 1 if @current_question
@@ -120,6 +135,14 @@ class QuizzesController < ApplicationController
 
   def load_results
     @quiz = Quiz.find(params[:id])
+    @questions = @quiz.quiz_questions.includes(:word)
+    @quiz.calculate_and_save_score
+    @show_start_time = @quiz.start_time.present? ? @quiz.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') : "不明"
+  end
+  
+  def load_results
+    @quiz = quiz_access_control!
+  
     @questions = @quiz.quiz_questions.includes(:word)
     @quiz.calculate_and_save_score
     @show_start_time = @quiz.start_time.present? ? @quiz.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M') : "不明"

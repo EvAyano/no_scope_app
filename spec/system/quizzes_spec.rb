@@ -8,6 +8,7 @@ RSpec.describe "Quizzes", type: :system do
 
   let!(:user) { User.create!(email: 'test@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser') }
   let!(:empty_user) {User.create!(email: 'test2@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser2')}
+  let!(:other_user) {User.create!(email: 'test3@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser3')}
 
   let!(:words) do
     10.times.map do |i|
@@ -68,7 +69,6 @@ RSpec.describe "Quizzes", type: :system do
   
     9.times do
       first("label[for^='quiz_choice_']").click
-      # click_button "回答"
       click_button "回答", disabled: false, wait: 5
 
       find("a.submit-button", text: "次へ進む").click
@@ -96,7 +96,38 @@ RSpec.describe "Quizzes", type: :system do
   
     expect(page).to have_content("選択肢を1つ選んでください。")
   end
+
+  it "ゲストユーザーが自分のクイズ結果を見られる" do
+    visit play_quizzes_path(state: 'new')
+    click_button "ゲストユーザーとしてクイズ開始"
   
+    10.times do
+      find("label[for^='quiz_choice_']", match: :first).click
+      click_button "回答"
+      find("a.submit-button").click
+    end
+  
+    expect(page).to have_content("クイズ結果")
+  end
+
+  it "ゲストが他人のクイズ結果にアクセスするとエラーになる" do
+    quiz = Quiz.create!(completed: true, start_time: Time.current)
+    quiz.quiz_questions.create!(word: words.first, correct: true)
+  
+    visit play_quizzes_path(state: 'results', id: quiz.id)
+    expect(page).to have_content("ActiveRecord::RecordNotFound") 
+
+  end
+
+  it "ログインユーザーが他人のクイズにアクセスするとエラーになる" do
+    quiz = Quiz.create!(user: other_user, completed: true, start_time: Time.current)
+    quiz.quiz_questions.create!(word: words.first, correct: true)
+  
+    user_login
+    visit play_quizzes_path(state: 'results', id: quiz.id)
+    expect(page).to have_content("ActiveRecord::RecordNotFound") 
+  end
+
   describe "クイズ履歴ページ" do
     context "クイズ履歴のあるユーザー場合" do
       before do
@@ -107,7 +138,6 @@ RSpec.describe "Quizzes", type: :system do
         # expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
         expect(page).to have_link('お気に入り単語一覧', href: favorites_path, wait: 5)
 
-    
         quiz1 = Quiz.create!(user: user, completed: true, start_time: Time.zone.local(2025, 4, 10, 12), score: 8)
         quiz2 = Quiz.create!(user: user, completed: true, start_time: Time.zone.local(2025, 5, 25, 12), score: 10)
 
@@ -176,7 +206,6 @@ RSpec.describe "Quizzes", type: :system do
         # expect(page).to have_link('お気に入り単語一覧', href: favorites_path)
         expect(page).to have_link('お気に入り単語一覧', href: favorites_path, wait: 5)
 
-  
         visit history_quizzes_path
     
         expect(page).to have_content("該当するクイズ履歴がありません。")
