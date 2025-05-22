@@ -147,6 +147,9 @@ RSpec.describe "Favorites", type: :system do
         visit favorites_path
       
         click_link "Nade"
+
+        expect(page).to have_selector("turbo-frame#word_detail", wait: 5)
+
         within("turbo-frame#word_detail") do
           click_button "お気に入りから削除"
         end
