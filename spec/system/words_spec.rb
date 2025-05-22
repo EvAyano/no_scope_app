@@ -24,7 +24,7 @@ RSpec.describe "Words", type: :system do
       definition: "味方のプレイヤーを誤ってキルしてしまうこと",
       explanation: "Team Kill（チームキル）の略。",
       example_en: "He TK’ed me by mistake.",
-      example_jp: "ミスられて彼にキルされた。た",
+      example_jp: "ミスられて彼にキルされた。",
       pronunciation_jp: "チームキル",
       pronunciation_en: "ティーﾑキﾙ",
       related_videos: "BT-R4xm2CG0"
