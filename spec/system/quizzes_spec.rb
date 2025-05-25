@@ -6,8 +6,8 @@ RSpec.describe "Quizzes", type: :system do
     driven_by(:selenium_chrome_headless)
   end
 
-  let!(:user) { User.create!(email: 'test@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser') }
-  let!(:empty_user) {User.create!(email: 'test2@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser2')}
+  let!(:user) { User.create!(email: 'test@noscope.com', password: 'testcspass1125!', password_confirmation: 'testcspass1125!', nickname: 'testuser') }
+  let!(:empty_user) {User.create!(email: 'test2@noscope.com', password: 'testcspass1125!', password_confirmation: 'testcspass1125!', nickname: 'testuser2')}
   let!(:other_user) {User.create!(email: 'test3@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser3')}
 
   let!(:words) do
@@ -198,7 +198,7 @@ RSpec.describe "Quizzes", type: :system do
         visit new_user_session_path
     
         fill_in "user_email", with: "test2@noscope.com"
-        fill_in "user_password", with: "password"
+        fill_in "user_password", with: "testcspass1125!"
         click_button "ログイン"
   
         #ログイン完了を待つ

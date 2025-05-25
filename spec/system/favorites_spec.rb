@@ -5,7 +5,7 @@ RSpec.describe "Favorites", type: :system do
     driven_by(:selenium_chrome_headless)
   end
 
-  let!(:user) { User.create!(email: 'test@noscope.com', password: 'password', password_confirmation: 'password', nickname: 'testuser') }
+  let!(:user) { User.create!(email: 'test@noscope.com', password: 'testcspass1125!', password_confirmation: 'testcspass1125!', nickname: 'testuser') }
 
   let!(:word1) do
     Word.create!(
