@@ -116,6 +116,8 @@ RSpec.describe "Favorites", type: :system do
         user.favorites.create!(word: word1)
         visit favorites_path
         click_link "Nade"
+        expect(page).to have_selector("turbo-frame#word_detail", text: "Nade", wait: 5)
+
         within("turbo-frame#word_detail") do
           expect(page).to have_content("Nade")  
           expect(page).to have_content("グレネードのこと")
@@ -136,6 +138,8 @@ RSpec.describe "Favorites", type: :system do
         visit favorites_path
       
         click_link "Nade"
+        expect(page).to have_selector("turbo-frame#word_detail", text: "Nade", wait: 5)
+
         within("turbo-frame#word_detail") do
           expect(page).to have_css("iframe[src*='youtube.com/embed/FAKEnade22']")
         end
