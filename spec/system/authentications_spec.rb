@@ -346,6 +346,7 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
         fill_in "新しいニックネーム (10文字以内)", with: ""
         click_button "変更する"
 
+        expect(page).to have_selector(".error-message-container", wait: 5)
         expect(page).to have_content("ニックネームを入力してください。")
 
       end
