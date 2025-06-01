@@ -290,6 +290,8 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
         click_link("変更", href: edit_user_email_path)
         expect(page).to have_current_path(edit_user_email_path)
 
+        expect(page).to have_button("変更する", wait: 5)
+
         fill_in "新しいメールアドレス", with: "@noscope.com"
         click_button "変更する"
 
