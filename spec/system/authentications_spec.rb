@@ -27,6 +27,31 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
         expect(page).to have_content(nickname)
 
       end
+
+      it "未設定の場合はデフォルト画像がプロフィール画像に使用される" do
+
+        visit new_user_registration_path
+
+        fill_in "メールアドレス", with: email
+        fill_in "user[password]", with: password
+        fill_in "user[password_confirmation]", with: password_confirmation
+
+        fill_in "ニックネーム", with: nickname
+
+        click_button "登録"
+
+        expect(page).to have_content(nickname)
+
+        find('.dropdown-toggle').click
+        click_link('アカウント情報', href: edit_user_registration_path)
+  
+        expect(page).to have_current_path(edit_user_registration_path)
+        expect(page).to have_content("Account info")
+    
+        within(".profile-image-wrapper") do
+          expect(page).to have_css("img[src*='user-default-image']")
+        end
+      end
     end
 
     context "バリデーションエラーの表示" do
@@ -164,7 +189,7 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
   describe "ログアウト" do
     let!(:user) { User.create!(email: 'test@noscope.com', password: 'testcspass1125!', password_confirmation: 'testcspass1125!', nickname: 'testuser') }
 
-    it "ログインしている場合はログアウトできる" do
+    it "ナビバーからログアウトできる" do
       visit new_user_session_path
     
       fill_in "メールアドレス", with: email
@@ -178,6 +203,26 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
 
       expect(page).to have_current_path(root_path)
     
+    end
+
+    it "アカウント情報ページからログアウトできる" do
+      visit new_user_session_path
+    
+      fill_in "メールアドレス", with: email
+      fill_in "user[password]", with: password
+      click_button "ログイン"
+    
+      expect(page).to have_content(nickname)
+
+      find('.dropdown-toggle').click
+      click_link('アカウント情報', href: edit_user_registration_path)
+
+      expect(page).to have_current_path(edit_user_registration_path)
+      expect(page).to have_content("Account info")
+
+      click_button "ログアウト"
+      expect(page).to have_current_path(root_path, wait: 5)
+
     end
 
     it "ログインしていない場合はログインか新規登録が表示される" do
@@ -203,6 +248,19 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
       expect(page).to have_content("Account info")
 
 
+    end
+
+    context "アカウントの削除" do
+      it "アカウントを削除できる" do
+        expect(User.exists?(user.id)).to be true
+    
+        accept_confirm "本当にアカウントを削除しますか？" do
+          click_button "アカウント削除"
+        end
+    
+        expect(page).to have_current_path(root_path, wait: 5)
+        expect(User.exists?(user.id)).to be false
+      end
     end
 
     context "メールアドレスの変更" do
