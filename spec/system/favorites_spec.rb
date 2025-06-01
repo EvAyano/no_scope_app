@@ -155,6 +155,7 @@ RSpec.describe "Favorites", type: :system do
         expect(page).to have_selector("turbo-frame#word_detail", wait: 5)
 
         within("turbo-frame#word_detail") do
+          expect(page).to have_button("お気に入りから削除", wait: 5)
           click_button "お気に入りから削除"
         end
       
