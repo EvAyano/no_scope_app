@@ -271,7 +271,7 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
         fill_in "新しいメールアドレス", with: "new_email_address@noscope.com"
         click_button "変更する"
 
-        expect(page).to have_content("メールアドレスの更新が完了しました！")
+        expect(page).to have_selector("p", text: "メールアドレスの更新が完了しました！", wait: 5)
 
       end
 
