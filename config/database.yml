@@ -29,9 +29,11 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  host: 0.0.0.0
-  url: <%= ENV["DATABASE_URL"] || "mysql2://root:password@0.0.0.0:3306/no_scope_app_test" %>
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
