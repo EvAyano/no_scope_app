@@ -92,3 +92,5 @@ gem "letter_opener", "~> 1.10"
 gem "shoulda-matchers", "~> 6.4"
 
 gem "kaminari", "~> 1.2"
+
+gem "rails-erd", "~> 1.7"
