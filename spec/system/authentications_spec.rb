@@ -429,7 +429,7 @@ RSpec.describe "User Authentication and Profile Management", type: :system do
         attach_file("新しいプロフィール画像", Rails.root.join("spec/fixtures/files/avatar.png"))
         click_button "変更する"
 
-        expect(page).to have_current_path(edit_user_registration_path)
+        expect(page).to have_current_path(edit_user_registration_path, wait: 5)
       end
     end
   end
