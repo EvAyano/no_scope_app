@@ -20,3 +20,11 @@ end
 
 puts "Words data loaded successfully from #{csv_file_path}!"
 puts "Created #{Word.count} words."
+
+User.find_or_create_by!(email: 'guestuser@noscope.com') do |user|
+  user.password = 'NoScope!2025'
+  user.password_confirmation = 'NoScope!2025'
+  user.nickname = 'ゲストアカウント'
+end
+
+puts "Guest user created"
